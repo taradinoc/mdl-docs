@@ -6,4 +6,4 @@ markdown_extensions:
 
 pages:
   - Home: "index.markdown"
-  - Introduction: "introduction.markdown"
+  - "Front matter": "0-front-matter.markdown"
