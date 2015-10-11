@@ -1,0 +1,5 @@
+site_name: The MDL Programming Language
+theme: readthedocs
+
+pages:
+  - Home: "index.markdown"
