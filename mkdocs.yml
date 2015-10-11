@@ -3,3 +3,4 @@ theme: readthedocs
 
 pages:
   - Home: "index.markdown"
+  - Introduction: "introduction.markdown"
