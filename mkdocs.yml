@@ -1,6 +1,9 @@
 site_name: The MDL Programming Language
 theme: readthedocs
 
+markdown_extensions:
+  - admonition
+
 pages:
   - Home: "index.markdown"
   - Introduction: "introduction.markdown"
