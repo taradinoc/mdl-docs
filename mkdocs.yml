@@ -1,4 +1,6 @@
 site_name: The MDL Programming Language
+repo_url: https://github.com/itafroma/mdl-docs/
+
 theme: readthedocs
 
 markdown_extensions:
