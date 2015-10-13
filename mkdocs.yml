@@ -10,3 +10,4 @@ pages:
   - Home: "index.markdown"
   - "Front matter": "0-front-matter.markdown"
   - "Chapter 1: Basic Introduction": "1-basic-introduction.markdown"
+  - "Chapter 2: Read, Evaluate, and Print": "2-read-evaluate-print.markdown"
