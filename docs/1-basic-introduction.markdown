@@ -88,33 +88,3 @@ If you type the following first line while still in the error state (before `<ER
 ```
 
 This will be explained by and by.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
