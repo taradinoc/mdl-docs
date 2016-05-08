@@ -106,7 +106,7 @@ An error is generated if the `PRIMTYPE` of *any* is not the same as the `TYPEPRI
 
 [`CHTYPE`ing a `FIX` to a `FLOAT` or vice versa produces, in general, nonsense, since the bit formats for `FIX`es and `FLOAT`s are different. The `SUBR`s `FIX` and `FLOAT` convert between those formats. Useful obscurity: because of their internal representations on the PDP-10, `<CHTYPE <MAX> FIX>` gives the least possible `FIX`, and analogously for `MIN`.]
 
-Passing note: "# notation" is just an instruction to `READ` saying "`READ` the representation of the `PRIMTYPE` normally and (literally) `CHTYPE` it to the specified `TYPE`"<!-- this comment stops StackEdit from rendering the previous " as &ldquo; -->. [Or, if the `PRIMTYPE` is `TEMPLATE`, "apply the `GVAL` of the `TYPE` name (which should be a `TEMPLATE` constructor) to the given elements of the `PRIMTYPE` `TEMPLATE` as arguments."]
+Passing note: "# notation" is just an instruction to `READ` saying "`READ` the representation of the `PRIMTYPE` normally and (literally) `CHTYPE` it to the specified `TYPE`". [Or, if the `PRIMTYPE` is `TEMPLATE`, "apply the `GVAL` of the `TYPE` name (which should be a `TEMPLATE` constructor) to the given elements of the `PRIMTYPE` `TEMPLATE` as arguments."]
 
 ## 6.3 More SUBRs Related to TYPEs
 
