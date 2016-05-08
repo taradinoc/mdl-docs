@@ -4,7 +4,7 @@ S. W. Galley and Greg Pfister
 
 ## Transcriber's notes
 
-This document has been transcribed by [Mark Trapp](https://marktrapp.com) from a [PDF maintained by the Defense Technical Information Center](http://www.dtic.mil/docs/citations/ADA070930). It attempts to be as faithful to the original as possible deviating only to adopt modern formatting techniques, account for limitations of Markdown and the web, and add links were appropriate.
+This document has been transcribed by [Mark Trapp](https://marktrapp.com) and [Jesse McGrew](https://bitbucket.org/jmcgrew) from a [PDF maintained by the Defense Technical Information Center](http://www.dtic.mil/docs/citations/ADA070930). It attempts to be as faithful to the original as possible deviating only to adopt modern formatting techniques, account for limitations of Markdown and the web, and add links where appropriate.
 
 To this end, the original language has been maintained as much as humanly possible. When I've noticed an error in the original text, I've indicated it with *[sic]*. If the text requires clarification, my notes will be marked clearly like so:
 
