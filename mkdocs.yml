@@ -12,3 +12,4 @@ pages:
   - "Chapter 1: Basic Introduction": "1-basic-introduction.markdown"
   - "Chapter 2: Read, Evaluate, and Print": "2-read-evaluate-print.markdown"
   - "Chapter 3: Built-in Functions": "3-built-in-functions.markdown"
+  - "Chapter 4: Values of Atoms": "4-values-of-atoms.markdown"
