@@ -15,6 +15,26 @@ If you do notice an error in this current version, feel free to [create an issue
 
 ## Copyright
 
-The original manual is likely copyright © 1979 Massachusetts Institute of Technology. It was written by S. W. Galley and Greg Pfister, but all indications point to it being work-for-hire as part of MIT's contract with DARPA.
+Copyright didn't used to be automatic, as it is in today's world.
 
-As disseminated to the United States Department of Defense, it has the [distribution statement "A"](http://www.dtic.mil/dtic/submit/distribution_statements.html), meaning that it is approved for public release and distribution is unlimited. This classification is the basis under which a good-faith effort to preserve an otherwise-public document has been made.
+Various factors need to be considered and determining the copyright status of a work can be involved: What country or countries was it published in? When was it published? Was an appropriate copyright noticed included (even though they are not required anymore, proper copyright notices used to be required and if they were either missing or inadequate in some way, it could result in loss of copyright on the work involved.) Another factor to consider is if any requred filings were made with the U.S. Copyright Office, and more.
+
+Due to the various factors, which have changed over time, [Cornell's Copyright Information Center](http://copyright.cornell.edu/) publishes a guide that can be useful in helping to determine the copyright status of a work: [http://copyright.cornell.edu/resources/publicdomain.cfm](http://copyright.cornell.edu/resources/publicdomain.cfm).
+
+For some background of the MDL Programming Language document: Various versions of it were published from 1972 to at least 1979. Some had a copyright notice and some did not. Greg Pfister says the 1972 version does not. Also, the 1979 version that was submitted to the U.S. Government and that is on file with the Defense Technical Information Center, and linked to above, does not. I have also checked and this document was not registered with the U.S. Copyright Office at any point.
+
+However, a copy of the 1979 version from the MIT Library does contain a copyright notice. This shows that it was originally published without a copyright notice and that it was added by MIT to other copies later. It seems that at least 7 years had gone by (and possibly longer since it is not known when MIT actually stamped their copy with a notice about 1979) since the earlier versions do not have this.
+
+The chart provided by Cornell's Copyright Information Center indicates that publishing with a copyright notice was required for the 1972 version, and with either a notice or subsequent registration with the U.S. Copyright Office within 5 years (for the later versions) and that loss of copyright would result if this were not done.
+
+In addition, this document is the result of work first produced in the performance of a contract to the U.S. government. While a work prepared by an officer or employee of the federal government as part of that person's official duties is free of copyright this does not necessarily extend to contractors.
+
+Indeed, FAR 52.227-14(c)(1)(ii) lets contractors assert copyright when it says that "when authorized to assert copyright to the data, the Contractor shall affix the applicable copyright notices of 17 U.S.C. 401 or 402, and an acknowledgment of Government sponsorship (including contract number)."
+
+This also shows that, if MIT wanted to claim a copyright on what they sent to the U.S. Government, they needed to include a copyright notice. This backs up the information provided by by Cornell's Copyright Information Center that a copyright notice was required.
+
+While the MDL Programming Language document submitted to the U.S. Government does include an acknowledgment of Government sponsorship (including contract number), it does not contain the required copyight notice.
+
+At the very least we can say that the MDL Programming Language as submitted to the U.S. Government (and very probably all of the other versions that did not contain copyright notices) are therefore in the public domain in the United States for failure to comply with the required formalities. This means you're free to download, modify and redistribute this document. People outside of the United States must check the copyright laws of their country before downloading or redistributing.
+
+However: Even if it should be found that this document is somehow under copyright, the U.S. Government's copy has the [distribution statement "A"](http://www.dtic.mil/dtic/submit/distribution_limitations_and_statements.html), meaning that it is approved for public release and distribution is unlimited. This classification and the information above is the basis under which a good-faith effort to preserve an otherwise-public document has been made.
