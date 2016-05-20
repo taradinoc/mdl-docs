@@ -33,7 +33,7 @@ Indeed, FAR 52.227-14(c)(1)(ii) lets contractors assert copyright when it says t
 
 While the MDL Programming Language document submitted to the U.S. Government does include an acknowledgment of Government sponsorship (including contract number) it does not contain the required copyight notice (assuming that MIT was authorized to assert copyright on the data submitted to the government in the first place because FAR does say "when authorized to assert copyright.")
 
-This also shows that, if MIT wanted to claim a copyright on what they sent to the U.S. Government, assuming that their contract permitted them to, they needed to include a copyright notice. This backs up the information provided by by Cornell's Copyright Information Center that a copyright notice was required (again, assuming they were authorized to assert copyright in the first place.)
+This also shows that, if MIT wanted to claim a copyright on what they sent to the U.S. Government, assuming that their contract permitted them to, they needed to include a copyright notice. This backs up the information provided by Cornell's Copyright Information Center that a copyright notice was required (again, assuming they were authorized to assert copyright in the first place.)
 
 At the very least this means we can say that the MDL Programming Language as submitted to the U.S. Government (and very probably all of the other versions that did not contain copyright notices) are therefore in the public domain in the United States for failure to comply with the required formalities. This means you're free to download, modify and redistribute this document. People outside of the United States must check the copyright laws of their country before downloading or redistributing.
 
