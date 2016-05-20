@@ -17,7 +17,7 @@ If you do notice an error in this current version, feel free to [create an issue
 
 Copyright didn't used to be automatic, as it is in today's world.
 
-Various factors need to be considered and determining the copyright status of a work can be involved: What country or countries was it published in? When was it published? Was an appropriate copyright noticed included (even though they are not required anymore, proper copyright notices used to be required and if they were either missing or inadequate in some way, it could result in loss of copyright on the work involved.) Another factor to consider is if any requred filings were made with the U.S. Copyright Office, and more.
+Various factors need to be considered and determining the copyright status of a work can be involved: What country or countries was it published in? When was it published? Was an appropriate copyright noticed included (even though they are not required anymore, proper copyright notices used to be required and if they were either missing or inadequate in some way, it could result in loss of copyright on the work involved.) Another factor to consider is if any required filings were made with the U.S. Copyright Office, and more.
 
 Due to the various factors, which have changed over time, [Cornell's Copyright Information Center](http://copyright.cornell.edu/) publishes a guide that can be useful in helping to determine the copyright status of a work: [http://copyright.cornell.edu/resources/publicdomain.cfm](http://copyright.cornell.edu/resources/publicdomain.cfm).
 
