@@ -6,12 +6,12 @@ S. W. Galley and Greg Pfister
 
 This document has been transcribed by [Mark Trapp](https://marktrapp.com) and [Jesse McGrew](https://bitbucket.org/jmcgrew) from a [PDF maintained by the Defense Technical Information Center](http://www.dtic.mil/docs/citations/ADA070930). It attempts to be as faithful to the original as possible deviating only to adopt modern formatting techniques, account for limitations of Markdown and the web, and add links where appropriate.
 
-To this end, the original language has been maintained as much as humanly possible. When I've noticed an error in the original text, I've indicated it with *[sic]*. If the text requires clarification, my notes will be marked clearly like so:
+To this end, the original language has been maintained as much as humanly possible. When we've noticed an error in the original text, we've indicated it with *[sic]*. If the text requires clarification, the notes will be marked clearly like so:
 
 !!! note "Transcriber's note"
     This is a transcriber's note.
 
-If you do notice an error in this current version, feel free to [create an issue](https://github.com/itafroma/mdl-docs/issues) or [submit a pull request](https://github.com/itafroma/mdl-docs/pulls).
+If you do notice an error in this current version, feel free to [create an issue](https://github.com/taradinoc/mdl-docs/issues) or [submit a pull request](https://github.com/taradinoc/mdl-docs/pulls).
 
 ## Copyright
 
