@@ -54,7 +54,7 @@ For editing the content of this document and correcting some
 misconceptions, I would like to thank Chris Reeve, Bruce Daniels, and 
 especially Gerald Sussman, one of whose good ideas I finally did use.
 
-Greg Pfister
+Greg Pfister  
 December 15, 1972
 
 Since Greg left the fold, I have taken up the banner and updated his 
@@ -78,7 +78,7 @@ richness of MDL from the inside. I especially thank Chris Reeve ("the
 oracle") for the patience to answer questions and resolve doubts, as 
 he no doubt as done innumerable times before.
 
-S. W. Galley
+S. W. Galley  
 May 23, 1979
 
 This work was supported by the Advanced Research Projects Agency of 
