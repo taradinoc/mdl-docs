@@ -128,7 +128,15 @@ result, intermediate or final, is too large or too small for the
 machine's capacity. (That error can be disabled if necessary—section 
 16.9).
 
-One arithmetic function that always requires some discussion is the pseudo-random-number generator. MDL's is named `RANDOM`, and it always returns a `FIX`, uniformly distributed over the whole range of `FIX`es. If `RANDOM` is never called with arguments, it always returns the exact same sequence of numbers, for convenience in debugging. "Debugged" programs should give `RANDOM` two arguments on the first call, which become seeds for a new sequence. Popular choices of new seeds are the numbers given by `TIME` (which see), possibly with bits modified (chapter 18). Example ("pick a number from one to ten"):
+One arithmetic function that always requires some discussion is the 
+pseudo-random-number generator. MDL's is named `RANDOM`, and it always 
+returns a `FIX`, uniformly distributed over the whole range of 
+`FIX`es. If `RANDOM` is never called with arguments, it always returns 
+the exact same sequence of numbers, for convenience in debugging. 
+"Debugged" programs should give `RANDOM` two arguments on the first 
+call, which become seeds for a new sequence. Popular choices of new 
+seeds are the numbers given by `TIME` (which see), possibly with bits 
+modified (chapter 18). Example ("pick a number from one to ten"):
 
 ```no-highlight
 <+ 1 <MOD <RANDOM> 10>>$
