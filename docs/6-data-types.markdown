@@ -155,7 +155,7 @@ Passing note: "# notation" is just an instruction to `READ` saying
 `TEMPLATE` constructor) to the given elements of the `PRIMTYPE` 
 `TEMPLATE` as arguments."]
 
-## 6.3. More SUBRs Related to TYPEs
+## 6.4. More SUBRs Related to TYPEs
 
 ### 6.4.1. ALLTYPES
 
