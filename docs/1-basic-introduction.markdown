@@ -6,7 +6,7 @@ document. It is strongly recommended that you do experiment,
 especially upon reaching [chapter 5 (Simple 
 Functions)](5-simple-functions.markdown).
 
-## 1.1 Loading MDL [1]
+## 1.1. Loading MDL [1]
 
 First, catch your rabbit. Somehow get the interpreter running—the 
 program in the file `SYS:TS.MDL` in the ITS version or `SYS:MDL.SAV` 
@@ -32,7 +32,7 @@ The program will be referred to as just "MDL" (or "the interpreter")
 from here on. There is no ambiguity, since the program is just an 
 incarnation of the concept "MDL".
 
-## 1.2 Typing [1]
+## 1.2. Typing [1]
 
 Typing a character at MDL normally just causes that character to be 
 echoed (printed on your terminal) and remembered in a buffer. The only 
@@ -137,7 +137,7 @@ When MDL starts running, it will `FLOAD` the file `MUDDLE INIT` (ITS
 version) or `MUDDLE.INIT` (Tenex and Tops-20 versions), if it exists.
 
 
-## 1.4 Errors — Simple Considerations [1]
+## 1.4. Errors — Simple Considerations [1]
 
 When MDL decides for some reason that something is wrong, the standard 
 sequence of evaluation is interrupted and an error function is called. 

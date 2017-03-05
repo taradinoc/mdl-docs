@@ -1,6 +1,6 @@
 # Chapter 2. Read, Evaluate, and Print
 
-## 2.1 General [1]
+## 2.1. General [1]
 
 Once you type `$` and all brackets are correctly paired and nested, 
 the current contents of the input buffer go through processing by 
@@ -25,7 +25,7 @@ MDL objects, creates ASCII text representations of them, and types
 them out. `EVAL`, which is the really important one, performs 
 transformations on MDL objects.
 
-## 2.2 Philosophy (TYPEs) [1]
+## 2.2. Philosophy (TYPEs) [1]
 
 In a general sense, when you are interacting with MDL, you are dealing 
 with a world inhabited only by a particular set of objects: MDL 
@@ -61,7 +61,7 @@ MDL object will be given below when the `TYPE` is introduced. These
 standard representations are what `READ` understands, and what `PRINT` 
 produces.
 
-## 2.3 Example (TYPE FIX) [1]
+## 2.3. Example (TYPE FIX) [1]
 
 ```no-highlight
 1$
@@ -85,7 +85,7 @@ Then `PRINT` saw that its input was of `TYPE` `FIX`, and printed on
 the terminal the decimal characer representation of the corresponding 
 integer.
 
-## 2.4 Example (TYPE FLOAT) [1]
+## 2.4. Example (TYPE FLOAT) [1]
 
 ```no-highlight
 1.0$
@@ -98,7 +98,7 @@ number (of limited precision), because the decimal point can float
 around to any convenient position: an internal exponent part tells 
 where it "really" belongs.)
 
-## 2.5 Example (TYPE ATOM, PNAME) [1]
+## 2.5. Example (TYPE ATOM, PNAME) [1]
 
 ```no-highlight
 GEORGE$
@@ -131,9 +131,9 @@ At the end of this chapter, the question "what is a legal `PNAME`"
 will be considered. Further on, the mehtods used to attach values to 
 `ATOM`s will be described.
 
-## 2.6 FIXes, FLOATs, and ATOMs versus READ: Specifics
+## 2.6. FIXes, FLOATs, and ATOMs versus READ: Specifics
 
-### 2.6.1 READ and FIXed-point Numbers
+### 2.6.1. READ and FIXed-point Numbers
 
 `READ` considers any grouping of characters which are solely digits to 
 be a `FIX`, and the radix of the representation is decimal by default. 
@@ -160,7 +160,7 @@ asterisks (`*`), `READ` interprets that group as the octal
 representation of a `FIX`. For example, `*10*` is always interpreted 
 by `READ` as the octal representation of eight.
 
-### 2.6.2 READ and PRINT versus FLOATing-point Numbers
+### 2.6.2. READ and PRINT versus FLOATing-point Numbers
 
 `PRINT` can produce, and `READ` can understand, two different formats 
 for objects of `TYPE` `FLOAT`. The first is "decimal-point" notation, 
@@ -193,7 +193,7 @@ The largest-magnitude `FLOAT` which can be handled without overflow is
 `1.7014118E+38` (decimal radix). The smallest-magnitude `FLOAT` which 
 can be handled without underflow is `.14693679E-38`.
 
-### 2.6.3 READ and PNAMEs
+### 2.6.3. READ and PNAMEs
 
 The question "what is a legal `PNAME`?" is actually not a reasonable 
 one to ask: **any** non-empty string of **arbitrary** characters can 
@@ -208,7 +208,7 @@ uninterrupted group of upper- and lower-case letters and (customarily)
 hyphens to be a `PNAME`; that will always work. If you neither a 
 perfectionist nor a masochist, skip to the next chapter.
 
-#### 2.6.3.1 Non-PNAMEs
+#### 2.6.3.1. Non-PNAMEs
 
 A group of characters is **not** a `PNAME` if:
 
@@ -243,7 +243,7 @@ characters represented, it's done now. They can also indicate the
 start of a new object's representation (all the opening "brackets" do 
 just that).
 
-#### 2.6.3.2 Examples
+#### 2.6.3.2. Examples
 
 The following examples are not in the "standard format" of "*line 
 typed in*`$` *result printed*", because they are not, in some cases, 
@@ -267,7 +267,7 @@ thought the input in the left-hand column really was.
 `12345A34$`               | an `ATOM` of `PNAME` `12345A35` (If the A had been an E, the object would have been a `FLOAT`.)
 
 
-#### 2.6.3.3 \ (Backslash) in ATOMs
+#### 2.6.3.3. \ (Backslash) in ATOMs
 
 If you have a strange, uncontrollable compulsion to have what were 
 referred to as "separators" above as part of the `PNAME`s of your 
@@ -286,7 +286,7 @@ For example, `PRINT` will type out a `PNAME` which consists wholly of
 digits by first typing a `\` and then typing the digits—no matter 
 where you originally typed the `\` (or `\`s).
 
-#### 2.6.3.4 Examples of Awful ATOMs
+#### 2.6.3.4. Examples of Awful ATOMs
 
 The following examples illustrate the amount of insanity that can be 
 perpetrated by using `\`. The format of the examples is again 

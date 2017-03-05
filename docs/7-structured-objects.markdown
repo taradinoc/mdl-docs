@@ -5,13 +5,13 @@ basic structured `PRIMTYPE`s. [We defer detailed discussion of the
 structured `PRIMTYPE`s `TUPLE` (section 9.2) and `STORAGE` (section 
 22.2.2).]
 
-## 7.1 Manipulation
+## 7.1. Manipulation
 
 The following `SUBR`s operate uniformly on all structured objects and 
 generate an error if not applied to a structured object. Hereafter, 
 *structured* represents a structured object.
 
-### 7.1.1 LENGTH [1]
+### 7.1.1. LENGTH [1]
 
 ```no-highlight
 <LENGTH structured>
@@ -19,7 +19,7 @@ generate an error if not applied to a structured object. Hereafter,
 
 evaluates to the number of elements in *structured*.
 
-### 7.1.2 NTH [1]
+### 7.1.2. NTH [1]
 
 ```no-highlight
 <NTH structured fix>
@@ -29,7 +29,7 @@ evaluates to the *fix*'th element of *structured*. An error occurs if
 *fix* is less than 1 or greater than `<LENGTH structured>`. *fix* is 
 optional, 1 by default.
 
-### 7.1.3 REST [1]
+### 7.1.3. REST [1]
 
 ```no-highlight
 <REST structured fix>
@@ -44,7 +44,7 @@ its `PRIMTYPE`. For example, `REST` of a `FORM` is a `LIST`. `REST`
 with an explicit second argument of `0` has no effect except for this 
 `TYPE` change.
 
-### 7.1.4 PUT [1]
+### 7.1.4. PUT [1]
 
 ```no-highlight
 <PUT structured fix anything-legal>
@@ -57,7 +57,7 @@ legally be an element of *structured*; often, this is synonymous with
 1 or greater than `<LENGTH structured>`. (`PUT` is actually more 
 general than this -- chapter 13.)
 
-### 7.1.5 GET
+### 7.1.5. GET
 
 ```no-highlight
 <GET structured fix>
@@ -67,7 +67,7 @@ evaluates the same as `<NTH structured fix>`. It is more general than
 `NTH`, however (chapter 13), and is included here only for symmetry 
 with `PUT`.
 
-### 7.1.6 APPLYing a FIX [1]
+### 7.1.6. APPLYing a FIX [1]
 
 `EVAL` understands the application of an object of `TYPE` `FIX` as a 
 "shorthand" call to `NTH` or `PUT`, depending on whether it is given 
@@ -97,7 +97,7 @@ order of evaluation is significant: for example, these two:
 
 are **not** identical.]
 
-### 7.1.7 SUBSTRUC
+### 7.1.7. SUBSTRUC
 
 `SUBSTRUC` ("substructure") facilitates the construction of structures 
 that are composed of sub-parts of existing structures. A special case 
@@ -121,9 +121,9 @@ not an element at a time. Note: due to an implementation restriction,
 if *from* is of `PRIMTYPE` `LIST`, it must not share any elements with 
 *to*.
 
-## 7.2 Representation of Basic Structures
+## 7.2. Representation of Basic Structures
 
-### 7.2.1 LIST [1]
+### 7.2.1. LIST [1]
 
 ```no-highlight
 ( element-1 element-2 ... element-N )
@@ -131,7 +131,7 @@ if *from* is of `PRIMTYPE` `LIST`, it must not share any elements with
 
 represents a `LIST` of *N* elements.
 
-### 7.2.2 VECTOR [1]
+### 7.2.2. VECTOR [1]
 
 ```no-highlight
 [ element-1 element-2 ... element-N ]
@@ -140,7 +140,7 @@ represents a `LIST` of *N* elements.
 represents a `VECTOR` of *N* elements. [A `TUPLE` is just like a 
 `VECTOR`, but it lives on the control stack.]
 
-### 7.2.3 UVECTOR [1]
+### 7.2.3. UVECTOR [1]
 
 ```no-highlight
 ![ element-1 element-2 ... element-N !]
@@ -150,7 +150,7 @@ represents a `UVECTOR` (uniform vector) of *N* elements. The second
 `!` (exclamation-point) is optional for input. [A `STORAGE` is an 
 archaic kind of `UVECTOR` that is not garbage-collected.]
 
-### 7.2.4 STRING [1]
+### 7.2.4. STRING [1]
 
 ```no-highlight
 "characters"
@@ -161,7 +161,7 @@ chatacter `"` (double-quote) is represented by placing a `\`
 (backslash) before the double-quote inside the `STRING`. A `\` in a 
 `STRING` is represented by two consecutive backslashes.
 
-### 7.2.5 BYTES
+### 7.2.5. BYTES
 
 ```no-highlight
 #n {element-1 element-2 ... element-N}
@@ -169,7 +169,7 @@ chatacter `"` (double-quote) is represented by placing a `\`
 
 represents a string of *N* uniformly-sized bytes of size *n* bits.
 
-### 7.2.6 TEMPLATE
+### 7.2.6. TEMPLATE
 
 ```no-highlight
 { element-1 element-2 ... element-N }
@@ -178,7 +178,7 @@ represents a string of *N* uniformly-sized bytes of size *n* bits.
 represents a `TEMPLATE` of *N* elements when output, not input -- 
 when input, a `#` and a `TYPE` must precede it.
 
-## 7.3 Evaluation of Basic Structures
+## 7.3. Evaluation of Basic Structures
 
 This section and the next two describe how `EVAL` treats the basic 
 structured `TYPE`s [in the absence of any modifying `EVALTYPE` calls 
@@ -192,7 +192,7 @@ it generates a **new** object with elements equal to `EVAL` of the
 elements it is given. This is one of the simplest means of 
 constructing a structure. However, see section 7.7.
 
-## 7.4 Examples [1]
+## 7.4. Examples [1]
 
 ```no-highlight
 (1 2 <+ 3 4>)$
@@ -221,14 +221,14 @@ ATOM
 ![("meow") ([SNEAKY -3 STRING])!]
 ```
 
-## 7.5 Generation of Basic Structures
+## 7.5. Generation of Basic Structures
 
 Since `LIST`s, `VECTOR`s, `UVECTOR`s, and `STRING`s [and `BYTES`es] 
 are all generated in a fairly uniform manner, methods of generating 
 them will be covered together here. [`TEMPLATE`s cannot be generated 
 by the interpreter itself: see Lebling (1979).]
 
-### 7.5.1 Direct Representation [1]
+### 7.5.1. Direct Representation [1]
 
 Since `EVAL` of a `LIST`, `VECTOR`, or `UVECTOR` is a new `LIST`, 
 `VECTOR`, or `UVECTOR` with elements which are `EVAL` of the original 
@@ -243,7 +243,7 @@ The same is true of any other `TYPE` whose `TYPEPRIM` happens to be
 `EVALTYPE`d nor has a built-in `EVALTYPE`, as do `FORM` and 
 `SEGMENT`].
 
-### 7.5.2 QUOTE [1]
+### 7.5.2. QUOTE [1]
 
 `QUOTE` is an `FSUBR` of one argument which returns its argument 
 unevaluated. `READ` and `PRINT` understand the character `'` 
@@ -265,7 +265,7 @@ executed. Examples hereafter will adhere to this dictum. (Note: one
 should **never** modify a `QUOTE`d object. The compiler will one day 
 put it in read-only (pure) storage.)
 
-### 7.5.3 LIST, VECTOR, UVECTOR, and STRING (the SUBRs) [1]
+### 7.5.3. LIST, VECTOR, UVECTOR, and STRING (the SUBRs) [1]
 
 Each of the `SUBR`s `LIST`, `VECTOR`, `UVECTOR`, and `STRING` takes 
 any number of arguments and returns an object of the appropriate 
@@ -294,7 +294,7 @@ Examples:
 "A <+ 2 3> (5)"
 ```
 
-### 7.5.4 ILIST, IVECTOR, IUVECTOR, and ISTRING [1]
+### 7.5.4. ILIST, IVECTOR, IUVECTOR, and ISTRING [1]
 
 Each of the `SUBR`s `ILIST`, `IVECTOR`, `IUVECTOR`, and `ISTRING` 
 ("implicit" or "iterated" whatever) creates and returns an object of 
@@ -342,7 +342,7 @@ Examples:
 ![1 2 3 4 5 6 7 8 9!]
 ```
 
-### 7.5.5 FORM and IFORM
+### 7.5.5. FORM and IFORM
 
 Sometimes the need arises to create a `FORM` without `EVAL`ing it or 
 making it the body of a `FUNCTION`. In such cases the `SUBR`s `FORM` 
@@ -357,9 +357,9 @@ INC-FORM
 <SET FOO <+ 1 .FOO>>
 ```
 
-## 7.6 Unique Properties of Primitive TYPEs
+## 7.6. Unique Properties of Primitive TYPEs
 
-### 7.6.1 LIST (the PRIMTYPE) [1]
+### 7.6.1. LIST (the PRIMTYPE) [1]
 
 An object of `PRIMTYPE` `LIST` may be considered as a "pointer chain" 
 (appendix 1). Any MDL object may be an element of a `PRIMTYPE` `LIST`. 
@@ -367,7 +367,7 @@ It is easy to add and remove elements of a `PRIMTYPE` `LIST`, but the
 higher N is, the longer it takes to refer to the Nth element. The 
 `SUBR`s which work only on objects of `PRIMTYPE` `LIST` are these:
 
-#### 7.6.1.1 PUTREST [1]
+#### 7.6.1.1. PUTREST [1]
 
 ```no-highlight
 <PUTREST head:primtype-list tail:primtype-list>
@@ -401,7 +401,7 @@ example, given that `.L` is of `PRIMTYPE` `LIST`, to leave the first
 (1 2 3 4 8 9)
 ```
 
-#### 7.6.1.2 CONS
+#### 7.6.1.2. CONS
 
 ```no-highlight
 <CONS new list>
@@ -415,7 +415,7 @@ affected.
 `(.E !.LIST)` (section 7.7) but is less preferable to the compiler 
 (Lebling, 1979).]
 
-### 7.6.2 "Array" PRIMTYPEs [1]
+### 7.6.2. "Array" PRIMTYPEs [1]
 
 `VECTORS`, `UVECTOR`s, and `STRING`s [and `BYTES`es and `TEMPLATE`s] 
 may be considered as "arrays" (appendix 1). It is easy to refer to the 
@@ -425,7 +425,7 @@ used only with an object of `PRIMTYPE` `VECTOR`, `UVECTOR`, or
 `STRING` [or `BYTES` or `TEMPLATE`]. (In this section *array* 
 represents an object of such a `PRIMTYPE`.)
 
-#### 7.6.2.1 BACK [1]
+#### 7.6.2.1. BACK [1]
 
 ```no-highlight
 <BACK array fix>
@@ -447,7 +447,7 @@ of elements which have been `REST`ed off, an error occurs. Example:
 "might."
 ```
 
-#### 7.6.2.2 TOP [1]
+#### 7.6.2.2. TOP [1]
 
 ```no-highlight
 <TOP array>
@@ -462,9 +462,9 @@ changed to its `PRIMTYPE`. Example:
 ![1 2 3 4!]
 ```
 
-### 7.6.3 "Vector" PRIMTYPEs
+### 7.6.3. "Vector" PRIMTYPEs
 
-#### 7.6.3.1 GROW
+#### 7.6.3.1. GROW
 
 ```no-highlight
 <GROW vu end:fix beg:fix>
@@ -508,7 +508,7 @@ Example:
 ![1!]
 ```
 
-#### 7.6.3.2 SORT
+#### 7.6.3.2. SORT
 
 This `SUBR` will sort `PRIMTYPE`s `VECTOR`, `UVECTOR` and `TUPLE` 
 (section 9.2). It works most efficiently if the sort keys are of 
@@ -579,7 +579,7 @@ to be two elements. The second one sorted based on the `FIX`es. The
 third interchanged pairs of elements of each of its structured 
 arguments.
 
-### 7.6.4 VECTOR (the PRIMTYPE) [1]
+### 7.6.4. VECTOR (the PRIMTYPE) [1]
 
 Any MDL object may be an element of a `PRIMTYPE` `VECTOR`. A 
 `PRIMTYPE` `VECTOR` takes two words of storage more than an equivalent 
@@ -588,7 +588,7 @@ Any MDL object may be an element of a `PRIMTYPE` `VECTOR`. A
 1). There are no `SUBR`s or `FSUBR`s which operate only on `PRIMTYPE` 
 `VECTOR`.
 
-### 7.6.5 UVECTOR (the PRIMTYPE) [1]
+### 7.6.5. UVECTOR (the PRIMTYPE) [1]
 
 The difference between `PRIMTYPE`s `UVECTOR` and `VECTOR` is that 
 every element of a `PRIMTYPE` `UVECTOR` must be of the same `TYPE`. A 
@@ -620,7 +620,7 @@ if `.A` `EVAL`s to a `TYPE` `FIX`.
 
 The following `SUBR`s work on `PRIMTYPE` `UVECTOR`s along.
 
-#### 7.6.5.1 UTYPE [1]
+#### 7.6.5.1. UTYPE [1]
 
 ```no-highlight
 <UTYPE primtype-uvector>
@@ -634,7 +634,7 @@ argument. Example:
 ATOM
 ```
 
-#### 7.6.5.2 CHUTYPE [1]
+#### 7.6.5.2. CHUTYPE [1]
 
 ```no-highlight
 <CHUTYPE uv:primtype-uvector type>
@@ -666,7 +666,7 @@ LOSE
 ![() ()!]
 ```
 
-### 7.6.6 STRING (the PRIMTYPE) and CHARACTER [1]
+### 7.6.6. STRING (the PRIMTYPE) and CHARACTER [1]
 
 The best mental image of a `PRIMTYPE` `STRING` is a `PRIMTYPE` 
 `UVECTOR` of `CHARACTER`s -- where `CHARACTER` is the MDL `TYPE` for a 
@@ -690,7 +690,7 @@ or `STRING`s.
 There are no `SUBR`s which uniquely manipulate `PRIMTYPE` `STRING`s, 
 but some are particularly useful in connection with them:
 
-#### 7.6.6.1 ASCII [1]
+#### 7.6.6.1. ASCII [1]
 
 ```no-highlight
 <ASCII fix-or-character>
@@ -706,7 +706,7 @@ Example: `<ASCII !\Z>` evaluates to `90`.
 
 [Actually, a `FIX` can be `CHTYPE`d to a `CHARACTER` (or vice versa) directly, but `ASCII` checks in the former case that the `FIX` is within the permissible range.]
 
-#### 7.6.6.2 PARSE [1]
+#### 7.6.6.2. PARSE [1]
 
 ```no-highlight
 <PARSE string radix:fix>
@@ -719,7 +719,7 @@ represented, is ignored. *radix* (optional, ten by default) is used
 for converting any `FIX`es that occur. [See also sections 15.7.2 and 
 17.1.3 for additional arguments.]
 
-#### 7.6.6.3 LPARSE [1]
+#### 7.6.6.3. LPARSE [1]
 
 `LPARSE` ("list parse") is exactly like `PARSE` (above), except that 
 it parses the **entire** *string* and returns a `LIST` of **all** 
@@ -727,7 +727,7 @@ objects created. If given an empty `STRING` or one containing only
 separators, `LPARSE` returns an empty `LIST`, whereas `PARSE` gets an 
 error.
 
-#### 7.6.6.4 UNPARSE [1]
+#### 7.6.6.4. UNPARSE [1]
 
 ```no-highlight
 <UNPARSE any radix:fix>
@@ -741,7 +741,7 @@ contains the `CHARACTER`s `PRINT` would have typed out. [However, this
 11.2.8).] *radix* (optional, ten by default) is used for converting 
 any `FIX`es that occur.
 
-### 7.6.7 BYTES
+### 7.6.7. BYTES
 
 A (`PRIMTYPE`) `BYTES` is a string of uniformly-sized bytes. The bytes can be any size between 1 and 36 bits inclusive. A `BYTES` is similar in some ways to a `UVECTOR` of `FIX`es and in some ways to a `STRING` of non-seven-bit bytes. The elements of a `BYTES` are always of `TYPE` `FIX`.
 
@@ -772,7 +772,7 @@ The analog to `UTYPE` is `BYTE-SIZE`. Examples:
 1
 ```
 
-### 7.6.8 TEMPLATE
+### 7.6.8. TEMPLATE
 
 A `TEMPLATE` is similar to a PL/I "structure" of one level: the 
 elements are packed together and reduced in size to save storage 
@@ -782,14 +782,14 @@ interpreter is not able to create objects of `PRIMTYPE` `TEMPLATE`
 (Lebling, 1979); however, it can apply the standard built-in 
 Subroutines to them, with the same effects as with other "arrays".
 
-## 7.7 SEGMENTs [1]
+## 7.7. SEGMENTs [1]
 
 Objects of `TYPE` `SEGMENT` (whose `TYPEPRIM` is `LIST`) look very 
 much like `FORM`s. `SEGMENT`s, however, undergo a non-standard 
 evaluation designed to ease the construction of structured objects 
 from elements of other structured objects.
 
-### 7.7.1 Representation [1]
+### 7.7.1. Representation [1]
 
 The representation of an object of `TYPE` `SEGMENT` is the following:
 
@@ -808,7 +808,7 @@ All of the following are `SEGMENT`s:
 !<3 .FOO>    !.FOO    !,FOO
 ```
 
-### 7.7.2 Evaluation [1]
+### 7.7.2. Evaluation [1]
 
 A `SEGMENT` is evaluated in exactly the same manner as a `FORM`, with 
 the following three exceptions:
@@ -843,7 +843,7 @@ elements of the structure returned by the `FORM`-like evaluation.
 []
 ```
 
-### 7.7.4 Note on Efficiency [1]
+### 7.7.4. Note on Efficiency [1]
 
 Most of the cases in which is is possible to use `SEGMENT`s require 
 `EVAL` to generate an entire new object. Naturally, this uses up both 
@@ -901,7 +901,7 @@ when an element of `ARF` was changed, `DOG` was changed. Similarly,
 when an element of `DOG` which `ARF` shared was changed, `ARF` was 
 changed too.
 
-### 7.7.5 SEGMENTs in FORMs [1]
+### 7.7.5. SEGMENTs in FORMs [1]
 
 When a `SEGMENT` appears as an element of a `FORM`, the effect is 
 approximately the same as if the elements of the `EVAL` of the 
@@ -934,7 +934,7 @@ in storage: when you use the `SEGMENT` directly in the `FORM`, a new
 (The elements are put on "the control stack" with the other 
 arguments.)
 
-## 7.8 Self-referencing Structures
+## 7.8. Self-referencing Structures
 
 It is possible for a structured object to "contain" itself, either as 
 a subset or as an element, as an element of a structured element, etc. 
@@ -944,7 +944,7 @@ live MDL, be sure you know how to use `^S` (section 1.2) to save
 `PRINT` from endless agony. (Certain constructs with `ATOM`s can give 
 `PRINT` similar trouble: see chapters 12 and 15.)
 
-### 7.8.1 Self-subset
+### 7.8.1. Self-subset
 
 ```no-highlight
 <PUTREST head:primtype-list tail:primtype-list>
@@ -962,7 +962,7 @@ same object as `<REST head 0>` for some *fix*, then both *head* and
 (3 1 2 3 1 2 3 1 2 3 1 2 3 ...
 ```
 
-### 7.8.2 Self-element
+### 7.8.2. Self-element
 
 ```no-highlight
 <PUT s1:structured fix s2:structured>
