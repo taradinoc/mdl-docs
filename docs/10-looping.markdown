@@ -1,6 +1,6 @@
 # Chapter 10. Looping
 
-## 10.1 PROG and REPEAT [1]
+## 10.1. PROG and REPEAT [1]
 
 `PROG` and `REPEAT` are almost identical `FSUBR`s which make it 
 possible to vary the order of `EVAL`uation arbitrarily -- that is, to 
@@ -23,7 +23,7 @@ variables of `"ACT"`, make it `()`.
 The syntax of `REPEAT` is identical, except that, of course, `REPEAT` 
 is the first element of the `FORM`, not `PROG`.
 
-### 10.1.1 Basic EVALuation [1]
+### 10.1.1. Basic EVALuation [1]
 
 Upon entering a `PROG`, an `ACTIVATION` is **always** generated. If 
 there is an `ATOM` in the right place, the `ACTIVATION` is also bound 
@@ -41,7 +41,7 @@ wish to do, in a somewhat more limited way than can be done with a
 expression is `<AGAIN>`. The only way to leave a `REPEAT` is to 
 explicitly use `RETURN` (or `GO` with a `TAG` -- section 10.4).
 
-### 10.1.2 AGAIN and RETURN in PROG and REPEAT [1]
+### 10.1.2. AGAIN and RETURN in PROG and REPEAT [1]
 
 Within a `PROG` or `REPEAT`, you always have a defined `ACTIVATION`, 
 whether you bind it to an `ATOM` or not. [In fact the interpreter 
@@ -68,7 +68,7 @@ to return the `ATOM` `T`. Also like `AGAIN`, it can, with an
 `ACTIVATION` argument, terminate any Function within which it is 
 embedded at run time.
 
-### 10.1.3 Examples [1]
+### 10.1.3. Examples [1]
 
 Examples of the use of `PROG` are difficult to find, since it is 
 almost never necessary, and it slows down the interpreter (chapter 
@@ -108,7 +108,7 @@ since `MY+` can be written using `SEGMENT` evaluation as
 There are, of course, lots of problems which can't be handled so 
 simply, and lots of uses for `REPEAT`.
 
-## 10.2 MAPF and MAPR: Basics [1]
+## 10.2. MAPF and MAPR: Basics [1]
 
 `MAPF` ("map first") and `MAPR` ("map rest") are two `SUBR`s which 
 take care of a majority of cases which require loops over data. The 
@@ -153,7 +153,7 @@ when seen baldly, due to the fact that the argument descriptions must
 take into account the general case. Simpler, degenerate cases are 
 usually the ones used.
 
-### 10.2.1 MAPF [1]
+### 10.2.1. MAPF [1]
 
 ```no-highlight
 <MAPF finalf loopf s1 s2 ... sN>
@@ -193,7 +193,7 @@ the structures -- that is, `<NTH si 1>`, `<NTH si 2>`, etc. -- it
 applies it to `REST`s of the structures -- that is, `<REST si 0>`, 
 `<REST si 1>`, etc.
 
-### 10.2.3 Examples [1]
+### 10.2.3. Examples [1]
 
 Make the element-wise sum of two `LIST`s:
 
@@ -277,9 +277,9 @@ It works because the `ATOM`s that name the common `STRUCTURED`
 `PRIMTYPS`s (`LIST`, `VECTOR`, `UVECTOR` and `STRING`) have as `GVAL`s 
 the corresponding `SUBR`s to build objects of those `TYPE`s.]
 
-## 10.3 More on MAPF and MAPR
+## 10.3. More on MAPF and MAPR
 
-### 10.3.1 MAPRET
+### 10.3.1. MAPRET
 
 `MAPRET` is a `SUBR` that enables the *loopf* being used in a `MAPR` 
 or `MAPF` (and lexically within it, that is, not separated from it by 
@@ -313,7 +313,7 @@ Example: the following returns a `LIST` of all the `ATOM`s in an
               .OB>>
 ```
 
-### 10.3.2 MAPSTOP
+### 10.3.2. MAPSTOP
 
 `MAPSTOP` is the same as `MAPRET`, except that, after adding its 
 arguments, if any, to the final `TUPLE`, it forces the application of 
@@ -330,7 +330,7 @@ elements of its argument into a `LIST`:
       .STRUC>>
 ```
 
-### 10.3.3 MAPLEAVE
+### 10.3.3. MAPLEAVE
 
 `MAPLEAVE` is analogous to `RETURN`, except that it works in 
 (lexically within) `MAPF` or `MAPR` instead of `PROG` or `REPEAT`. It 
@@ -349,7 +349,7 @@ finds and returns the first non-zero element of its argument, or
               .STRUC>>
 ```
 
-### 10.3.4 Only two arguments
+### 10.3.4. Only two arguments
 
 If `MAPF` or `MAPR` is given only two arguments, the iteration 
 function *loopf* is applied to no arguments each time, and the looping 
@@ -391,7 +391,7 @@ RDSTR
 ABC123<+ 3 4>$"ABC123<+ 3 4>"
 ```
 
-### 10.3.5 STACKFORM
+### 10.3.5. STACKFORM
 
 The `FSUBR` `STACKFORM` is archaic, due to improvements in the 
 implementation of MAPF/R, and it should not be used in new programs.
@@ -410,7 +410,7 @@ is exactly equivalent to
 In fact MAPF/R is more powerful, because `MAPRET`, `MAPSTOP`, and 
 `MAPLEAVE` provide flexibility not available with `STACKFORM`.
 
-## 10.4 GO and TAG
+## 10.4. GO and TAG
 
 `GO` is provided in MDL for people who can't recover from a youthful 
 experience with Basic, Fortran, PL/I, etc. The `SUBR`s previously 
@@ -440,7 +440,7 @@ you. Also like `ACTIVATION`s, `TAG`s into a `PROG` or `REPEAT` can no
 longer be used after the `PROG` or `REPEAT` has returned. `LEGAL?` can 
 be used to see if a `TAG` is still valid.
 
-## 10.5 Looping versus Recursion
+## 10.5. Looping versus Recursion
 
 Since any program in MDL can be called recursively, champions of "pure 
 Lisp" (Moon, 1974) or somesuch may be tempted to implement any 

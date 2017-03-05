@@ -1,6 +1,6 @@
 # Chapter 6. Data Types
 
-## 6.1 General [1]
+## 6.1. General [1]
 
 A MDL object consists of two parts: its `TYPE` and its "data part" 
 (appendix 1). The interpretation of the "data part" of an object 
@@ -28,7 +28,7 @@ an old one in primitive type, even if it has the same elements.
 Before talking any more about structured objects, some information 
 needs to be given about `TYPE`s in general.
 
-## 6.2 Printed Representation [1]
+## 6.2. Printed Representation [1]
 
 There are many `TYPE`s for which MDL has no specific representation. 
 There aren't enough different kinds of brackets. The representation 
@@ -42,9 +42,9 @@ used for `TYPE`s without any special representation is
 will use it by default. This representational format will be referred 
 to below as "# notation". It was used above to represent `FUNCTION`s.
 
-## 6.3 SUBRs Related to TYPEs
+## 6.3. SUBRs Related to TYPEs
 
-### 6.3.1 TYPE [1]
+### 6.3.1. TYPE [1]
 
 ```no-highlight
 <TYPE any>
@@ -73,7 +73,7 @@ SUBR
 ATOM
 ```
 
-### 6.3.2 PRIMTYPE [1]
+### 6.3.2. PRIMTYPE [1]
 
 ```no-highlight
 <PRIMTYPE any>
@@ -97,7 +97,7 @@ WORD
 ATOM
 ```
 
-### 6.3.3 TYPEPRIM [1]
+### 6.3.3. TYPEPRIM [1]
 
 ```no-highlight
 <TYPEPRIM type>
@@ -121,7 +121,7 @@ ATOM
 LIST
 ```
 
-### 6.3.4 CHTYPE [1]
+### 6.3.4. CHTYPE [1]
 
 ```no-highlight
 <CHTYPE any type>
@@ -155,9 +155,9 @@ Passing note: "# notation" is just an instruction to `READ` saying
 `TEMPLATE` constructor) to the given elements of the `PRIMTYPE` 
 `TEMPLATE` as arguments."]
 
-## 6.3 More SUBRs Related to TYPEs
+## 6.3. More SUBRs Related to TYPEs
 
-### 6.4.1 ALLTYPES
+### 6.4.1. ALLTYPES
 
 ```no-highlight
 <ALLTYPES>
@@ -168,7 +168,7 @@ currently be returned by `TYPE` or `PRIMTYPE`. This is the very
 "`TYPE` vector" (section 22.1) that the interpreter uses: look, but 
 don't touch. No examples: try it, or see appendix 3.
 
-### 6.4.2 VALID-TYPE?
+### 6.4.2. VALID-TYPE?
 
 ```no-highlight
 <VALID-TYPE? atom>
@@ -177,7 +177,7 @@ don't touch. No examples: try it, or see appendix 3.
 returns `#FALSE ()` if *atom* is not the name of a `TYPE`, and the 
 same object that `<TYPE-C atom>` (section 19.5) returns if it is.
 
-### 6.4.3 NEWTYPE
+### 6.4.3. NEWTYPE
 
 MDL is a type-extensible language, in the sense that the programmer 
 can invent new `TYPE`s and use them in every way that the predefined 
@@ -291,7 +291,7 @@ GARGLE
 WORD
 ```
 
-### 6.4.4 PRINTTYPE, EVALTYPE and APPLYTYPE
+### 6.4.4. PRINTTYPE, EVALTYPE and APPLYTYPE
 
 ```no-highlight
 <PRINTTYPE type how>
