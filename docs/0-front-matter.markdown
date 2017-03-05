@@ -5,10 +5,10 @@ name Muddle) as a successor to Lisp (Moon, 1974), a candidate vehicle
 for the Dynamic Modeling System, and a possible base for 
 implementation of Planner (Hewitt, 1969). The original design goals 
 included an interactive integrated environment for programming, 
-debugging, loading, and editing: ease in learning and uses facilities 
-for structured, modular, shared programs: extensibility of syntax, 
+debugging, loading, and editing: ease in learning and use; facilities 
+for structured, modular, shared programs; extensibility of syntax, 
 data types and operators: data-type checking for debugging and 
-optional data-type declarations for compiled efficiency: associative 
+optional data-type declarations for compiled efficiency; associative 
 storage, coroutining, and graphics. Along the way to reaching those 
 goals, it developed flexible input/output (including the ARPA 
 Network), and flexible interrupt and signal handling. It now serves as 
@@ -31,7 +31,7 @@ their value in promoting the language seen by a user from "basic
 survival" to "comfortable living". Indeed, MDL could not fulfill the 
 above design goals without the compiler, assembler, structure editor, 
 control-stack printer, context printer, pretty-printer, dynamic 
-loader, and library system—all of which are not part of the 
+loader, and library system -- all of which are not part of the 
 interpreter but programs written in MDL and symbiotic with one 
 another. Further information on these adjuncts can be found in 
 Lebling's (1979) document.
@@ -39,9 +39,9 @@ Lebling's (1979) document.
 ## Acknowledgements
 
 I was not a member of the original group which labored for two years 
-in the design and initial implementation of Muddle: that group was 
+in the design and initial implementation of Muddle; that group was 
 composed principally of Gerald Sussman, Carl Hewit, Chris Reeve, Dave 
-Cressey, and Jater Bruce Daniels. I would therefore like to take this 
+Cressey, and later Bruce Daniels. I would therefore like to take this 
 opportunity to thank my Muddle mentors, chiefly Chris Reeve and Bruce 
 Daniels, for remaining civil through several months of verbal 
 badgering. I believe that I learned more than "just another 
@@ -85,9 +85,10 @@ This work was supported by the Advanced Research Projects Agency of
 the Department of Defense and was monitored by the Office of Naval 
 Research under contract N00014-75-C-0661.
 
-This document was prepared using the PUB system (originally from the 
-Stanford Artificial Intelligence Laboratory) and printed on the Xerox 
-Graphics Printer of the M.I.T. Artificial Intelligence Laboratory.
+This document was prepared using [the PUB system]
+(http://www.nomodes.com/pub_manual.html) (originally from the Stanford
+Artificial Intelligence Laboratory) and printed on the Xerox Graphics
+Printer of the M.I.T. Artificial Intelligence Laboratory.
 
 ## Foreword
 
@@ -101,18 +102,18 @@ few, stated things as "magic" until they can be explained better, you
 will probably not have too many problems understanding what is going 
 on.
 
-There are no "practice problems": you are assumed to be learning MDL 
+There are no "practice problems"; you are assumed to be learning MDL 
 for some purpose, and your work in achieving that purpose will be more 
 useful and motivated than artificial problems. In several cases, the 
 examples contain illustrations of important points which are not 
 covered in the text. Ignore examples as your peril.
 
-This document does not assume knowledge of any specific programming 
-language on the [sic] your part. However, "computational literacy" is 
-assumed: you should have written at least one program before. Also 
-very little familiarity is assumed with the interactive time-sharing 
-operating systems under which MDL runs—ITS, Tenex, and Tops-20—namely 
-just file and user naming conventions.
+This document does not assume knowledge of any specific programming
+language on the [sic] your part. However, "computational literacy" is
+assumed: you should have written at least one program before. Also
+very little familiarity is assumed with the interactive time-sharing
+operating systems under which MDL runs -- ITS, Tenex, and Tops-20 --
+namely just file and user naming conventions.
 
 ### Notation
 
@@ -129,7 +130,14 @@ MDL, it would respond with all the second lines. (More exactly, the
 "first line" is one or more objects in MDL followed by `$`, and the 
 "second line" is everything up to the next "first line".)
 
-An ellipsis (…) indicates that something uninteresting has been 
+Anything which is written in the MDL language or which is typed on a  
+computer terminal appears herein in a fixed width font, as in 
+`ROOT`. A metasyntactic variable -- something to be replaced in actual 
+use by something else -- appears as *radix:fix*, in an italic font; 
+often the variable will have both a meaning and a data type (as here), 
+but sometimes one of those will be ommitted, for obvious reasons.
+
+An ellipsis (...) indicates that something uninteresting has been 
 omitted. The character `^` means that the following character is to be 
 "controllified": it is usually typed by holding down a terminal's 
 <kbd>CTRL</kbd> key and striking the other key.
