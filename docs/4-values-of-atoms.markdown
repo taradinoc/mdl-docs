@@ -1,6 +1,6 @@
 # Chapter 4. Values of Atoms
 
-## 4.1 General [1]
+## 4.1. General [1]
 
 There are two kinds of "value" which can be attached to an `ATOM`. An 
 `ATOM` can have either, both, or neither. They interact in no way 
@@ -11,9 +11,9 @@ are relative to `PROCESS`es (chapter 20), not functions or programs.
 The `SUBR`s which reference the local and global values of an `ATOM`, 
 and some of the characteristics of local versus global values, follow.
 
-## 4.2 Global Values
+## 4.2. Global Values
 
-### 4.2.1 SETG [1]
+### 4.2.1. SETG [1]
 
 A global value can be assigned to an `ATOM` by the `SUBR` `SETG` ("set 
 global"), as in
@@ -45,7 +45,7 @@ FOO
 That made the global value of the `ATOM` `BAR` equal to the `ATOM` 
 `FOO`.
 
-### 4.2.2 GVAL [1]
+### 4.2.2. GVAL [1]
 
 The `SUBR` `GVAL` ("global value") is used to reference the global 
 value of an `ATOM`.
@@ -85,7 +85,7 @@ FOO
 500
 ```
 
-### 4.2.3 Note on SUBRs and FSUBRs
+### 4.2.3. Note on SUBRs and FSUBRs
 
 The initial `GVAL`s of the `ATOM`s used to refer to MDL "built-in" 
 Subroutines are the `SUBR`s and `FSUBR`s which actually get applied 
@@ -93,7 +93,7 @@ when those `ATOM`s are referenced. If you don't like the way those
 supplied routines work, you are perfectly free to `SETG` the `ATOM`s 
 to your own versions.
 
-### 4.2.4 GUNASSIGN
+### 4.2.4. GUNASSIGN
 
 ```no-highlight
 <GUNASSIGN atom>
@@ -103,9 +103,9 @@ to your own versions.
 whether or not it had one previously. The storage used for the global 
 value can become free for other uses.
 
-## 4.3 Local Values
+## 4.3. Local Values
 
-### 4.3.1 SET [1]
+### 4.3.1. SET [1]
 
 The `SUBR` `SET` is used to assign a local value to an `ATOM`. 
 Applications of `SET` are of the form
@@ -136,7 +136,7 @@ BAR
 Note that neither of the above did anything to any global values `FOO` 
 and `BAR` might have had.
 
-### 4.3.2 LVAL [1]
+### 4.3.2. LVAL [1]
 
 The `SUBR` used to extract the local value of an `ATOM` is named 
 `LVAL`. As with `GVAL`, `READ` understands an abbreviation for an 
@@ -168,7 +168,7 @@ BAR
 FOO
 ```
 
-### 4.3.3 UNASSIGN
+### 4.3.3. UNASSIGN
 
 ```no-highlight
 <UNASSIGN atom>
@@ -177,7 +177,7 @@ FOO
 causes *atom* to have no assigned local value, whether or not it had 
 one previously.
 
-## 4.4 VALUE
+## 4.4. VALUE
 
 `VALUE` is a `SUBR` which takes an `ATOM` as an argument, and then:
 

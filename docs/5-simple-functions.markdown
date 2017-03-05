@@ -1,6 +1,6 @@
 # Chapter 5. Simple Functions
 
-## 5.1 General [1]
+## 5.1. General [1]
 
 The MDL equivalent of a "program" (uncompiled) is an object of `TYPE` 
 `FUNCTION`. Actually, full-blown "programs" are usually composed of 
@@ -31,7 +31,7 @@ need to be told what they do. Once you have `FUNCTION`s under your
 belt, you can immediately make use of everything presented from this 
 point on in the document. In fact, we recommend that you do so.
 
-## 5.2 Representation [1]
+## 5.2. Representation [1]
 
 A `FUNCTION` is just another data object in MDL, of `TYPE` `FUNCTION`. 
 It can be manipulated like any other data object. `PRINT` represents a 
@@ -90,7 +90,7 @@ These `FUNCTION`s will never cause errors because of format:
 and the last two actually do something which might be useful. (The 
 first three are rather pathological, but legal.)
 
-## 5.3 Application of FUNCTIONs: Binding [1]
+## 5.3. Application of FUNCTIONs: Binding [1]
 
 `FUNCTION`s, like `SUBR`s and `FSUBR`s, are applied using `FORM`s. So,
 
@@ -191,7 +191,7 @@ as used above, really means that it may be effectively **impossible**
 (1) for other people to use your `FUNCTION`s, and (2) for **you** to 
 use your `FUNCTION`s a month (two weeks?) later.
 
-## 5.4 Defining FUNCTIONs (FUNCTION and DEFINE) [1]
+## 5.4. Defining FUNCTIONs (FUNCTION and DEFINE) [1]
 
 Obviously, typing `#FUNCTION (...)` all the time is neither reasonable 
 nor adequate for many purposes. Normally, you just want a `FUNCTION` 
@@ -257,7 +257,7 @@ things, there is a "switch" which can be used: if the `LVAL` of the
 will produce no errors. The normal state can be restored by evaluating 
 `<SET REDEFINE <>>`. See chapter 8.]
 
-## 5.5 Examples (Comments) [1]
+## 5.5. Examples (Comments) [1]
 
 Using `SQUARE` as defined above:
 

@@ -12,7 +12,7 @@ To alleviate this problem, section 9.9 is a summary of everything that
 can go into an argument `LIST`, in the correct order. If you find 
 yourself getting lost, please refer to that summary.
 
-## 9.1 "OPTIONAL" [1]
+## 9.1. "OPTIONAL" [1]
 
 MDL provides very convenient means for allowing optional arguments. 
 The `STRING` `"OPTIONAL"` (or `"OPT"` -- they're totally equivalent) 
@@ -78,9 +78,9 @@ pretty simple MDL expression: there is no reason why the optional
 argument cannot be complicated -- for example, a call to a `FUNCTION` 
 which reads a file on an I/O device.
 
-## 9.2 TUPLEs
+## 9.2. TUPLEs
 
-### 9.2.1 "TUPLE" and TUPLE (the TYPE) [1]
+### 9.2.1. "TUPLE" and TUPLE (the TYPE) [1]
 
 There are also times when you want to be able to have an arbitrary 
 number of arguments. You can always do this by defining the `FUNCTION` 
@@ -138,7 +138,7 @@ argument is a `FALSE`, the `COND` will return that `FALSE`.) Exercise
 for the reader: `NTHARG` will generate an error if its first argument 
 is not `FIX`. Where and why? (How about `<NTHARG 1.5 2 3>`?) Fix it.
 
-### 9.2.2 TUPLE (the SUBR) and ITUPLE
+### 9.2.2. TUPLE (the SUBR) and ITUPLE
 
 These `SUBR`s are the same as `VECTOR` and `IVECTOR`, except that they 
 build `TUPLE`s (that is, vectors on the control stack). They can be 
@@ -202,7 +202,7 @@ AUXEX
 ![3 6!]
 ```
 
-## 9.4 QUOTEd arguments
+## 9.4. QUOTEd arguments
 
 If an `ATOM` in an argument `LIST` which is to be bound to a required 
 or optional argument is surrounded by a call to `QUOTE`, that `ATOM` 
@@ -224,7 +224,7 @@ few functions, in practice, do take unevaluated arguments, users tend
 to assume that no functions do (except `FSUBR`s of course), and 
 confusion inevitably results.
 
-## 9.5 "ARGS"
+## 9.5. "ARGS"
 
 The indicator `"ARGS"` can appear in an argument `LIST` with precisely 
 the same syntax as `"TUPLE"`. However, `"ARGS"` causes the `ATOM` 
@@ -260,7 +260,7 @@ FUNCT1
 The last example is a perfectly valid equivalent of the `FSUBR` 
 `FUNCTION`.
 
-## 9.6 "CALL"
+## 9.6. "CALL"
 
 The indicator `"CALL"` is an ultimate `"ARGS"`. If it appears in an 
 argument `LIST`, it must be followed by an `ATOM` and must be the only 
@@ -273,7 +273,7 @@ evaluated -- that is, you get the "function call" itself. Since
 `"CALL"` exists as a Catch-22 for argument manipulation. If you can't 
 do it with `"CALL"`, it can't be done.
 
-## 9.7 EVAL and "BIND"
+## 9.7. EVAL and "BIND"
 
 Obtaining unevaluated arguments, for example, for `QUOTE` and 
 `"ARGS"`, very often implies that you wish to evaluate them at some 
@@ -311,7 +311,7 @@ RIGHT
 0
 ```
 
-### 9.7.1 Local Values versus ENVIRONMENTs
+### 9.7.1. Local Values versus ENVIRONMENTs
 
 `SET`, `LVAL`, `VALUE`, `BOUND?`, `ASSIGNED?`, and `UNASSIGN` all take 
 a final optional argument which has not previously been mentioned: an 
@@ -328,7 +328,7 @@ chapter 5. A "correct" `INC` can be defined as follows:
         <SET .ATM <+ 1 <LVAL .ATM .OUTER>> .OUTER>>
 ```
 
-## 9.8 ACTIVATION, "NAME", "ACT", "AGAIN", and RETURN [1]
+## 9.8. ACTIVATION, "NAME", "ACT", "AGAIN", and RETURN [1]
 
 `EVAL`uation of a `FUNCTION`, after the argument `LIST` has been taken 
 care of, normally consists of `EVAL`uating each of the objects in the 
@@ -428,7 +428,7 @@ F2
 #FALSE ("NON-NUMBER")
 ```
 
-## 9.9 Argument List Summary
+## 9.9. Argument List Summary
 
 The following is a listing of all the various tokens which can appear 
 in the argument `LIST` of a `FUNCTION`, in the order in which they can 
@@ -520,7 +520,7 @@ in this case, an argument which is supplied is not `EVAL`ed, but if it
 is not supplied the second element of the `LIST` **is** `EVAL`ed and 
 assigned to the `ATOM`.
 
-## 9.10 APPLY [1]
+## 9.10. APPLY [1]
 
 Occasionally there is a valid reason for the first element of a `FORM` 
 not to be an `ATOM`. For example, the object to be applied to 
@@ -559,7 +559,7 @@ calls a function to analyze `.ARG`. Which function is called depends
 on the `TYPE` of the argument; this represents the idea of a dispatch 
 table.
 
-## 9.11 CLOSURE
+## 9.11. CLOSURE
 
 ```no-highlight
 <CLOSURE function a1 ... aN>

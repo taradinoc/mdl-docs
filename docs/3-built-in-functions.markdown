@@ -1,6 +1,6 @@
 # Chapter 3. Built-in Functions
 
-## 3.1 Representation [1]
+## 3.1. Representation [1]
 
 Up to this point, all the objects we have been concerned with have had 
 no internal structure discernible in MDL. While the characteristics of 
@@ -32,7 +32,7 @@ to the arguments is done by `EVAL`. The usual meaning of "function"
 (uncapitalized) in this document will be anything applicable to 
 arguments.
 
-## 3.2 Evaluation [1]
+## 3.2. Evaluation [1]
 
 `EVAL` applied to a `FORM` acts as if following these directions:
 
@@ -46,7 +46,7 @@ in evaluating or not evaluating the arguments (chapters 9 and 19) and
 then "apply the function"—that is, `EVAL` the body of the object 
 gotten from *func*.
 
-## 3.3 Built-in Functions (TYPE SUBR, TYPE FSUBR) [1]
+## 3.3. Built-in Functions (TYPE SUBR, TYPE FSUBR) [1]
 
 The built-in functions of MDL come in two varieties: those which have 
 all their arguments `EVAL`ed before operating on them (`TYPE` `SUBR`, 
@@ -68,7 +68,7 @@ Another convenient abbreviation which will be used is "the `SUBR`
 `ATOM` of `PNAME` *pname*". "The `FSUBR` *pname*" will be used with a 
 similar meaning.
 
-## 3.4 Examples (+ and FIX; Arithmetic) [1]
+## 3.4. Examples (+ and FIX; Arithmetic) [1]
 
 ```no-highlight
 <+ 2 4 6>$
@@ -115,7 +115,7 @@ Note this last result: the division of two `FIX`es gives a `FIX` with
 truncation, not rounding, of the remainder: the intermediate result 
 remains a `FIX` until a `FLOAT` argument is encountered.
 
-## 3.5 Arithmetic Details
+## 3.5. Arithmetic Details
 
 `+`, `-`, `*`, `/`, `MIN`, and `MAX` all take any number of arguments, 
 doing the operation with the first argument and the second, then with 
