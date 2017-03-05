@@ -536,11 +536,14 @@ is used. For example, `,G?` sorts numbers in ascending order, `,L?` in
 descending order. Note: if your *pred* is buggy, the `SORT` may never 
 terminate.
 
-*s1* ... *sN* are the (`PRIMTYPE`) `VECTOR`s, `UVECTOR`s or `TUPLE`s being sorted, and *s1* contains the sort keys;
+*s1* ... *sN* are the (`PRIMTYPE`) `VECTOR`s, `UVECTOR`s or `TUPLE`s 
+being sorted, and *s1* contains the sort keys;
 
-*l1* ... *lN* are the corresponding lengths of sort records (optional, one by default); and
+*l1* ... *lN* are the corresponding lengths of sort records (optional, 
+one by default); and
 
-*off* is the offset from start of record to sort key (optional, zero by default).
+*off* is the offset from start of record to sort key (optional, zero 
+by default).
 
 `SORT` returns the sorted *s1* as a value.
 
@@ -743,7 +746,11 @@ any `FIX`es that occur.
 
 ### 7.6.7. BYTES
 
-A (`PRIMTYPE`) `BYTES` is a string of uniformly-sized bytes. The bytes can be any size between 1 and 36 bits inclusive. A `BYTES` is similar in some ways to a `UVECTOR` of `FIX`es and in some ways to a `STRING` of non-seven-bit bytes. The elements of a `BYTES` are always of `TYPE` `FIX`.
+A (`PRIMTYPE`) `BYTES` is a string of uniformly-sized bytes. The bytes 
+can be any size between 1 and 36 bits inclusive. A `BYTES` is similar 
+in some ways to a `UVECTOR` of `FIX`es and in some ways to a `STRING` 
+of non-seven-bit bytes. The elements of a `BYTES` are always of `TYPE` 
+`FIX`.
 
 The `SUBR`s `BYTES` and `IBYTES` are similar to `STRING` and 
 `ISTRING`, respectively, except that each of the former takes a first 
