@@ -143,7 +143,8 @@ If *object* and *structured* are of `PRIMTYPE` `STRING` [or `BYTES`],
 "PARTS"
 ```
 
-`<MEMQ object:any structured>` ("member quick") is exactly the same as `MEMBER`, except that the comparison test is `==?`.
+`<MEMQ object:any structured>` ("member quick") is exactly the same as 
+`MEMBER`, except that the comparison test is `==?`.
 
 ```no-highlight
 <STRCOMP s1 s2>
