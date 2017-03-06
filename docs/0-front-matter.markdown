@@ -130,7 +130,7 @@ MDL, it would respond with all the second lines. (More exactly, the
 "first line" is one or more objects in MDL followed by `$`, and the 
 "second line" is everything up to the next "first line".)
 
-Anything which is written in the MDL language or which is typed on a  
+Anything which is written in the MDL language or which is typed on a 
 computer terminal appears herein in a fixed width font, as in 
 `ROOT`. A metasyntactic variable -- something to be replaced in actual 
 use by something else -- appears as *radix:fix*, in an italic font; 
