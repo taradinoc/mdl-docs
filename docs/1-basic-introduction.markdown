@@ -8,7 +8,7 @@ Functions)](5-simple-functions.markdown).
 
 ## 1.1. Loading MDL [1]
 
-First, catch your rabbit. Somehow get the interpreter running—the 
+First, catch your rabbit. Somehow get the interpreter running -- the
 program in the file `SYS:TS.MDL` in the ITS version or `SYS:MDL.SAV` 
 in the Tenex version or `SYS:MDL.EXE` in the Tops-20 version. The 
 interpreter will first type out some news relating to MDL, if any, 
@@ -22,8 +22,8 @@ and then wait for you to type something.
 
 The program which you are now running is an interpreter for the 
 language MDL. **All** it knows how to do is interpret MDL expressions. 
-There is no special "command language": you communicate with the 
-program—make it do things for you—by actually typing legal MDL 
+There is no special "command language"; you communicate with the
+program -- make it do things for you -- by actually typing legal MDL
 expressions, which it then interprets. **Everything** you can do at a 
 terminal can be done in a program, and vice versa, in exactly the same 
 way.
@@ -39,23 +39,24 @@ echoed (printed on your terminal) and remembered in a buffer. The only
 characters for which this is normally not true act as follows:
 
 Typing `$` (<kbd>ESC</kbd>) causes MDL to echo dollar-sign and causes 
-the contents of th buffer (the characters which you've typed) to be 
+the contents of the buffer (the characters which you've typed) to be
 interpreted as an expression(s) in MDL. When this interpretation is 
 done, the result will be printed and MDL will wait for more typing. 
 <kbd>ESC</kbd> will be represented by the glyph `$` in this document.
 
 Typing the rubout character (<kbd>DEL</kbd> in the ITS and Top-20 
 versions, <kbd>CTRL</kbd>+<kbd>A</kbd> in the Tenex version) causes 
-the last character in the buffer—the one most recently typed—to be 
-thrown away (deleted). If you now immediately type another rubout, 
-once again the last character is deleted—namely the second most 
+the last character in the buffer -- the one most recently typed -- to
+be thrown away (deleted). If you now immediately type another rubout,
+once again the last character is deleted -- namely the second most
 recently typed. Etc. The character deleted is echoed, so you can see 
 what you're doing. On some "display" terminals, rubout will "echo" by 
 causing the deleted character to disappear. If no characters are in 
 the buffer, rubout echoes as a carriage-return line-feed.
 
 Typing <kbd>^@</kbd> (<kbd>CTRL</kbd>+<kbd>@</kbd>) deletes everything 
-you have typed since the last `$`, and prints a carriage-return feed.
+you have typed since the last `$`, and prints a carriage-return
+line-feed.
 
 Typing <kbd>^D</kbd> (<kbd>CTRL</kbd>+<kbd>D</kbd>) causes the current 
 input buffer to be typed back out at you. This allows you to see what 
@@ -71,7 +72,7 @@ Typing <kbd>^G</kbd> (<kbd>CTRL</kbd>+<kbd>G</kbd>) causes MDL to stop
 whatever it is doing and act as if an error had occurred ([section 
 1.4](#14-errors-simple-considerations-1)). <kbd>^G</kbd> is generally 
 most useful for temporary interruptions to check the progress of a 
-computation. <kbd>^G</kbd> is "reversible"—that is, it does not 
+computation. <kbd>^G</kbd> is "reversible" -- that is, it does not
 destroy any of the "state" of the computation it interrupts. To "undo" 
 a <kbd>^G</kbd>, type the characters
 
@@ -111,7 +112,6 @@ Otherwise, what you have typed is beyond the help of rubout and
 MDL accepts and distinguishes between upper and lower case. All 
 "built-in functions" must be referenced in upper case.
 
-
 ## 1.3. Loading a File [1]
 
 If you have a program in MDL that you have written as an ASCII file on 
@@ -136,7 +136,6 @@ printed. When MDL is finished processing the file, it will print
 When MDL starts running, it will `FLOAD` the file `MUDDLE INIT` (ITS 
 version) or `MUDDLE.INIT` (Tenex and Tops-20 versions), if it exists.
 
-
 ## 1.4. Errors — Simple Considerations [1]
 
 When MDL decides for some reason that something is wrong, the standard 
@@ -153,10 +152,10 @@ LISTENING-AT-LEVEL integer PROCESS integer
 You can now interact with MDL as usual, typing expressions and having 
 them evaluated. There exist facilities (built-in functions) allowing 
 you to find out what went wrong, restart, or abandon whatever was 
-going on. In particular, you can recover from an error—that is, undo 
-everything but side effects and return to the initial typing phase—by 
-typing the following first line, to which MDL will respond with the 
-second line:
+going on. In particular, you can recover from an error -- that is,
+undo everything but side effects and return to the initial typing
+phase -- by typing the following first line, to which MDL will respond
+with the second line:
 
 ```no-highlight
 <ERRET>$
