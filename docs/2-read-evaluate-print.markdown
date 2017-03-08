@@ -8,7 +8,7 @@ three functions successively: first `READ`, whcih passes its output to
 `EVAL` ("evaluate"), which passes its output to `PRINT`, whose output 
 is typed on the terminal.
 
-[Actually, the sequence is more like `READ`, `CRLF`, `EVAL`, `PRINT`, 
+[Actually, the sequence is more like `READ`, `CRLF`, `EVAL`, `PRIN1`,
 `CRLF` (explained in chapter 11); MDL gives you a carriage-return 
 line-feed when the `READ` is complete, that is, when all brackets are 
 paired.]
@@ -35,7 +35,7 @@ MDL objects are best considered as abstract entities with abstract
 properties. The properties of a particular MDL object depend on the 
 class of MDL objects to which it belongs. This class is the `TYPE` of 
 the MDL object. Every MDL object has a `TYPE`, and every `TYPE` has 
-its own peculiarities. There are many different `TYPE`s in MDL: they 
+its own peculiarities. There are many different `TYPE`s in MDL; they
 will gradually be introduced below, but in the meantime here is a 
 representative sample: `SUBR` (the `TYPE` of `READ`, `EVAL`, and 
 `PRINT`), `FSUBR`, `LIST`, `VECTOR`, `FORM`, `FUNCTION`, etc. Since 
@@ -74,7 +74,7 @@ First, `READ` recognized the character `1` as the representation for
 an object of `TYPE` `FIX`, in particular the one which corresponds to 
 the integer one. (`FIX` means integer, because the decimal point is 
 understood always to be in a fixed position: at the right-hand end.) 
-`READ` build the MDL object corresponding to the decimal 
+`READ` built the MDL object corresponding to the decimal
 representation typed, and returned it.
 
 Then `EVAL` noted that its input was of `TYPE` `FIX`. An object of 
@@ -128,7 +128,7 @@ its `PNAME`, meaning its name for `PRINT`. One often abbreviates
 `PRINT`, given an `ATOM`, typed out its `PNAME`.
 
 At the end of this chapter, the question "what is a legal `PNAME`" 
-will be considered. Further on, the mehtods used to attach values to 
+will be considered. Further on, the methods used to attach values to
 `ATOM`s will be described.
 
 ## 2.6. FIXes, FLOATs, and ATOMs versus READ: Specifics
@@ -197,10 +197,10 @@ can be handled without underflow is `.14693679E-38`.
 
 The question "what is a legal `PNAME`?" is actually not a reasonable 
 one to ask: **any** non-empty string of **arbitrary** characters can 
-be the `PNAME` of an `ATOM`, However, some `PNAME`s are easier to type 
+be the `PNAME` of an `ATOM`. However, some `PNAME`s are easier to type
 to `READ` than others. But even the question "what are easily typed 
 `PNAME`s?" is not too reasonable, because: `READ` decides that a group 
-of characters is a `PNAME` by **default**: if it can't possibly be 
+of characters is a `PNAME` by **default**; if it can't possibly be
 anything else, it's a `PNAME`. So, the rules governing the 
 specification of `PNAME`s are messy, and best expressed in terms of 
 what is not a `PNAME`. For simplicity, you can just consider any 
@@ -212,32 +212,32 @@ perfectionist nor a masochist, skip to the next chapter.
 
 A group of characters is **not** a `PNAME` if:
 
-1. It represents a `FLOAT` or a `FIX`, as described above—that is, it 
-is composed wholly of digits, or digits and a single `.` (period) or 
-digits and a `.` and the letter `E` or `e` (with optional minus signs 
-in the right places).
+1. It represents a `FLOAT` or a `FIX`, as described above -- that is,
+it is composed wholly of digits, or digits and a single `.` (period)
+or digits and a `.` and the letter `E` or `e` (with optional minus
+signs in the right places).
 
 2. It begins with a `.` (period).
 
-3. It contains—if typed interactively—any of the characters which have 
-special interactive effects: `^@`, `^D`, `^L`, `^G`, `^O`, `$` 
-(`ESC`), rubout.
+3. It contains -- if typed interactively -- any of the characters
+which have special interactive effects: `^@`, `^D`, `^L`, `^G`, `^O`,
+`$` (`ESC`), rubout.
 
-4. It contains a format character—space, carriage-return, line-feed, 
-form-feed, horizontal tab, vertical tab.
+4. It contains a format character -- space, carriage-return,
+line-feed, form-feed, horizontal tab, vertical tab.
 
 5. It contains a `,` (comma) or a `#` (number sign) or a `'` (single 
 quote) or a `;` (semicolon) or a `%` (percent sign).
 
-6. It contains any variety of bracket—`(` or `)` or `[` or `]` or `<` 
-or `>` or `{` or `}` or `"`.
+6. It contains any variety of bracket -- `(` or `)` or `[` or `]` or
+`<` or `>` or `{` or `}` or `"`.
 
 In addition, the character `\` (backslash) has a special 
 interpretation, as mentioned below. Also the pair of characters `!-` 
 (exclamation-point hyphen) has an extremely special interpretation, 
 which you will reach at chapter 15.
 
-The characters mentioned in cases 4 through 6 are "separators"—that 
+The characters mentioned in cases 4 through 6 are "separators" -- that
 is, they signal to `READ` that whatever it was that the preceding 
 characters represented, it's done now. They can also indicate the 
 start of a new object's representation (all the opening "brackets" do 
@@ -249,9 +249,9 @@ The following examples are not in the "standard format" of "*line
 typed in*`$` *result printed*", because they are not, in some cases, 
 completed objects; hence, `READ` would continue waiting for the 
 brackets to be closed. In other cases, they will produce errors during 
-`EVAL`uation if other—currently irrelevant—conditions are not met. 
-Instead, the right-hand column will be used to state just what `READ` 
-thought the input in the left-hand column really was.
+`EVAL`uation if other -- currently irrelevant -- conditions are not
+met. Instead, the right-hand column will be used to state just what
+`READ` thought the input in the left-hand column really was.
 
  Input                    | Explanation
 --------------------------|--------------------------------------------------------
@@ -266,12 +266,11 @@ thought the input in the left-hand column really was.
 `ab(cd$`                  | an `ATOM` of `PNAME` `ab`, followed by the start of something else (The something else will contain an `ATOM` of `PNAME` beginning `cd.`)
 `12345A34$`               | an `ATOM` of `PNAME` `12345A35` (If the A had been an E, the object would have been a `FLOAT`.)
 
-
 #### 2.6.3.3. \ (Backslash) in ATOMs
 
 If you have a strange, uncontrollable compulsion to have what were 
 referred to as "separators" above as part of the `PNAME`s of your 
-`ATOM`s, you cn do so by preceding them with the character `\` 
+`ATOM`s, you can do so by preceding them with the character `\`
 (backslash). `\` will also magically turn an otherwise normal `FIX` or 
 `FLOAT` into an `ATOM` if it appears amongst the digits. In fact, 
 backslash in front of **any** character changes it from something 
@@ -283,7 +282,7 @@ to be an `ATOM`, it will dutifully type out the required `\`s. They
 will not, however, necessarily be where you typed them; they will 
 instead be at those positions which will cause `READ` the least grief. 
 For example, `PRINT` will type out a `PNAME` which consists wholly of 
-digits by first typing a `\` and then typing the digits—no matter 
+digits by first typing a `\` and then typing the digits - no matter
 where you originally typed the `\` (or `\`s).
 
 #### 2.6.3.4. Examples of Awful ATOMs
