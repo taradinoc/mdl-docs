@@ -113,7 +113,7 @@ this means evaluate `<* .X .X>` in a "world" where `X` is `SET` to
 `5`.
 3. Throw away the "world" created, and restore the `LVAL`s of all 
 `ATOM`s bound in this application of the `FUNCTION ` to their
-originals (if any). This is called "unbinding". -- In ths above, this
+originals (if any). This is called "unbinding". -- In the above, this
 simply gives `X` back the local value, if any, that it had before 
 binding.
 4. Return as a value the **last value obtained** when the `FUNCTION`'s 
