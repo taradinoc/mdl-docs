@@ -27,24 +27,24 @@ where *func* is an object which designates the function to be applied,
 and *arg-1* through *arg-N* are object which designate the arguments 
 or "actual parameters" or "inputs". A `FORM` is just a structured 
 object which is stored and can be manipulated like a `LIST` (its 
-"primitive type" is `LIST`—chapter 6). The application of the function 
-to the arguments is done by `EVAL`. The usual meaning of "function" 
-(uncapitalized) in this document will be anything applicable to 
-arguments.
+"primitive type" is `LIST` -- chapter 6). The application of the
+function to the arguments is done by `EVAL`. The usual meaning of
+"function" (uncapitalized) in this document will be anything
+applicable to arguments.
 
 ## 3.2. Evaluation [1]
 
 `EVAL` applied to a `FORM` acts as if following these directions:
 
 First, example the *func* (first element) of the `FORM`. If it is an 
-`ATOM`, look at its "value" (global or local, in that order—see next 
-chapter). If it is not an `ATOM`, `EVAL` it and look at the result of 
-the evaluation. If what you are looking at is not something which can 
-be applied to arguments, complain (via the `ERROR` function). 
-Otherwise, inspect what you are looking at and follow its directions 
-in evaluating or not evaluating the arguments (chapters 9 and 19) and 
-then "apply the function"—that is, `EVAL` the body of the object 
-gotten from *func*.
+`ATOM`, look at its "value" (global or local, in that order -- see
+next chapter). If it is not an `ATOM`, `EVAL` it and look at the
+result of the evaluation. If what you are looking at is not something
+which can be applied to arguments, complain (via the `ERROR`
+function). Otherwise, inspect what you are looking at and follow its
+directions in evaluating or not evaluating the arguments (chapters 9
+and 19) and then "apply the function" -- that is, `EVAL` the body of
+the object gotten from *func*.
 
 ## 3.3. Built-in Functions (TYPE SUBR, TYPE FSUBR) [1]
 
@@ -56,12 +56,13 @@ their arguments `EVAL`ed (`TYPE` `FSUBR`, historically from Lisp
 called `F/SUBR`s, although that term is not meaningful to the 
 interpreter. See appendix 2 for a listing of all `F/SUBR`s and short 
 descriptions. The term "Subroutine" will be used herein to mean both 
-`F/SUBR`s and compiled user programs (`RSUBR`s and 
-`RSUBR-ENTRY`s—chapter 19).
+`F/SUBR`s and compiled user programs (`RSUBR`s and `RSUBR-ENTRY`s --
+chapter 19).
 
 Unless otherwise stated, **every** MDL built-in Subroutine is of 
 `TYPE` **`SUBR`**. Also, when it is stated that an argument of a 
-`SUBR` must be of a particular `TYPE`.
+`SUBR` must be of a particular `TYPE`, note that this means that
+`EVAL` of what is there must be of the particular `TYPE`.
 
 Another convenient abbreviation which will be used is "the `SUBR` 
 *pname*" in place of "the `SUBR` which is initially the 'value' of the 
@@ -80,7 +81,7 @@ are MDL `SUBR`s: `+`, `-`, `*`, `/`, `MIN`, `MAX`, `MOD`, `SIN`,
 `COS`, `ATAN`, `SQRT`, `LOG`, `EXP`, `ABS`. (See appendix 2 for short 
 descriptions of these.) All except `MOD`, which wants `FIX`es, are 
 indifferent as to whether their arguments are `FLOAT` or `FIX` or a 
-mixture. In the last case they exhibit "contagious `FLOAT`ing": of 
+mixture. In the last case they exhibit "contagious `FLOAT`ing": one
 argument of `TYPE` `FLOAT` forces the result to be of `TYPE` `FLOAT`.
 
 ```no-highlight
@@ -94,19 +95,14 @@ corresponding to a `FLOAT`ing-point number. `FLOAT` does the opposite.
 ```no-highlight
 <+ 5 <* 2 3>>$
 11
-
 <SQRT <+ <* 3 3> <* 4 4>>>$
 5.0
-
 <- 5 3 2>$
 0
-
 <- 5>$
 -5
-
 <MIN 1 2.0>$
 1.0
-
 </ 11 7 2.0>$
 0.5
 ```
@@ -121,12 +117,12 @@ remains a `FIX` until a `FLOAT` argument is encountered.
 doing the operation with the first argument and the second, then with 
 that result and the third argument, etc. If called with no arguments, 
 each returns the identity for its operation (`0`, `0`, `1`, `1`, the 
-greatest `FLOAT`, and the least `FLOAT`, respectively): if called with 
+greatest `FLOAT`, and the least `FLOAT`, respectively); if called with
 one argument, each acts as if the identity and the argument has been 
 supplied. They all will cause an overflow or underflow error if any 
 result, intermediate or final, is too large or too small for the 
-machine's capacity. (That error can be disabled if necessary—section 
-16.9).
+machine's capacity. (That error can be disabled if necessary --
+section 16.9).
 
 One arithmetic function that always requires some discussion is the 
 pseudo-random-number generator. MDL's is named `RANDOM`, and it always 
