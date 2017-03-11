@@ -24,7 +24,7 @@ global"), as in
 
 where *atom* must `EVAL` to an `ATOM`, and *any* can `EVAL` to 
 anything. `EVAL` of the second argument becomes the global value of 
-`EVAl` of the first argument. The value returned by the `SETG` is its 
+`EVAL` of the first argument. The value returned by the `SETG` is its
 second argument, namely the new global value of *atom*.
 
 Examples:
@@ -142,7 +142,7 @@ The `SUBR` used to extract the local value of an `ATOM` is named
 `LVAL`. As with `GVAL`, `READ` understands an abbreviation for an 
 application of `LVAL`: the character `.` (period), and `PRINT` 
 produces it. The following two representations are equivalent, and 
-when `EVAl` operates on the corresponding MDL object, it returns the 
+when `EVAL` operates on the corresponding MDL object, it returns the
 current local value of *atom*:
 
 ```no-highlight
@@ -183,7 +183,8 @@ one previously.
 
 1. if the `ATOM` has an `LVAL`, returns the `LVAL`;
 2. if the `ATOM` has no `LVAL` but has a `GVAL`, returns the `GVAL`;
-3. if the `ATOM` has neither a `GVAL` nor an `LVAL`, calls the `ERROR` function.
+3. if the `ATOM` has neither a `GVAL` nor an `LVAL`, calls the `ERROR`
+function.
 
 This order of seeking a value is the **opposite** of that used when an 
 `ATOM` is the first element of a `FORM`. The latter will be called the 
