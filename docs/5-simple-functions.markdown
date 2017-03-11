@@ -103,22 +103,22 @@ applied the indicated `FUNCTION` to 5 and returned 25.
 
 What `EVAL` does when applying a `FUNCTION` is the following:
 
-1. Create a "world" in which the `ATOM`s of the argument `LIST` have 
+1. Create a "world" in which the `ATOM`s of the argument `LIST` have
 been **`SET`** to the values applied to the `FUNCTION`, and all other
-`ATOM`s have their original values. This is called "binding". -- In
-the above, this is a "world" in which `X` is `SET` to `5`.
-2. In that new "world", evaluate all the objects in the body of the 
-`FUNCTION`, one after the other, from first to last. -- In the above,
-this means evaluate `<* .X .X>` in a "world" where `X` is `SET` to
-`5`.
-3. Throw away the "world" created, and restore the `LVAL`s of all 
+`ATOM`s have their original values. This is called "binding".
+  - In the above, this is a "world" in which `X` is `SET` to `5`.
+2. In that new "world", evaluate all the objects in the body of the
+`FUNCTION`, one after the other, from first to last.
+  - In the above, this means evaluate `<* .X .X>` in a "world" where
+`X` is `SET` to `5`.
+3. Throw away the "world" created, and restore the `LVAL`s of all
 `ATOM`s bound in this application of the `FUNCTION ` to their
-originals (if any). This is called "unbinding". -- In the above, this
-simply gives `X` back the local value, if any, that it had before 
-binding.
-4. Return as a value the **last value obtained** when the `FUNCTION`'s 
-body was evaluated in step (2). -- In the above, this means return 
-`25` as the value.
+originals (if any). This is called "unbinding".
+  - In the above, this simply gives `X` back the local value, if any,
+that it had before binding.
+4. Return as a value the **last value obtained** when the `FUNCTION`'s
+body was evaluated in step (2).
+  - In the above, this means return `25` as the value.
 
 The "world" mentioned above is actually an object of `TYPE` 
 `ENVIRONMENT`. The fact that such "worlds" are separate from the 
