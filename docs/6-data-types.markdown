@@ -213,7 +213,7 @@ pertaining to scheduled airline flights. Since all `FLIGHT`s would
 have the same quantity of information (more or less) and you would 
 want quick access to individual elements, you would not want the 
 `TYPEPRIM` to be `LIST`. Since the elements would be of various 
-`TYPE`s, you would not the `TYPEPRIM` to be `UVECTOR` -- nor its 
+`TYPE`s, you would not want the `TYPEPRIM` to be `UVECTOR` -- nor its
 variations `STRING` or `BYTES`. The natural choice would be a 
 `TYPEPRIM` of `VECTOR` (although you could gain space and lose time 
 with `TEMPLATE` instead).
