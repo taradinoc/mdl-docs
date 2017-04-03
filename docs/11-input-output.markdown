@@ -245,12 +245,6 @@ version) or `DSK:TPL.MUD` (Tenex and Tops-20 versions).
 `OPEN-NR` is the same as `OPEN`, except that the date and time of
 last reference of the opened file are not changes.
 
-## `CHANNEL` (the `SUBR`)
-
-`CHANNEL` is called exactly like `OPEN`, but it **always** returns an
-unopened `CHANNEL`, which can later be opened by `RESET` (see below)
-just as if it had once been open.
-
 ### 11.2.3. CHANNEL (the SUBR)
 
 `CHANNEL` is called exactly like `OPEN`, but it **always** return an
