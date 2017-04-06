@@ -13,17 +13,13 @@ generate an error if not applied to a structured object. Hereafter,
 
 ### 7.1.1. LENGTH [1]
 
-```no-highlight
-<LENGTH structured>
-```
+    <LENGTH structured>
 
 evaluates to the number of elements in *structured*.
 
 ### 7.1.2. NTH [1]
 
-```no-highlight
-<NTH structured fix>
-```
+    <NTH structured fix>
 
 evaluates to the *fix*'th element of *structured*. An error occurs if 
 *fix* is less than 1 or greater than `<LENGTH structured>`. *fix* is 
@@ -31,9 +27,7 @@ optional, 1 by default.
 
 ### 7.1.3. REST [1]
 
-```no-highlight
-<REST structured fix>
-```
+    <REST structured fix>
 
 evaluates to *structured* without its first *fix* elements. *fix* is 
 optional, 1 by default.
@@ -46,9 +40,7 @@ with an explicit second argument of `0` has no effect except for this
 
 ### 7.1.4. PUT [1]
 
-```no-highlight
-<PUT structured fix anything-legal>
-```
+    <PUT structured fix anything-legal>
 
 first makes *anything-legal* the *fix*'th element of *structured*, 
 then evaluates to *structured*. *anything-legal* is anything which can 
@@ -59,9 +51,7 @@ general than this -- chapter 13.)
 
 ### 7.1.5. GET
 
-```no-highlight
-<GET structured fix>
-```
+    <GET structured fix>
 
 evaluates the same as `<NTH structured fix>`. It is more general than 
 `NTH`, however (chapter 13), and is included here only for symmetry 
@@ -74,26 +64,20 @@ with `PUT`.
 one or two arguments, respectively [unless the `APPLYTYPE` of `FIX` is 
 changed]. That is, `EVAL` considers the following two to be identical:
 
-```no-highlight
-<fix structured>
-<NTH structured fix>
-```
+    <fix structured>
+    <NTH structured fix>
 
 and these:
 
-```no-highlight
-<fix structured object>
-<PUT structured fix object>
-```
+    <fix structured object>
+    <PUT structured fix object>
 
 [However, the compiler (Lebling, 1979) cannot generate efficient code 
 from the longer forms unless it is sure that *fix* is a `FIX` (section 
 9.10). The two constructs are not identical even to `EVAL`, if the 
 order of evaluation is significant: for example, these two:
 
-```no-highlight
-<NTH .X <LENGTH <SET X .Y>>>        <<LENGTH <SET X .Y>> .X>
-```
+    <NTH .X <LENGTH <SET X .Y>>>        <<LENGTH <SET X .Y>> .X>
 
 are **not** identical.]
 
@@ -103,9 +87,7 @@ are **not** identical.]
 that are composed of sub-parts of existing structures. A special case 
 of this would be a "substring" function.
 
-```no-highlight
-<SUBSTRUC from:structured rest:fix amount:fix to:structured>
-```
+    <SUBSTRUC from:structured rest:fix amount:fix to:structured>
 
 copies the first *amount* elements of `<REST from rest>` into another 
 object and returns the latter. All arguments are optional except 
@@ -125,26 +107,20 @@ if *from* is of `PRIMTYPE` `LIST`, it must not share any elements with
 
 ### 7.2.1. LIST [1]
 
-```no-highlight
-( element-1 element-2 ... element-N )
-```
+    ( element-1 element-2 ... element-N )
 
 represents a `LIST` of *N* elements.
 
 ### 7.2.2. VECTOR [1]
 
-```no-highlight
-[ element-1 element-2 ... element-N ]
-```
+    [ element-1 element-2 ... element-N ]
 
 represents a `VECTOR` of *N* elements. [A `TUPLE` is just like a 
 `VECTOR`, but it lives on the control stack.]
 
 ### 7.2.3. UVECTOR [1]
 
-```no-highlight
-![ element-1 element-2 ... element-N !]
-```
+    ![ element-1 element-2 ... element-N !]
 
 represents a `UVECTOR` (uniform vector) of *N* elements. The second 
 `!` (exclamation-point) is optional for input. [A `STORAGE` is an 
@@ -152,9 +128,7 @@ archaic kind of `UVECTOR` that is not garbage-collected.]
 
 ### 7.2.4. STRING [1]
 
-```no-highlight
-"characters"
-```
+    "characters"
 
 represents a `STRING` of ASCII text. A `STRING` containing the 
 chatacter `"` (double-quote) is represented by placing a `\` 
@@ -163,17 +137,13 @@ chatacter `"` (double-quote) is represented by placing a `\`
 
 ### 7.2.5. BYTES
 
-```no-highlight
-#n {element-1 element-2 ... element-N}
-```
+    #n {element-1 element-2 ... element-N}
 
 represents a string of *N* uniformly-sized bytes of size *n* bits.
 
 ### 7.2.6. TEMPLATE
 
-```no-highlight
-{ element-1 element-2 ... element-N }
-```
+    { element-1 element-2 ... element-N }
 
 represents a `TEMPLATE` of *N* elements when output, not input -- 
 when input, a `#` and a `TYPE` must precede it.
@@ -194,32 +164,30 @@ constructing a structure. However, see section 7.7.
 
 ## 7.4. Examples [1]
 
-```no-highlight
-(1 2 <+ 3 4>)$
-(1 2 7)
-<SET FOO [5 <- 3> <TYPE "ABC">]>$
-[5 -3 STRING]
-<2 .FOO>$
--3
-<TYPE <3 .FOO>>$
-ATOM
-<SET BAR ![("meow") (.FOO)]>$
-![("meow") ([5 -3 STRING])!]
-<LENGTH .BAR>$
-2
-<REST <1 <2 .BAR>>>$
-[-3 STRING]
-[<SUBSTRUC <1 <2 .BAR>> 0 2>]$
-[[5 -3]]
-<PUT .FOO 1 SNEAKY>          ;"Watch out for .BAR !"$
-[SNEAKY -3 STRING]
-.BAR$
-![("meow") ([SNEAKY -3 STRING])!]
-<SET FOO <REST <1 <1 .BAR>> 2>>$
-"ow"
-.BAR$
-![("meow") ([SNEAKY -3 STRING])!]
-```
+    (1 2 <+ 3 4>)$
+    (1 2 7)
+    <SET FOO [5 <- 3> <TYPE "ABC">]>$
+    [5 -3 STRING]
+    <2 .FOO>$
+    -3
+    <TYPE <3 .FOO>>$
+    ATOM
+    <SET BAR ![("meow") (.FOO)]>$
+    ![("meow") ([5 -3 STRING])!]
+    <LENGTH .BAR>$
+    2
+    <REST <1 <2 .BAR>>>$
+    [-3 STRING]
+    [<SUBSTRUC <1 <2 .BAR>> 0 2>]$
+    [[5 -3]]
+    <PUT .FOO 1 SNEAKY>          ;"Watch out for .BAR !"$
+    [SNEAKY -3 STRING]
+    .BAR$
+    ![("meow") ([SNEAKY -3 STRING])!]
+    <SET FOO <REST <1 <1 .BAR>> 2>>$
+    "ow"
+    .BAR$
+    ![("meow") ([SNEAKY -3 STRING])!]
 
 ## 7.5. Generation of Basic Structures
 
@@ -250,12 +218,10 @@ unevaluated. `READ` and `PRINT` understand the character `'`
 (single-quote) as an abbreviation for a call to `QUOTE`, the way 
 period and comma work for `LVAL` and `GVAL`. Examples:
 
-```no-highlight
-<+ 1 2>$
-3
-'<+ 1 2>$
-<+ 1 2>
-```
+    <+ 1 2>$
+    3
+    '<+ 1 2>$
+    <+ 1 2>
 
 Any `LIST`, `VECTOR`, or `UVECTOR` in a program that is constant and 
 need not have its elements evaluated should be represented directly 
@@ -283,16 +249,14 @@ produces effect very different from literal `STRING`s.
 
 Examples:
 
-```no-highlight
-<LIST 1 <+ 2 3> ABC>$
-(1 5 ABC)
-(1 <+ 2 3> ABC)$
-(1 5 ABC)
-<STRING "A" <2 "QWERT"> <REST "ABC"> "hello">$
-"AWBChello"
-"A <+ 2 3> (5)"$
-"A <+ 2 3> (5)"
-```
+    <LIST 1 <+ 2 3> ABC>$
+    (1 5 ABC)
+    (1 <+ 2 3> ABC)$
+    (1 5 ABC)
+    <STRING "A" <2 "QWERT"> <REST "ABC"> "hello">$
+    "AWBChello"
+    "A <+ 2 3> (5)"$
+    "A <+ 2 3> (5)"
 
 ### 7.5.4. ILIST, IVECTOR, IUVECTOR, and ISTRING [1]
 
@@ -300,9 +264,7 @@ Each of the `SUBR`s `ILIST`, `IVECTOR`, `IUVECTOR`, and `ISTRING`
 ("implicit" or "iterated" whatever) creates and returns an object of 
 the obvious `TYPE`. The format of an application of any of them is
 
-```no-highlight
-< Ithing number-of-elements:fix expression:any >
-```
+    < Ithing number-of-elements:fix expression:any >
 
 where *Ithing* is one of `ILIST`, `IVECTOR`, `IUVECTOR`, or `ISTRING`. 
 An object of `LENGTH` *number-of-elements* is generated, whose 
@@ -330,17 +292,15 @@ may `EVAL` to; again, see sections 7.6.5 and 7.6.6.
 
 Examples:
 
-```no-highlight
-<ILIST 5 6>$
-(6 6 6 6 6)
-<IVECTOR 2>$
-[#LOSE *000000000000* #LOSE *000000000000*]
+    <ILIST 5 6>$
+    (6 6 6 6 6)
+    <IVECTOR 2>$
+    [#LOSE *000000000000* #LOSE *000000000000*]
 
-<SET A 0>$
-0
-<IUVECTOR 9 '<SET A <+ .A 1>>>$
-![1 2 3 4 5 6 7 8 9!]
-```
+    <SET A 0>$
+    0
+    <IUVECTOR 9 '<SET A <+ .A 1>>>$
+    ![1 2 3 4 5 6 7 8 9!]
 
 ### 7.5.5. FORM and IFORM
 
@@ -349,13 +309,11 @@ making it the body of a `FUNCTION`. In such cases the `SUBR`s `FORM`
 and `IFORM` ("implicit form") can be used (or `QUOTE` can be used). 
 They are entirely analogous to `LIST` and `ILIST`. Example:
 
-```no-highlight
-<DEFINE INC-FORM (A)
-        <FORM SET .A <FORM + 1 <FORM LVAL .A>>>>$
-INC-FORM
-<INC-FORM FOO>$
-<SET FOO <+ 1 .FOO>>
-```
+    <DEFINE INC-FORM (A)
+            <FORM SET .A <FORM + 1 <FORM LVAL .A>>>>$
+    INC-FORM
+    <INC-FORM FOO>$
+    <SET FOO <+ 1 .FOO>>
 
 ## 7.6. Unique Properties of Primitive TYPEs
 
@@ -369,43 +327,35 @@ higher N is, the longer it takes to refer to the Nth element. The
 
 #### 7.6.1.1. PUTREST [1]
 
-```no-highlight
-<PUTREST head:primtype-list tail:primtype-list>
-```
+    <PUTREST head:primtype-list tail:primtype-list>
 
 changes *head* so that `<REST head>` is *tail* (actually 
 `<CHTYPE tail LIST>`), then evaluates to *head*. Note that this 
 actually changes *head*; it also changes anything having *head* as an 
 element or a value. For example:
 
-```no-highlight
-<SET BOW [<SET ARF (B W)>]>$
-[(B W)]
-<PUTREST .ARF '(3 4)>$
-(B 3 4)
-.BOW$
-[(B 3 4)]
-```
+    <SET BOW [<SET ARF (B W)>]>$
+    [(B W)]
+    <PUTREST .ARF '(3 4)>$
+    (B 3 4)
+    .BOW$
+    [(B 3 4)]
 
 `PUTREST` is probably most often used to splice lists together. For 
 example, given that `.L` is of `PRIMTYPE` `LIST`, to leave the first 
 *m* elements of it intact and take out the next *n* elements of it, 
 `<PUTREST <REST .L <- m 1>> <REST .L <+ m n>>>`. Specifically,
 
-```no-highlight
-<SET NUMS (1 2 3 4 5 6 7 8 9)>$
-(1 2 3 4 5 6 7 8 9)
-<PUTREST <REST .NUMS 3> <REST .NUMS 7>>$
-(4 8 9)
-.NUMS$
-(1 2 3 4 8 9)
-```
+    <SET NUMS (1 2 3 4 5 6 7 8 9)>$
+    (1 2 3 4 5 6 7 8 9)
+    <PUTREST <REST .NUMS 3> <REST .NUMS 7>>$
+    (4 8 9)
+    .NUMS$
+    (1 2 3 4 8 9)
 
 #### 7.6.1.2. CONS
 
-```no-highlight
-<CONS new list>
-```
+    <CONS new list>
 
 ("construct") adds *new* to the front of *list*, without copying 
 *list*, and returns the resulting `LIST`. References to *list* are not 
@@ -427,48 +377,38 @@ represents an object of such a `PRIMTYPE`.)
 
 #### 7.6.2.1. BACK [1]
 
-```no-highlight
-<BACK array fix>
-```
+    <BACK array fix>
 
 This is the opposite of `REST`. It evaluates to *array*, with *fix* 
 elements put back onto its front end, and changed to its `PRIMTYPE`. 
 *fix* is optional, 1 by default. If *fix* is greater than the number 
 of elements which have been `REST`ed off, an error occurs. Example:
 
-```no-highlight
-<SET ZOP <REST '![1 2 3 4] 3>>$
-![4!]
-<BACK .ZOP 2>$
-![2 3 4!]
-<SET S <REST "Right is might." 15>>$
-""
-<BACK .S 6>$
-"might."
-```
+    <SET ZOP <REST '![1 2 3 4] 3>>$
+    ![4!]
+    <BACK .ZOP 2>$
+    ![2 3 4!]
+    <SET S <REST "Right is might." 15>>$
+    ""
+    <BACK .S 6>$
+    "might."
 
 #### 7.6.2.2. TOP [1]
 
-```no-highlight
-<TOP array>
-```
+    <TOP array>
 
 "`BACK`s up all the way" -- that is, evaluates to *array*, with all 
 the elements which have been `REST`ed off put back onto it, and 
 changed to its `PRIMTYPE`. Example:
 
-```no-highlight
-<TOP .ZOP>$
-![1 2 3 4!]
-```
+    <TOP .ZOP>$
+    ![1 2 3 4!]
 
 ### 7.6.3. "Vector" PRIMTYPEs
 
 #### 7.6.3.1. GROW
 
-```no-highlight
-<GROW vu end:fix beg:fix>
-```
+    <GROW vu end:fix beg:fix>
 
 adds/removes elements to/from either or both ends of *vu*, and returns 
 the entire (`TOP`ped) resultant object. *vu* can be of `PRIMTYPE` 
@@ -497,16 +437,14 @@ the pattern of shared elements is terribly important.
 
 Example:
 
-```no-highlight
-<SET A '![1]>$
-![1!]
-<GROW .A 0 1>$
-![0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1!]
-.A$
-![1!]
-```
+    <SET A '![1]>$
+    ![1!]
+    <GROW .A 0 1>$
+    ![0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1!]
+    .A$
+    ![1!]
 
 #### 7.6.3.2. SORT
 
@@ -519,9 +457,7 @@ structure being sorted. One element in the record is declared to be
 the sort key. Also, any number of additional structures can be 
 rearranged based on how the main structure is sorted.
 
-```no-highlight
-<SORT pred s1 l1 off s2 l2 s3 l3 sN lN>
-```
+    <SORT pred s1 l1 off s2 l2 s3 l3 sN lN>
 
 where:
 
@@ -553,29 +489,25 @@ your terminal.
 
 Examples:
 
-```no-highlight
-<SORT <> <SET A <IUVECTOR 500 '<RANDOM>>>>$
-![...!]
-```
+    <SORT <> <SET A <IUVECTOR 500 '<RANDOM>>>>$
+    ![...!]
 
 sorts a `UVECTOR` of random integers.
 
-```no-highlight
-<SET V [1 MONEY 2 SHOW 3 READY 4 GO]>$
-[...]
-<SORT <> .V 2 1>$
-[4 GO 1 MONEY 3 READY 2 SHOW]
+    <SET V [1 MONEY 2 SHOW 3 READY 4 GO]>$
+    [...]
+    <SORT <> .V 2 1>$
+    [4 GO 1 MONEY 3 READY 2 SHOW]
 
-<SORT ,L? .V 2>$
-[4 GO 3 READY 2 SHOW 1 MONEY]
-.V$
-[4 GO 3 READY 2 SHOW 1 MONEY]
+    <SORT ,L? .V 2>$
+    [4 GO 3 READY 2 SHOW 1 MONEY]
+    .V$
+    [4 GO 3 READY 2 SHOW 1 MONEY]
 
-<SORT <> ![2 1 4 3 6 5 8 7] 1 0 .V>$
-![1 2 3 4 5 6 7 8!]
-.V$
-[GO 4 READY 3 SHOW 2 MONEY 1]
-```
+    <SORT <> ![2 1 4 3 6 5 8 7] 1 0 .V>$
+    ![1 2 3 4 5 6 7 8!]
+    .V$
+    [GO 4 READY 3 SHOW 2 MONEY 1]
 
 The first sort was based on the `ATOM`s' `PNAME`s, considering records 
 to be two elements. The second one sorted based on the `FIX`es. The 
@@ -607,16 +539,12 @@ The "same `TYPE`" restriction causes an equivalent restriction to
 apply to `EVAL` of the arguments to either of the `SUBR`s `UVECTOR` or 
 `IUVECTOR`. Note that attempting to say
 
-```no-highlight
-![1 .A!]
-```
+    ![1 .A!]
 
 will cause `READ` to produce an error, since you're attempting to put 
 a `FORM` and a `FIX` into the same `UVECTOR`. On the other hand,
 
-```no-highlight
-<UVECTOR 1 .A>
-```
+    <UVECTOR 1 .A>
 
 is legal, and will `EVAL` to the appropriate `UVECTOR` without error 
 if `.A` `EVAL`s to a `TYPE` `FIX`.
@@ -625,23 +553,17 @@ The following `SUBR`s work on `PRIMTYPE` `UVECTOR`s along.
 
 #### 7.6.5.1. UTYPE [1]
 
-```no-highlight
-<UTYPE primtype-uvector>
-```
+    <UTYPE primtype-uvector>
 
 ("uniform type") evaluates to the `TYPE` of every element in its 
 argument. Example:
 
-```no-highlight
-<UTYPE '![A B C]>$
-ATOM
-```
+    <UTYPE '![A B C]>$
+    ATOM
 
 #### 7.6.5.2. CHUTYPE [1]
 
-```no-highlight
-<CHUTYPE uv:primtype-uvector type>
-```
+    <CHUTYPE uv:primtype-uvector type>
 
 ("change uniform type") changes the `UTYPE` of *uv* to *type*, 
 simultaneously changing the `TYPE` of all elements of *uv*, and 
@@ -656,18 +578,16 @@ object will reflect the change. This is quite different from `CHTYPE`.
 
 Examples:
 
-```no-highlight
-<SET LOST <IUVECTOR 2>>$
-![#LOSE *000000000000* #LOSE *000000000000*!]
-<UTYPE .LOST>$
-LOSE
-<CHUTYPE .LOST FORM>$
-![<> <>!]
-.LOST$
-![<> <>!]
-<CHUTYPE .LOST LIST>$
-![() ()!]
-```
+    <SET LOST <IUVECTOR 2>>$
+    ![#LOSE *000000000000* #LOSE *000000000000*!]
+    <UTYPE .LOST>$
+    LOSE
+    <CHUTYPE .LOST FORM>$
+    ![<> <>!]
+    .LOST$
+    ![<> <>!]
+    <CHUTYPE .LOST LIST>$
+    ![() ()!]
 
 ### 7.6.6. STRING (the PRIMTYPE) and CHARACTER [1]
 
@@ -676,9 +596,7 @@ The best mental image of a `PRIMTYPE` `STRING` is a `PRIMTYPE`
 single ASCII character. The representation of a `CHARACTER`, by the 
 way, is
 
-```no-highlight
-!\any-ASCII-character
-```
+    !\any-ASCII-character
 
 That is, the characters `!\` (exclamation-point backslash) preceding a 
 single ASCII character represent the corresponding object of `TYPE` 
@@ -695,9 +613,7 @@ but some are particularly useful in connection with them:
 
 #### 7.6.6.1. ASCII [1]
 
-```no-highlight
-<ASCII fix-or-character>
-```
+    <ASCII fix-or-character>
 
 If its argument is of `TYPE` `FIX`, `ASCII` evaluates to the 
 `CHARACTER` with the 7-bit ASCII code of its argument. Example: 
@@ -711,9 +627,7 @@ Example: `<ASCII !\Z>` evaluates to `90`.
 
 #### 7.6.6.2. PARSE [1]
 
-```no-highlight
-<PARSE string radix:fix>
-```
+    <PARSE string radix:fix>
 
 `PARSE` applies to its argument `READ`'s algorithm for converting 
 ASCII representations to MDL objects and returns the **first** object 
@@ -732,9 +646,7 @@ error.
 
 #### 7.6.6.4. UNPARSE [1]
 
-```no-highlight
-<UNPARSE any radix:fix>
-```
+    <UNPARSE any radix:fix>
 
 `UNPARSE` applies to its argument `PRINT`'s algorithm for converting 
 MDL objects to ASCII representations and returns a `STRING` which 
@@ -766,18 +678,16 @@ is repeatedly evaluated to generate `FIX`es that become elements of
 the `BYTES` (if it is omitted, bytes filled with zeros are generated). 
 The analog to `UTYPE` is `BYTE-SIZE`. Examples:
 
-```no-highlight
-<BYTES 3 <+ 2 2> 9 -1>$
-#3 {4 1 7}
-<SET A 0>$
-0
-<IBYTES 3 9 '<SET A <+ .A 1>>>$
-#3 {1 2 3 4 5 6 7 0 1}
-<IBYTES 3 4>$
-#3 {0 0 0 0}
-<BYTE-SIZE <BYTES 1>>$
-1
-```
+    <BYTES 3 <+ 2 2> 9 -1>$
+    #3 {4 1 7}
+    <SET A 0>$
+    0
+    <IBYTES 3 9 '<SET A <+ .A 1>>>$
+    #3 {1 2 3 4 5 6 7 0 1}
+    <IBYTES 3 4>$
+    #3 {0 0 0 0}
+    <BYTE-SIZE <BYTES 1>>$
+    1
 
 ### 7.6.8. TEMPLATE
 
@@ -800,9 +710,7 @@ from elements of other structured objects.
 
 The representation of an object of `TYPE` `SEGMENT` is the following:
 
-```no-highlight
-!< func arg-1 arg-2 ... arg-N !>
-```
+    !< func arg-1 arg-2 ... arg-N !>
 
 where the second `!` (exclamation-point) is optional, and *fun* and 
 *arg-1* through *arg-N* are any legal constituents of a `FORM` (that 
@@ -811,9 +719,7 @@ and comma notation for `LVAL` and `GVAL`.
 
 All of the following are `SEGMENT`s:
 
-```no-highlight
-!<3 .FOO>    !.FOO    !,FOO
-```
+    !<3 .FOO>    !.FOO    !,FOO
 
 ### 7.7.2. Evaluation [1]
 
@@ -829,26 +735,24 @@ elements of the structure returned by the `FORM`-like evaluation.
 
 ### 7.7.3 Examples [1]
 
-```no-highlight
-<SET ZOP '![2 3 4]>$
-![2 3 4!]
-<SET ARF (B 3 4)>$
-(B 3 4)
-(.ARF !.ZOP)$
-((B 3 4) 2 3 4)
-![!.ZOP !<REST .ARF>!]$
-![2 3 4 3 4!]
+    <SET ZOP '![2 3 4]>$
+    ![2 3 4!]
+    <SET ARF (B 3 4)>$
+    (B 3 4)
+    (.ARF !.ZOP)$
+    ((B 3 4) 2 3 4)
+    ![!.ZOP !<REST .ARF>!]$
+    ![2 3 4 3 4!]
 
-<SET S "STRUNG.">$
-"STRUNG."
-(!.S)$
-(!\S !\T !\R !\U !\N !\G !\.)
+    <SET S "STRUNG.">$
+    "STRUNG."
+    (!.S)$
+    (!\S !\T !\R !\U !\N !\G !\.)
 
-<SET NIL ()>$
-()
-[!.NIL]$
-[]
-```
+    <SET NIL ()>$
+    ()
+    [!.NIL]$
+    []
 
 ### 7.7.4. Note on Efficiency [1]
 
@@ -864,44 +768,36 @@ easily varied than `PRIMTYPE` `VECTOR` or `UVECTOR`.
 
 Examples:
 
-```no-highlight
-.ARF$
-(B 3 4)
-```
+    .ARF$
+    (B 3 4)
 
 This does not copy ARF:
 
-```no-highlight
-(1 2 !.ARF)$
-(1 2 B 3 4)
-```
+    (1 2 !.ARF)$
+    (1 2 B 3 4)
 
 These do:
 
-```no-highlight
-(1 !.ARF 2)              ;"not last element"$
-(1 B 3 4 2)
-[1 2 !.ARF]              ;"not PRIMTYPE LIST"$
-[1 2 B 3 4]
-(1 2 !.ARF !<REST '(1)>) ;"still not last element"$
-(1 2 B 3 4)
-```
+    (1 !.ARF 2)              ;"not last element"$
+    (1 B 3 4 2)
+    [1 2 !.ARF]              ;"not PRIMTYPE LIST"$
+    [1 2 B 3 4]
+    (1 2 !.ARF !<REST '(1)>) ;"still not last element"$
+    (1 2 B 3 4)
 
 Note the following, which occurs because copying does **not** take 
 place:
 
-```no-highlight
-<SET DOG (A !.ARF)>$
-(A B 3 4)
-<PUT .ARF 1 "BOWOW">$
-("BOWOW" 3 4)
-.DOG$
-(A "BOWOW" 3 4)
-<PUT .DOG 3 "WOOF">$
-(A "BOWOW" "WOOF" 4)
-.ARF$
-("BOWOW" "WOOF" 4)
-```
+    <SET DOG (A !.ARF)>$
+    (A B 3 4)
+    <PUT .ARF 1 "BOWOW">$
+    ("BOWOW" 3 4)
+    .DOG$
+    (A "BOWOW" 3 4)
+    <PUT .DOG 3 "WOOF">$
+    (A "BOWOW" "WOOF" 4)
+    .ARF$
+    ("BOWOW" "WOOF" 4)
 
 Since `ARF` was not copied, it was literally part of `DOG`. Hence, 
 when an element of `ARF` was changed, `DOG` was changed. Similarly, 
@@ -914,12 +810,10 @@ When a `SEGMENT` appears as an element of a `FORM`, the effect is
 approximately the same as if the elements of the `EVAL` of the 
 `SEGMENT` were in the `FORM`. Example:
 
-```no-highlight
-<SET A '![1 2 3 4]>$
-![1 2 3 4!]
-<+ !.A 5>$
-15
-```
+    <SET A '![1 2 3 4]>$
+    ![1 2 3 4!]
+    <+ !.A 5>$
+    15
 
 Note: the elements of the structure segment-evaluated in a `FORM` are 
 **not** re-evaluated if the thing being applied is a `SUBR`. Thus if 
@@ -929,9 +823,7 @@ you can't add up `FORM`s.
 You could perform the same summation of `5` and the elements of `A` by 
 using
 
-```no-highlight
-<EVAL <CHTYPE (+ !.A 5) FORM>>
-```
+    <EVAL <CHTYPE (+ !.A 5) FORM>>
 
 (Note that `EVAL` must be explicitly called as a `SUBR`; if it were 
 not so called, you would just get the `FORM` `<+ 1 2 3 4 5>` -- not 
@@ -953,41 +845,33 @@ live MDL, be sure you know how to use `^S` (section 1.2) to save
 
 ### 7.8.1. Self-subset
 
-```no-highlight
-<PUTREST head:primtype-list tail:primtype-list>
-```
+    <PUTREST head:primtype-list tail:primtype-list>
 
 If *head* is a subset of *tail*, that is, if `<REST tail fix>` is the 
 same object as `<REST head 0>` for some *fix*, then both *head* and 
 *tail* will be "circular" (and this self-referencing) after the 
 `PUTREST`. Example:
 
-```no-highlight
-<SET WALTZ (1 2 3)>$
-(1 2 3)
-<PUTREST <REST .WALTZ 2> .WALTZ>$
-(3 1 2 3 1 2 3 1 2 3 1 2 3 ...
-```
+    <SET WALTZ (1 2 3)>$
+    (1 2 3)
+    <PUTREST <REST .WALTZ 2> .WALTZ>$
+    (3 1 2 3 1 2 3 1 2 3 1 2 3 ...
 
 ### 7.8.2. Self-element
 
-```no-highlight
-<PUT s1:structured fix s2:structured>
-```
+    <PUT s1:structured fix s2:structured>
 
 If *s1* is the same object as *s2*, then it will "contain" itself (and 
 thus be self-referencing) after the `PUT`. Examples:
 
-```no-highlight
-<SET S <LIST 1 2 3>>        ;"or VECTOR"$
-(1 2 3)
-<PUT .S 3 .S>$
-(1 2 (1 2 (1 2 (1 2 ...
-<SET U ![![]]>$
-![![!]!]
-<PUT .U 1 .U>$
-![![![![![![...
-```
+    <SET S <LIST 1 2 3>>        ;"or VECTOR"$
+    (1 2 3)
+    <PUT .S 3 .S>$
+    (1 2 (1 2 (1 2 (1 2 ...
+    <SET U ![![]]>$
+    ![![!]!]
+    <PUT .U 1 .U>$
+    ![![![![![![...
 
 Test your reaction time or your terminal's bracket-maker. Amaze your 
 friends.

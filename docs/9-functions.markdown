@@ -20,9 +20,7 @@ in the argument `LIST` allows the specification of optional arguments
 with values to be assigned by default. The syntax of the `"OPTIONAL"` 
 part of the argument `LIST` is as follows:
 
-```no-highlight
-"OPTIONAL" al-1 al-2 ... al-N
-```
+    "OPTIONAL" al-1 al-2 ... al-N
 
 First, there is the `STRING` `"OPTIONAL"`. Then there is any number of 
 either `ATOM`s or two-element `LIST`s, intermixed, one per optional 
@@ -60,16 +58,14 @@ respectively.]
 
 Example:
 
-```no-highlight
-<DEFINE INC1 (A "OPTIONAL" (N 1)) <SET .A <+ ..A .N>>>$
-INC1
-<SET B 0>$
-0
-<INC1 B>$
-1
-<INC1 B 5>$
-0
-```
+    <DEFINE INC1 (A "OPTIONAL" (N 1)) <SET .A <+ ..A .N>>>$
+    INC1
+    <SET B 0>$
+    0
+    <INC1 B>$
+    1
+    <INC1 B 5>$
+    0
 
 Here we defined another (not quite working) increment `FUNCTION`. It 
 now takes an optional argument specifying how much to increment the 
@@ -114,21 +110,19 @@ returned, and `T` if it is given a `TUPLE` which is still "good".
 
 Example:
 
-```no-highlight
-<DEFINE NTHARG (N "TUPLE" T)
-                ;"Get all but first argument into T."
-    <COND (<==? 1 .N> 1)
-                ;"If N is 1, return 1st arg, i.e., .N,
-                  i.e., 1.  Note that <1? .N> would be
-                  true even if .N were 1.0."
-          (<L? <LENGTH .T> <SET N <- .N 1>>>
-           #FALSE ("DUMMY"))
-                ;"Check to see if there is an Nth arg,
-                  and make N a good index into T while
-                  you're at it.
-                  If there isn't an Nth arg, complain."
-          (ELSE <NTH .T .N>)>>
-```
+    <DEFINE NTHARG (N "TUPLE" T)
+                    ;"Get all but first argument into T."
+        <COND (<==? 1 .N> 1)
+                    ;"If N is 1, return 1st arg, i.e., .N,
+                      i.e., 1.  Note that <1? .N> would be
+                      true even if .N were 1.0."
+              (<L? <LENGTH .T> <SET N <- .N 1>>>
+               #FALSE ("DUMMY"))
+                    ;"Check to see if there is an Nth arg,
+                      and make N a good index into T while
+                      you're at it.
+                      If there isn't an Nth arg, complain."
+              (ELSE <NTH .T .N>)>>
 
 `NTHARG`, above, takes any number of arguments. Its first argument 
 must be of `TYPE` `FIX`. It returns `EVAL` of its Nth argument, if it 
@@ -149,31 +143,23 @@ they are flushed automatically upon function return.
 
 Examples:
 
-```no-highlight
-<DEFINE F (A B "AUX" (C <ITUPLE 10 3>)) ...>
-```
+    <DEFINE F (A B "AUX" (C <ITUPLE 10 3>)) ...>
 
 creates a 10-element `TUPLE` and `SET`s `C` to it.
 
-```no-highlight
-<DEFINE H ("OPTIONAL" (A <ITUPLE 10 '<I>>)
-                "AUX" (B <TUPLE !.A 1 2 3>))
-                ...>
-```
+    <DEFINE H ("OPTIONAL" (A <ITUPLE 10 '<I>>)
+                    "AUX" (B <TUPLE !.A 1 2 3>))
+                    ...>
 
 These are valid uses of `TUPLE` and `ITUPLE`. However, the following 
 is **not** a valid use of `TUPLE`, because it is not called at top 
 level of the `"AUX"`:
 
-```no-highlight
-<DEFINE NO (A B "AUX" (C <REST <TUPLE !.A>>)) ...>
-```
+    <DEFINE NO (A B "AUX" (C <REST <TUPLE !.A>>)) ...>
 
 However, the desired effect could be achieved by
 
-```no-highlight
-<DEFINE OK (A B "AUX" (D <TUPLE !.A>) (C <REST .D>)) ...>
-```
+    <DEFINE OK (A B "AUX" (D <TUPLE !.A>) (C <REST .D>)) ...>
 
 ## 9.3 "AUX" [1]
 
@@ -193,14 +179,12 @@ first to last, so initialization expressions for `"AUX"` (or
 `"OPTIONAL"`) can refer to objects which have just been bound. For 
 example, this works:
 
-```no-highlight
-<DEFINE AUXEX ("TUPLE" T
-                 "AUX" (A <LENGTH .T>) (B <* 2 .A>))
-        ![.A .B]>$
-AUXEX
-<AUXEX 1 2 "FOO">$
-![3 6!]
-```
+    <DEFINE AUXEX ("TUPLE" T
+                     "AUX" (A <LENGTH .T>) (B <* 2 .A>))
+            ![.A .B]>$
+    AUXEX
+    <AUXEX 1 2 "FOO">$
+    ![3 6!]
 
 ## 9.4. QUOTEd arguments
 
@@ -208,12 +192,10 @@ If an `ATOM` in an argument `LIST` which is to be bound to a required
 or optional argument is surrounded by a call to `QUOTE`, that `ATOM` 
 is bound to the **unevaluated** argument. Example:
 
-```no-highlight
-<DEFINE Q2 (A 'B) (.A .B)>$
-Q2
-<Q2 <+ 1 2> <+ 1 2>>$
-(3 <+ 1 2>)
-```
+    <DEFINE Q2 (A 'B) (.A .B)>$
+    Q2
+    <Q2 <+ 1 2> <+ 1 2>>$
+    (3 <+ 1 2>)
 
 It is not often appropriate for a function to take its arguments 
 unevaluated, because such a practice makes it less modular and harder 
@@ -233,9 +215,7 @@ arguments.
 
 `"ARGS"` does not cause any copying to take place. It simply gives you
 
-```no-highlight
-<REST application:form fix>
-```
+    <REST application:form fix>
 
 with an appropriate *fix*. The `TYPE` change to `LIST` is a result of 
 the `REST`. Since the `LIST` shares all its elements with the original 
@@ -244,18 +224,16 @@ however dangerous that may be.
 
 Examples:
 
-```no-highlight
-<DEFINE QIT (N "ARGS" L) <.N .L>>$
-QIT
-<QIT 2 <+ 3 4 <LENGTH ,QALL> FOO>$
-<LENGTH ,QALL>
+    <DEFINE QIT (N "ARGS" L) <.N .L>>$
+    QIT
+    <QIT 2 <+ 3 4 <LENGTH ,QALL> FOO>$
+    <LENGTH ,QALL>
 
-<DEFINE FUNCT1 ("ARGS" ARGL-AND-BODY)
-        <CHTYPE .ARGL-AND-BODY FUNCTION>>$
-FUNCT1
-<FUNCT1 (A B) <+ .A .B>>$
-#FUNCTION ((A B) <+ .A .B>)
-```
+    <DEFINE FUNCT1 ("ARGS" ARGL-AND-BODY)
+            <CHTYPE .ARGL-AND-BODY FUNCTION>>$
+    FUNCT1
+    <FUNCT1 (A B) <+ .A .B>>$
+    #FUNCTION ((A B) <+ .A .B>)
 
 The last example is a perfectly valid equivalent of the `FSUBR` 
 `FUNCTION`.
@@ -280,12 +258,10 @@ Obtaining unevaluated arguments, for example, for `QUOTE` and
 point. You can do this by explicitly calling `EVAL`, which is a 
 `SUBR`. Example:
 
-```no-highlight
-<SET F '<+ 1 2>>$
-<+ 1 2>
-<EVAL .F>$
-3
-```
+    <SET F '<+ 1 2>>$
+    <+ 1 2>
+    <EVAL .F>$
+    3
 
 `EVAL` can take a second argument, of `TYPE` `ENVIRONMENT` (or others, 
 see section 20.8). An `ENVIRONMENT` consists basically of a state of 
@@ -298,18 +274,16 @@ existed **before** that `FUNCTION`'s binding took place. The indicator
 following it to the `ENVIRONMENT` existing "at call time" -- that is, 
 just before any binding is done for its `FUNCTION`. Example:
 
-```no-highlight
-<SET A 0>$
-0
-<DEFINE WRONG ('B "AUX" (A 1)) <EVAL .B>>$
-WRONG
-<WRONG .A>
-1
-<DEFINE RIGHT ("BIND" E 'B "AUX" (A 1)) <EVAL .B .E>>$
-RIGHT
-<RIGHT .A>$
-0
-```
+    <SET A 0>$
+    0
+    <DEFINE WRONG ('B "AUX" (A 1)) <EVAL .B>>$
+    WRONG
+    <WRONG .A>
+    1
+    <DEFINE RIGHT ("BIND" E 'B "AUX" (A 1)) <EVAL .B .E>>$
+    RIGHT
+    <RIGHT .A>$
+    0
 
 ### 9.7.1. Local Values versus ENVIRONMENTs
 
@@ -323,10 +297,8 @@ explicit second argument.
 This feature is just what is needed to cure the `INC` bug mentioned in 
 chapter 5. A "correct" `INC` can be defined as follows:
 
-```no-highlight
-<DEFINE INC ("BIND" OUTER ATM)
-        <SET .ATM <+ 1 <LVAL .ATM .OUTER>> .OUTER>>
-```
+    <DEFINE INC ("BIND" OUTER ATM)
+            <SET .ATM <+ 1 <LVAL .ATM .OUTER>> .OUTER>>
 
 ## 9.8. ACTIVATION, "NAME", "ACT", "AGAIN", and RETURN [1]
 
@@ -380,18 +352,16 @@ first argument. That is, `RETURN` means "quit doing this and return
 that", where "this" is the `ACTIVATION` -- its second argument -- and 
 "that" is the expression -- its first argument. Example:
 
-```no-highlight
-<DEFINE MY+ ("TUPLE" T "AUX" (M 0) "NAME" NM)
-        <COND (<EMPTY? .T> <RETURN .M .NM>)>
-        <SET M <+ .M <1 .T>>>
-        <SET T <REST .T>>
-        <AGAIN .NM>>$
-MY+
-<MY+ 1 3 <LENGTH "FOO">>$
-7
-<MY+>$
-0
-```
+    <DEFINE MY+ ("TUPLE" T "AUX" (M 0) "NAME" NM)
+            <COND (<EMPTY? .T> <RETURN .M .NM>)>
+            <SET M <+ .M <1 .T>>>
+            <SET T <REST .T>>
+            <AGAIN .NM>>$
+    MY+
+    <MY+ 1 3 <LENGTH "FOO">>$
+    7
+    <MY+>$
+    0
 
 Note: suppose an `ACTIVATION` of one Function (call it `F1`) is passed 
 to another Function (call it `F2`) -- for example, via an application 
@@ -404,29 +374,27 @@ applied to each of its arguments; `F2` computes the product of the
 elements of its structured argument, but it aborts if it finds an 
 element that is not a number.
 
-```no-highlight
-<DEFINE F1 ACT ("TUPLE" T "AUX" (T1 .T))
-        <COND (<NOT <EMPTY? .T1>>
-               <PUT .T1 1 <F2 <1 .T1> .ACT>>
-               <SET T1 <REST .T1>>
-               <AGAIN .ACT>)
-              (ELSE <+ !.T>)>>$
-F1
-<DEFINE F2 (S A "AUX" (S1 .S))
-        <REPEAT MY-ACT ((PRD 1))
-           <COND (<NOT <EMPTY? .S1>>
-                  <COND (<NOT <TYPE? 1 .S1> FIX FLOAT>>
-                         <RETURN #FALSE ("NON-NUMBER") .A>)
-                        (ELSE <SET PRD <* .PRD <1 .S1>>>)>
-                  <SET S1 <REST .S1>>)
-                 (ELSE <RETURN .PRD>)>>>$
-F2
+    <DEFINE F1 ACT ("TUPLE" T "AUX" (T1 .T))
+            <COND (<NOT <EMPTY? .T1>>
+                   <PUT .T1 1 <F2 <1 .T1> .ACT>>
+                   <SET T1 <REST .T1>>
+                   <AGAIN .ACT>)
+                  (ELSE <+ !.T>)>>$
+    F1
+    <DEFINE F2 (S A "AUX" (S1 .S))
+            <REPEAT MY-ACT ((PRD 1))
+               <COND (<NOT <EMPTY? .S1>>
+                      <COND (<NOT <TYPE? 1 .S1> FIX FLOAT>>
+                             <RETURN #FALSE ("NON-NUMBER") .A>)
+                            (ELSE <SET PRD <* .PRD <1 .S1>>>)>
+                      <SET S1 <REST .S1>>)
+                     (ELSE <RETURN .PRD>)>>>$
+    F2
 
-<F1 '(1 2) '(3 4)>$
-14
-<F1 '(T 2) '(3 4)>$
-#FALSE ("NON-NUMBER")
-```
+    <F1 '(1 2) '(3 4)>$
+    14
+    <F1 '(T 2) '(3 4)>$
+    #FALSE ("NON-NUMBER")
 
 ## 9.9. Argument List Summary
 
@@ -537,9 +505,7 @@ element of the `FORM`. (Note: case (1) can compile into in-line code,
 but case (2) compiles into a fully mediated call into the 
 interpreter.)
 
-```no-highlight
-<APPLY object arg-1 ... arg-N>
-```
+    <APPLY object arg-1 ... arg-N>
 
 evaluates *object* and all the *arg-i*'s and then applies the former 
 to all the latter. An error occurs if *object* evaluates to something 
@@ -549,11 +515,9 @@ arguments.
 
 Example:
 
-```no-highlight
-<APPLY <NTH .ANALYZERS
-            <LENGTH <MEMQ <TYPE .ARG> .ARGTYPES>>>
-       .ARG>
-```
+    <APPLY <NTH .ANALYZERS
+                <LENGTH <MEMQ <TYPE .ARG> .ARGTYPES>>>
+           .ARG>
 
 calls a function to analyze `.ARG`. Which function is called depends 
 on the `TYPE` of the argument; this represents the idea of a dispatch 
@@ -561,9 +525,7 @@ table.
 
 ## 9.11. CLOSURE
 
-```no-highlight
-<CLOSURE function a1 ... aN>
-```
+    <CLOSURE function a1 ... aN>
 
 where *function* is a `FUNCTION`, and *a1* through *aN* are any number 
 of `ATOM`s, returns an object of `TYPE` `CLOSURE`. This can be applied 

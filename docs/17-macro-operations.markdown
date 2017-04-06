@@ -26,20 +26,16 @@ of course.
 
 Example:
 
-```no-highlight
-<DEFINE SETUP () <SET A 0>>$
-SETUP
-<DEFINE NXT () <SET A <+ .A 1>>>$
-NXT
-[%%<SETUP> %<NXT> %<NXT> (%%<SETUP>) %<NXT>]$
-[1 2 () 1]
-```
+    <DEFINE SETUP () <SET A 0>>$
+    SETUP
+    <DEFINE NXT () <SET A <+ .A 1>>>$
+    NXT
+    [%%<SETUP> %<NXT> %<NXT> (%%<SETUP>) %<NXT>]$
+    [1 2 () 1]
 
 ### 17.1.2. LINK
 
-```no-highlight
-<LINK exp:any string oblist>
-```
+    <LINK exp:any string oblist>
 
 creates an object of `TYPE` `LINK`, `PRIMTYPE` `ATOM`.  A `LINK`
 looks vaguely like an `ATOM`; it has a `PNAME` (the *string*
@@ -61,9 +57,7 @@ expressions which are commonly used, but annoyingly long to type, can
 be "linked" to `PNAME`s which are shorter.  The standard example is
 the following:
 
-```no-highlight
-<LINK '<ERRET> "^E" <ROOT>>
-```
+    <LINK '<ERRET> "^E" <ROOT>>
 
 which links the `ATOM` of `PNAME` `^E` in the `ROOT` `OBLIST` to the
 expression `<ERRET>`.
@@ -153,9 +147,7 @@ of read-macro characters.  If this argument is supplied, `READ-TABLE`
 is rebound to it within the call to `READ`.  `READ` takes from zero
 to four arguments.  The fullest call to `READ` is thus:
 
-```no-highlight
-<READ channel eof-routine look-up read-table:vector>
-```
+    <READ channel eof-routine look-up read-table:vector>
 
 The other arguments are explained in sections 11.1.1.1, 11.3, and
 15.7.1.
@@ -167,60 +159,56 @@ The other arguments are explained in sections 11.1.1.1, 11.3, and
 
 Examples of each of the different kinds of entries in macro tables:
 
-```no-highlight
-<SET READ-TABLE <IVECTOR 256 0>>$
-[...]
+    <SET READ-TABLE <IVECTOR 256 0>>$
+    [...]
 
-<PUT .READ-TABLE <+ 1 <ASCII !\a>> !\A>
-	        ;"CHARACTER: translate a to A."$
-[...]
-abc$
-Abc
+    <PUT .READ-TABLE <+ 1 <ASCII !\a>> !\A>
+                    ;"CHARACTER: translate a to A."$
+    [...]
+    abc$
+    Abc
 
-<PUT .READ-TABLE <+ 1 <ASCII !\%>> <ASCII !\A>>
-        ;"FIX: make % just a normal ASCII character."$
-[...]
-A%BC$
-A\%BC
+    <PUT .READ-TABLE <+ 1 <ASCII !\%>> <ASCII !\A>>
+            ;"FIX: make % just a normal ASCII character."$
+    [...]
+    A%BC$
+    A\%BC
 
-<PUT .READ-TABLE <+ 1 <ASCII !\.>> (<ASCII !\.>)>
-        ;"<LIST FIX>: make comma no longer a break
-          character, but still special if at a break."$
-[...]
-A,B$
-A\,B
-;"That was an ATOM with PNAME A,B ."
-',B$
-,B
-;"That was the FORM <GVAL B> ."
+    <PUT .READ-TABLE <+ 1 <ASCII !\.>> (<ASCII !\.>)>
+            ;"<LIST FIX>: make comma no longer a break
+              character, but still special if at a break."$
+    [...]
+    A,B$
+    A\,B
+    ;"That was an ATOM with PNAME A,B ."
+    ',B$
+    ,B
+    ;"That was the FORM <GVAL B> ."
 
-<PUT .READ-TABLE <+ 1 <ASCII !\:>>
-    #FUNCTION ((X) <LIST COLON <READ>>)>
-        ;"APPLICABLE: make a new thing like ( < and [ ."$
-[...]
-B:A$
-B
-(COLON A)
-:::FOO$
-(COLON (COLON (COLON FOO)))
+    <PUT .READ-TABLE <+ 1 <ASCII !\:>>
+        #FUNCTION ((X) <LIST COLON <READ>>)>
+            ;"APPLICABLE: make a new thing like ( < and [ ."$
+    [...]
+    B:A$
+    B
+    (COLON A)
+    :::FOO$
+    (COLON (COLON (COLON FOO)))
 
-<PUT .READ-TABLE <+ 1 <ASCII !\:>>
-    '(#FUNCTION ((X) <LIST COLON <READ>>))>
-        ;"<LIST APPLICABLE>: like above, but not a break
-          now."$
-[...]
-B:A$
-B:A
-;"That was an ATOM."
-:::FOO$
-(COLON (COLON (COLON FOO)))
-```
+    <PUT .READ-TABLE <+ 1 <ASCII !\:>>
+        '(#FUNCTION ((X) <LIST COLON <READ>>))>
+            ;"<LIST APPLICABLE>: like above, but not a break
+              now."$
+    [...]
+    B:A$
+    B:A
+    ;"That was an ATOM."
+    :::FOO$
+    (COLON (COLON (COLON FOO)))
 
 #### 17.1.3.3. PARSE and LPARSE (finally)
 
-```no-highlight
-<PARSE string radix look-up parse-table:vector look-ahead:character>
-```
+    <PARSE string radix look-up parse-table:vector look-ahead:character>
 
 is the fullest call to `PARSE`.  `PARSE` can take from zero to five
 arguments.  If `PARSE` is given no arguments, it returns the first
@@ -270,30 +258,26 @@ extra `FRAME`s: one for a call to `EXPAND`, and one for a call to
 
 Example:
 
-```no-highlight
-<DEFMAC INC (ATM "OPTIONAL" (N 1))
-        #DECL ((VALUE) FORM (ATM) ATOM (N) <OR FIX FLOAT>)
-        <FORM SET .ATM <FORM + <FORM LVAL .ATM> .N>>>$
-INC
-,INC$
-#MACRO (#FUNCTION ((ATM "OPTIONAL" (N 1)) ...))
-<SET X 1>$
-1
-<INC X>$
-2
-.X$
-2
-<EXPAND '<INC X>>$
-<SET X <+ .X 1>>
-```
+    <DEFMAC INC (ATM "OPTIONAL" (N 1))
+            #DECL ((VALUE) FORM (ATM) ATOM (N) <OR FIX FLOAT>)
+            <FORM SET .ATM <FORM + <FORM LVAL .ATM> .N>>>$
+    INC
+    ,INC$
+    #MACRO (#FUNCTION ((ATM "OPTIONAL" (N 1)) ...))
+    <SET X 1>$
+    1
+    <INC X>$
+    2
+    .X$
+    2
+    <EXPAND '<INC X>>$
+    <SET X <+ .X 1>>
 
 Perhaps the intention is clearer if `PARSE` and `%` are used:
 
-```no-highlight
-<DEFMAC INC (ATM "OPTIONAL" (N 1))
-        #DECL (...)
-        <PARSE "<SET %.ATM <+ %.ATM %.N>>">>
-```
+    <DEFMAC INC (ATM "OPTIONAL" (N 1))
+            #DECL (...)
+            <PARSE "<SET %.ATM <+ %.ATM %.N>>">>
 
 `MACRO`s really exhibit their advantages when they are compiled.  The
 compiler will simply cause the first `EVAL`uation to occur (via
@@ -305,67 +289,51 @@ compiler will simply cause the first `EVAL`uation to occur (via
 Suppose you want to change the following simple `FUNCTION` to a
 `MACRO`:
 
-```no-highlight
-<DEFINE DOUBLE (X) #DECL ((X) FIX) <+ .X .X>>
-```
+    <DEFINE DOUBLE (X) #DECL ((X) FIX) <+ .X .X>>
 
 You may be tempted to write:
 
-```no-highlight
-<DEFMAC DOUBLE (X) #DECL ((X) FIX) <FORM + .X .X>>
-```
+    <DEFMAC DOUBLE (X) #DECL ((X) FIX) <FORM + .X .X>>
 
 This `MACRO` works, but only when the argument does not use temporary
 bindings.  Consider
 
-```no-highlight
-<DEFINE TRIPLE (Y) <+ .Y <DOUBLE .Y>>>
-```
+    <DEFINE TRIPLE (Y) <+ .Y <DOUBLE .Y>>>
 
 If this `FUNCTION` is applied, the top-level binding of `Y` is used,
 not the binding just created by the application.  Compilation of this
 `FUNCTION` would probably fail, because the compiler probably would
 have no top-level binding for `Y`.  Well, how about
 
-```no-highlight
-<DEFMAC DOUBLE ('X) <FORM + .X .X>>  ;"The DECL has to go."
-```
+    <DEFMAC DOUBLE ('X) <FORM + .X .X>>  ;"The DECL has to go."
 
 Now this is more like the original `FUNCTION`, because no longer is
 the argument evaluated and the result evaluated again.  And `TRIPLE`
 works.  But now consider
 
-```no-highlight
-<DEFINE INC-AND-DOUBLE (Y) <DOUBLE <SET Y <+ 1 .Y>>>>
-```
+    <DEFINE INC-AND-DOUBLE (Y) <DOUBLE <SET Y <+ 1 .Y>>>>
 
 You might hope that
 
-```no-highlight
-<INC-AND-DOUBLE 1> -> <DOUBLE <SET Y <+ 1 1>>>
-                   -> <DOUBLE 2>
-                   -> <+ 2 2>
-                   -> 4
-```
+    <INC-AND-DOUBLE 1> -> <DOUBLE <SET Y <+ 1 1>>>
+                       -> <DOUBLE 2>
+                       -> <+ 2 2>
+                       -> 4
 
 But, when `DOUBLE` is applied to that `FORM`, the argument is
 `QUOTE`d, so:
 
-```no-highlight
-<INC-AND-DOUBLE 1> -> <DOUBLE <SET Y <+ 1 1>>>
-                   -> <FORM + <SET Y <+ 1 .Y>> <SET Y <1 .Y>>>
-                   -> <+ 2 3>
-                   -> 5
-```
+    <INC-AND-DOUBLE 1> -> <DOUBLE <SET Y <+ 1 1>>>
+                       -> <FORM + <SET Y <+ 1 .Y>> <SET Y <1 .Y>>>
+                       -> <+ 2 3>
+                       -> 5
 
 So, since the evaluation of `DOUBLE`'s argument has a side effect,
 you should ensure that the evaluation is done exactly once, say by
 `FORM`:
 
-```no-highlight
-<DEFMAC DOUBLE ('ANY)
-        <FORM PROG ((X .ANY)) #DECL ((X) FIX) '<+ .X .X>>>
-```
+    <DEFMAC DOUBLE ('ANY)
+            <FORM PROG ((X .ANY)) #DECL ((X) FIX) '<+ .X .X>>>
 
 As a bonus, the `DECL` can once more be used.
 

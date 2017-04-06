@@ -6,9 +6,7 @@
 possible to vary the order of `EVAL`uation arbitrarily -- that is, to 
 have "jumps". The syntax of `PROG` ("program") is
 
-```no-highlight
-<PROG act:atom aux:list body>
-```
+    <PROG act:atom aux:list body>
 
 where
 
@@ -80,30 +78,26 @@ programmers using MDL. Then, the same thing is done using `REPEAT`. In
 both cases, the example `FUNCTION` just adds up all its arguments and 
 returns the sum. (The `SUBR` `GO` is discussed in section 10.4.)
 
-```no-highlight
-;"Lisp style"
-    <DEFINE MY+ ("TUPLE" TUP)
-            <PROG (SUM)
-                    <SET SUM 0>
-              LP    <COND (<EMPTY? .TUP> <RETURN .SUM>)>
-                    <SET SUM <+ .SUM <1 .TUP>>>
-                    <SET TUP <REST .TUP>>
-                    <GO LP>>>
+    ;"Lisp style"
+        <DEFINE MY+ ("TUPLE" TUP)
+                <PROG (SUM)
+                        <SET SUM 0>
+                  LP    <COND (<EMPTY? .TUP> <RETURN .SUM>)>
+                        <SET SUM <+ .SUM <1 .TUP>>>
+                        <SET TUP <REST .TUP>>
+                        <GO LP>>>
 
-;"MDL style"
-    <DEFINE MY+ ("TUPLE" TUP)
-            <REPEAT ((SUM 0))
-                    <COND (<EMPTY? .TUP> <RETURN .SUM>)>
-                    <SET SUM <+ .SUM <1 .TUP>>
-                    <SET TUP <REST .TUP>>>>
-```
+    ;"MDL style"
+        <DEFINE MY+ ("TUPLE" TUP)
+                <REPEAT ((SUM 0))
+                        <COND (<EMPTY? .TUP> <RETURN .SUM>)>
+                        <SET SUM <+ .SUM <1 .TUP>>
+                        <SET TUP <REST .TUP>>>>
 
 Of course, neither of the above is optimal MDL code for this problem, 
 since `MY+` can be written using `SEGMENT` evaluation as
 
-```no-highlight
-<DEFINE MY+ ("TUPLE" TUP) <+ !.TUP>>
-```
+    <DEFINE MY+ ("TUPLE" TUP) <+ !.TUP>>
 
 There are, of course, lots of problems which can't be handled so 
 simply, and lots of uses for `REPEAT`.
@@ -155,9 +149,7 @@ usually the ones used.
 
 ### 10.2.1. MAPF [1]
 
-```no-highlight
-<MAPF finalf loopf s1 s2 ... sN>
-```
+    <MAPF finalf loopf s1 s2 ... sN>
 
 where (after argument evaluation)
 
@@ -184,9 +176,7 @@ arguments; if *finalf* is a `FALSE`, `MAPF` returns `#FALSE ()`.
 
 ### 10.2.2 MAPR [1]
 
-```no-highlight
-<MAPR finalf loopf s1 s2 ... sN>
-```
+    <MAPR finalf loopf s1 s2 ... sN>
 
 acts just like `MAPF`, but, instead of applying *loopf* to `NTH`s of 
 the structures -- that is, `<NTH si 1>`, `<NTH si 2>`, etc. -- it 
@@ -197,81 +187,67 @@ applies it to `REST`s of the structures -- that is, `<REST si 0>`,
 
 Make the element-wise sum of two `LIST`s:
 
-```no-highlight
-<MAPF .LIST .+ '(1 2 3 4) '(10 11 12 13)>$
-(11 13 15 17)
-```
+    <MAPF .LIST .+ '(1 2 3 4) '(10 11 12 13)>$
+    (11 13 15 17)
 
 Change a `UVECTOR` to contain double its values:
 
-```no-highlight
-<SET UV '![5 6 7 8 9]>$
-![5 6 7 8 9!]
-<MAPR <>
-       #FUNCTION ((L) <PUT .L 1 <* <1 .L> 2>>)
-       .UV>$
-![18!]
-.UV$
-![10 12 14 16 18!]
-```
+    <SET UV '![5 6 7 8 9]>$
+    ![5 6 7 8 9!]
+    <MAPR <>
+           #FUNCTION ((L) <PUT .L 1 <* <1 .L> 2>>)
+           .UV>$
+    ![18!]
+    .UV$
+    ![10 12 14 16 18!]
 
 Create a `STRING` from `CHARACTER`s:
 
-```no-highlight
-<MAPF ,STRING 1 '["MODELING" "DEVELOPMENT" "LIBRARY"]>$
-"MDL"
-```
+    <MAPF ,STRING 1 '["MODELING" "DEVELOPMENT" "LIBRARY"]>$
+    "MDL"
 
 Sum the squares of the elements of a `UVECTOR`:
 
-```no-highlight
-<MAPF ,+ #FUNCTION ((N) <* .N .N>) '![3 4]>$
-25
-```
+    <MAPF ,+ #FUNCTION ((N) <* .N .N>) '![3 4]>$
+    25
 
 A parallel assignment `FUNCTION` (Note that the arguments to `MAPF` 
 are of different lengths.):
 
-```no-highlight
-<DEFINE PSET ("TUPLE" TUP)
-        <MAPF <>
-              ,SET
-              .TUP
-              <REST .TUP </ <LENGTH .TUP> 2>>>>$
-PSET
-<PSET A B C 1 2 3>$
-3
-.A$
-1
-.B$
-2
-.C$
-3
-```
+    <DEFINE PSET ("TUPLE" TUP)
+            <MAPF <>
+                  ,SET
+                  .TUP
+                  <REST .TUP </ <LENGTH .TUP> 2>>>>$
+    PSET
+    <PSET A B C 1 2 3>$
+    3
+    .A$
+    1
+    .B$
+    2
+    .C$
+    3
 
 Note: it is easy to forget that *finalf* **must** evaluate its 
 arguments, which precludes the use of an `FSUBR`. It is primarily for 
 this reason that the `SUBR`s `AND?` and `OR?` were invented. As an 
 example, the predicate `=?` could have been defined this way:
 
-```no-highlight
-<DEFINE =? (A B)
-        <COND (<MONAD? .A> <==? .A .B>)
-              (<AND <NOT <MONAD? .B>>
-                    <==? <TYPE .A> <TYPE .B>>
-                    <==? <LENGTH .A> <LENGTH .B>>>
-               <MAPF ,AND? ,=? .A .B>)>>
-```
+    <DEFINE =? (A B)
+            <COND (<MONAD? .A> <==? .A .B>)
+                  (<AND <NOT <MONAD? .B>>
+                        <==? <TYPE .A> <TYPE .B>>
+                        <==? <LENGTH .A> <LENGTH .B>>>
+                   <MAPF ,AND? ,=? .A .B>)>>
 
 [By the way, the following shows how to construct a value that has the 
 same `TYPE` as an argument.
 
-```no-highlight
-<DEFINE MAP-NOT (S)
- <COND (<MEMQ <PRIMTYPE .S> '![LIST VECTOR UVECTOR STRING]>
-        <CHTYPE <MAPF ,<PRIMTYPE .S> ,NOT .S>
-                <TYPE .S>>)>>
-```
+    <DEFINE MAP-NOT (S)
+     <COND (<MEMQ <PRIMTYPE .S> '![LIST VECTOR UVECTOR STRING]>
+            <CHTYPE <MAPF ,<PRIMTYPE .S> ,NOT .S>
+                    <TYPE .S>>)>>
 
 It works because the `ATOM`s that name the common `STRUCTURED` 
 `PRIMTYPS`s (`LIST`, `VECTOR`, `UVECTOR` and `STRING`) have as `GVAL`s 
@@ -287,9 +263,7 @@ a function call) to return from zero to any number of values as
 opposed to just one. For example, suppose a `MAPF` of the following 
 form is used:
 
-```no-highlight
-<MAPF ,LIST <FUNCTION (E) ...> ...>
-```
+    <MAPF ,LIST <FUNCTION (E) ...> ...>
 
 Now suppose that the programmer wants to add no elements to the final 
 `LIST` on some calls to the `FUNCTION` and add many on other calls to 
@@ -306,12 +280,10 @@ be `#FUNCTION (...)` or `<FUNCTION ...>` if `MAPRET` is to be used.
 Example: the following returns a `LIST` of all the `ATOM`s in an 
 `OBLIST` (chapter 15):
 
-```no-highlight
-<DEFINE ATOMS (OB)
-        <MAPF .LIST
-              <FUNCTION (BKT) <MAPRET !.BKT>>
-              .OB>>
-```
+    <DEFINE ATOMS (OB)
+            <MAPF .LIST
+                  <FUNCTION (BKT) <MAPRET !.BKT>>
+                  .OB>>
 
 ### 10.3.2. MAPSTOP
 
@@ -321,14 +293,12 @@ arguments, if any, to the final `TUPLE`, it forces the application of
 of objects. Example: the following copies the first ten (or all) 
 elements of its argument into a `LIST`:
 
-```no-highlight
-<DEFINE FIRST-TEN (STRUC "AUX" (I 10))
- <MAPF ,LIST
-      <FUNCTION (E)
-          <COND (<0? <SET I <- .I 1>>> <MAPSTOP .E>)>
-          .E>
-      .STRUC>>
-```
+    <DEFINE FIRST-TEN (STRUC "AUX" (I 10))
+     <MAPF ,LIST
+          <FUNCTION (E)
+              <COND (<0? <SET I <- .I 1>>> <MAPSTOP .E>)>
+              .E>
+          .STRUC>>
 
 ### 10.3.3. MAPLEAVE
 
@@ -341,13 +311,11 @@ finds the MAPF/R that should returns in the current binding of the
 finds and returns the first non-zero element of its argument, or 
 `#FALSE ()` if there is none:
 
-```no-highlight
-<DEFINE FIRST-N0 (STRUC)
-        <MAPF <>
-              <FUNCTION (X)
-                <COND (<N==? .X 0> <MAPLEAVE .X>)>>
-              .STRUC>>
-```
+    <DEFINE FIRST-N0 (STRUC)
+            <MAPF <>
+                  <FUNCTION (X)
+                    <COND (<N==? .X 0> <MAPLEAVE .X>)>>
+                  .STRUC>>
 
 ### 10.3.4. Only two arguments
 
@@ -357,13 +325,11 @@ continues indefinitely until a `MAPLEAVE` or `MAPSTOP` is invoked.
 Example: the following returns a `LIST` of the integers from one less 
 than its argument to zero.
 
-```no-highlight
-<DEFINE LNUM (N)
-        <MAPF ,LIST
-              <FUNCTION ()
-                <COND (<=? <SET N <- .N 1>>> <MAPSTOP 0>)
-                      (ELSE .N)>>>>
-```
+    <DEFINE LNUM (N)
+            <MAPF ,LIST
+                  <FUNCTION ()
+                    <COND (<=? <SET N <- .N 1>>> <MAPSTOP 0>)
+                          (ELSE .N)>>>>
 
 One principle use of this form of MAPF/R involves processing input 
 characters, in cases where you don't know how many characters are 
@@ -377,35 +343,29 @@ what was read as one `STRING`. (The `SUBR` `READCHR` reads one
 character from the input channel and returns it. `NEXTCHR` returns the 
 next `CHARACTER` which `READCHR` will return -- chapter 11.)
 
-```no-highlight
-<DEFINE RDSTR ()
-  <MAPF .STRING
-        <FUNCTION () <COND (<NOT <==? <NEXTCHR> <ASCII 27>>>
-                            <READCHR>)
-                           (T
-                            <MAPSTOP>)>>>>$
-RDSTR
+    <DEFINE RDSTR ()
+      <MAPF .STRING
+            <FUNCTION () <COND (<NOT <==? <NEXTCHR> <ASCII 27>>>
+                                <READCHR>)
+                               (T
+                                <MAPSTOP>)>>>>$
+    RDSTR
 
-<PROG () <READCHR> ;"Flush the ESC ending this input."
-	     <RDSTR>>$
-ABC123<+ 3 4>$"ABC123<+ 3 4>"
-```
+    <PROG () <READCHR> ;"Flush the ESC ending this input."
+                 <RDSTR>>$
+    ABC123<+ 3 4>$"ABC123<+ 3 4>"
 
 ### 10.3.5. STACKFORM
 
 The `FSUBR` `STACKFORM` is archaic, due to improvements in the 
 implementation of MAPF/R, and it should not be used in new programs.
 
-```no-highlight
-<STACKFORM function arg pred>
-```
+    <STACKFORM function arg pred>
 
 is exactly equivalent to
 
-```no-highlight
-<MAPF function
-      <FUNCTION () <COND (pred arg) (T <MAPSTOP>)>>>
-```
+    <MAPF function
+          <FUNCTION () <COND (pred arg) (T <MAPSTOP>)>>>
 
 In fact MAPF/R is more powerful, because `MAPRET`, `MAPSTOP`, and 
 `MAPLEAVE` provide flexibility not available with `STACKFORM`.

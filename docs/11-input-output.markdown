@@ -38,9 +38,7 @@ hang until `$` (<kbd>ESC</kbd>) is typed and allow normal use of
 
 #### 11.1.1.1. READ
 
-```no-highlight
-<READ>
-```
+    <READ>
 
 This returns the entire MDL object whose character representation is
 next in the input stream. Successive `<READ>`s return successive
@@ -49,18 +47,14 @@ See also sections 11.3, 15.7.1, and 17.1.3 for optional arguments.
 
 #### 11.1.1.2. READCHR
 
-```no-highlight
-<READCHR>
-```
+    <READCHR>
 
 ("read character") returns the next `CHARACTER` in the input stream.
 Successive `<READCHR>`s return successive `CHARACTER`s.
 
 #### 11.1.1.3. NEXTCHR
 
-```no-highlight
-<NEXTCHR>
-```
+    <NEXTCHR>
 
 ("next character") returns the `CHARACTER` which `READCHR` will
 return the next time `READCHR` is called. Multiple `<NEXTCHR>`s, with
@@ -77,9 +71,7 @@ the `CHANNEL` in use (section 11.2.8).
 
 #### 11.1.2.1. PRINT
 
-```no-highlight
-<PRINT any>
-```
+    <PRINT any>
 
 This outputs, in order,
 
@@ -93,17 +85,13 @@ and then returns `EVAL` of its argument. This is precisely the `SUBR`
 
 #### 11.1.2.2. PRIN1
 
-```no-highlight
-<PRIN1 any>
-```
+    <PRIN1 any>
 
 outputs just the representation of, and returns, `EVAL` of *any*.
 
 #### 11.1.2.3. PRINC
 
-```no-highlight
-<PRINC any>
-```
+    <PRINC any>
 
 ("print characters") acts exactly like `PRIN1`, except that
 
@@ -119,9 +107,7 @@ notation".
 
 #### 11.1.2.4. TERPRI
 
-```no-highlight
-<TERPRI>
-```
+    <TERPRI>
 
 ("terminate printing") outputs a carriage-return line-feed and then
 returns `# FALSE ()`!
@@ -133,9 +119,7 @@ then returns `T`.
 
 #### 11.1.2.6. FLATSIZE
 
-```no-highlight
-<FLATSIZE any max:fix radix:fix>
-```
+    <FLATSIZE any max:fix radix:fix>
 
 does not actually cause any output to occur and does not take a
 `CHANNEL` argument. Instead, or compares *max* with the number of
@@ -159,15 +143,11 @@ First, how to generate and use them.
 
 ### 11.2.1. OPEN
 
-```no-highlight
-<OPEN mode file-spec>
-```
+    <OPEN mode file-spec>
 
 or
 
-```no-highlight
-<OPEN mode name1 name2 device dir>
-```
+    <OPEN mode name1 name2 device dir>
 
 `OPEN` is a `SUBR` which creates and returns a `CHANNEL`. All its
 arguments must be of `TYPE` `STRING`, and **all** are optional. The
@@ -260,9 +240,7 @@ argument) and returns either T, `#FALSE (reason:string status:fix),
 
 ### 11.2.5. CLOSE
 
-```no-highlight
-<CLOSE channel>
-```
+    <CLOSE channel>
 
 closes *channel* and returns its argument, with its "state" changed
 to "closed". If *channel* is for output, all buffered output is
@@ -270,9 +248,7 @@ written out first. No harm is done if *channel* is already `CLOSE`d.
 
 ### 11.2.6. CHANLIST
 
-```no-highlight
-<CHANLIST>
-```
+    <CHANLIST>
 
 returns a `LIST` whose elements are all the currently open
 `CHANNEL`s. The first two elements are usually `.INCHAN` and
@@ -390,17 +366,15 @@ character in a file, according to its arguments. The file names,
 device, and directory are optional, with the usual names used by
 default.
 
-```no-highlight
-<DEFINE COUNT-CHAR
-        (CHAR "TUPLE" FILE "AUX" (CNT 0) (CHN <OPEN "READ" !.FILE>))
-    <COND (.CHN                 ;"If CHN is FALSE, bad OPEN: return the FALSE
-                                so result can be tested by another FUNCTION."
-           <REPEAT ()
-                <AND <==? .CHAR <READCHR .CHN '<RETURN>>>
-                     <SET CNT <+ 1 .CNT>>>>
-                ;"Until EOF, keep reading and testing a character at a time."
-            .CNT                ;"Then return the count.")>>
-```
+    <DEFINE COUNT-CHAR
+            (CHAR "TUPLE" FILE "AUX" (CNT 0) (CHN <OPEN "READ" !.FILE>))
+        <COND (.CHN                 ;"If CHN is FALSE, bad OPEN: return the FALSE
+                                    so result can be tested by another FUNCTION."
+               <REPEAT ()
+                    <AND <==? .CHAR <READCHR .CHN '<RETURN>>>
+                         <SET CNT <+ 1 .CNT>>>>
+                    ;"Until EOF, keep reading and testing a character at a time."
+                .CNT                ;"Then return the count.")>>
 
 ## 11.4. Imaged I/O
 
@@ -408,9 +382,7 @@ default.
 
 #### 11.4.1.1. READB
 
-```no-highlight
-<READB buffer:uvector-or-storage channel eof:any>
-```
+    <READB buffer:uvector-or-storage channel eof:any>
 
 The *channel* must be open in `"READB"` mode. `READB` will read as
 many 36-bit binary words as necessary to fill the *buffer* (whose
@@ -425,9 +397,7 @@ optional, a call to `ERROR` by default.
 
 #### 11.4.1.2. READSTRING
 
-```no-highlight
-<READSTRING buffer:string channel stop:fix-or-string eof>
-```
+    <READSTRING buffer:string channel stop:fix-or-string eof>
 
 is the `STRING` analog to `READB`, where *buffer* and *eof* are as in
 `READB`, and *channel* is any input `CHANNEL` (`.INCHAN` by default).
@@ -440,9 +410,7 @@ this `CHARACTER` in final `STRING`).
 
 #### 11.4.2.1. PRINTB
 
-```no-highlight
-<PRINTB buffer:uvector-or-storage channel>
-```
+    <PRINTB buffer:uvector-or-storage channel>
 
 This call writes the entire contents of the *buffer* into the
 specified channel open in `"PRINTB"` or `"PRINTO"` mode. It returns
@@ -450,9 +418,7 @@ specified channel open in `"PRINTB"` or `"PRINTO"` mode. It returns
 
 #### 11.4.2.2. PRINTSTRING
 
-```no-highlight
-<PRINTSTRING buffer:string channel count:fix>
-```
+    <PRINTSTRING buffer:string channel count:fix>
 
 is analogous to `READSTRING`. It outputs *buffer* on *channel*,
 either the whole thing or the first *count* characters, and returns
@@ -460,9 +426,7 @@ the number of characters output.
 
 #### 11.4.2.3. IMAGE
 
-```no-highlight
-<IMAGE fix channel>
-```
+    <IMAGE fix channel>
 
 is a rather special-purpose `SUBR`. When any conversion-output
 routine outputs an ASCII control character (with special exceptions
@@ -479,9 +443,7 @@ are not updated. `IMAGE` returns *fix*.
 
 ### 11.5.1. Output: GC-DUMP
 
-```no-highlight
-<GC-DUMP any printb:channel-or-false>
-```
+    <GC-DUMP any printb:channel-or-false>
 
 dumps *any* on *printb* in a clever format so that `GC-READ` (below)
 can reproduce *any* exactly, including sharing. *any* cannot live on
@@ -502,9 +464,7 @@ used is two or three times as much.
 
 ### 11.5.2. Input: GC-READ
 
-```no-highlight
-<GC-READ readb:channel eof:any>
-```
+    <GC-READ readb:channel eof:any>
 
 returns one object from the *channel*, which must be open in
 `"READB"` mode. The file must have been produced by `GC-DUMP`. *eof*
@@ -536,15 +496,11 @@ can be obtained by doing a `READ` of that file. Only that initial
 
 ### 11.6.1. SAVE
 
-```no-highlight
-<SAVE file-spec:string gc?:false-or-any>
-```
+    <SAVE file-spec:string gc?:false-or-any>
 
 or
 
-```no-highlight
-<SAVE name1 name2 device dir gc?:false-or-any>
-```
+    <SAVE name1 name2 device dir gc?:false-or-any>
 
 saves the entire state of your MDL away in the file specified by its
 arguments, and then returns `"SAVED"`. All `STRING` arguments are
@@ -567,32 +523,26 @@ safety.
 
 Example:
 
-```no-highlight
-<DEFINE SAVE-IT ("OPTIONAL"
-                 (FILE '("PUBLIC" "SAVE" "DSK" "GUEST"))
-                 "AUX" (SNM ""))
-        <SETUP>
-        <COND (<=? "SAVED" <SAVE !.FILE>>   ;"See below."
-               <CLEANUP>
-               "Saved.")
-              (T
-               <CRLF>
-               <PRINC "Amazing program at your service.">
-               <CRLF>
-               <START-RUNNING>)>>
-```
+    <DEFINE SAVE-IT ("OPTIONAL"
+                     (FILE '("PUBLIC" "SAVE" "DSK" "GUEST"))
+                     "AUX" (SNM ""))
+            <SETUP>
+            <COND (<=? "SAVED" <SAVE !.FILE>>   ;"See below."
+                   <CLEANUP>
+                   "Saved.")
+                  (T
+                   <CRLF>
+                   <PRINC "Amazing program at your service.">
+                   <CRLF>
+                   <START-RUNNING>)>>
 
 ### 11.6.2. RESTORE
 
-```no-highlight
-<RESTORE file-spec>
-```
+    <RESTORE file-spec>
 
 or
 
-```no-highlight
-<RESTORE name1 name2 device dir>
-```
+    <RESTORE name1 name2 device dir>
 
 **replaces** the entire current state of your MDL with that `SAVE`d
 in the file specified. All arguments are optional, with the same
@@ -614,9 +564,7 @@ execution upon `RESTORE`ation.
 
 ### 11.7.1. LOAD
 
-```no-highlight
-<LOAD input:channel look-up>
-```
+    <LOAD input:channel look-up>
 
 eventually returns `"DONE"`. First, however, it `READ`s and `EVAL`s
 every MDL object in the file pointed to by *input*, and then `CLOSE`s
@@ -629,15 +577,11 @@ meaning; they are simply `ATOM` constituents.
 
 ### 11.7.2. FLOAD
 
-```no-highlight
-<FLOAD file-spec look-up>
-```
+    <FLOAD file-spec look-up>
 
 or
 
-```no-highlight
-<FLOAD name1 name2 device dir look-up>
-```
+    <FLOAD name1 name2 device dir look-up>
 
 ("file load") acts just like `LOAD`, except that it takes arguments
 (with values used by default) like `OPEN`, `OPEN`s the `CHANNEL`
@@ -658,9 +602,7 @@ returns the current *dir* used by default.
 
 ### 11.7.4. ACCESS
 
-```no-highlight
-<ACCESS channel fix>
-```
+    <ACCESS channel fix>
 
 returns *channel*, after making the next character or binary word
 (depending on the mode of *channel*, which should not be `"PRINT"`)
@@ -671,9 +613,7 @@ accessible device (`"DSK"`, `"USR"`, etc.). A *fix* of `0` positions
 
 ### 11.7.5. FILE-LENGTH
 
-```no-highlight
-<FILE-LENGTH input:channel>
-```
+    <FILE-LENGTH input:channel>
 
 returns a `FIX`, the length of the file open on *input*. This
 information is supplied by the operating system, and it may not be
@@ -685,9 +625,7 @@ operation will detect the end of file.
 
 ### 11.7.6. FILECOPY
 
-```no-highlight
-<FILECOPY input:channel output:channel>
-```
+    <FILECOPY input:channel output:channel>
 
 copies characters from *input* to *output* until the end of file on
 *input* (thus closing *input*) and returns the number of characters
@@ -700,9 +638,7 @@ internally a `<FILE-LENGTH input>` is done, which must succeed; thus
 
 ### 11.7.7. RESET
 
-```no-highlight
-<RESET channel>
-```
+    <RESET channel>
 
 returns *channel*, after "resetting" it. Resetting a `CHANNEL` is
 like `OPEN`ing it afresh, with only the file-name slots preserved.
@@ -717,9 +653,7 @@ real-name slots does not exist), `RESET` (like `OPEN`) returns
 
 ### 11.7.8. BUFOUT
 
-```no-highlight
-<BUFOUT output:channel>
-```
+    <BUFOUT output:channel>
 
 causes all internal MDL buffers for *output* to be written out and
 returns its argument. This is helpful if the operating system or MDL
@@ -745,16 +679,12 @@ otherwise `#FALSE (reason:string status:fix)`.
 In case (a) the file specified by the first argument is renamed to
 the second argument. For example:
 
-```no-highlight
-<RENAME "FOO 3" TO "BAR">       ;"Rename FOO 3 to BAR >."
-```
+    <RENAME "FOO 3" TO "BAR">       ;"Rename FOO 3 to BAR >."
 
 In case (b) the single file name specifies a file to be deleted. For
 example:
 
-```no-highlight
-<RENAME "FOO FOO DSK:HARRY;">  ;"Rename FOO 3 to BAR >."
-```
+    <RENAME "FOO FOO DSK:HARRY;">  ;"Rename FOO 3 to BAR >."
 
 In case (c) the `CHANNEL` must be open in either `"PRINT"` or
 `"PRINTB"` mode, and a rename while open for writing is attempted.
@@ -797,9 +727,7 @@ are available, that is, when `READCHR` would return `-1`.
 
 ## 11.8.1. ECHOPAIR
 
-```no-highlight
-<ECHOPAIR terminal-in:channel terminal-out:channel>
-```
+    <ECHOPAIR terminal-in:channel terminal-out:channel>
 
 returns its first argument, after making the two `CHANNEL`s "know
 about each other" so that <kbd>rubout</kbd>, <kbd>^@</kbd>,
@@ -808,9 +736,7 @@ appropriate output on *terminal-out*.
 
 ### 11.8.2. TTYECHO
 
-```no-highlight
-<TTYECHO terminal-input:channel pred>
-```
+    <TTYECHO terminal-input:channel pred>
 
 turns the echoing of typed characters on *channel* off or on,
 according to whether or not *pred* is `TYPE` `FALSE`, and returns
@@ -820,9 +746,7 @@ fashion.
 
 ### 11.8.3. TYI
 
-```no-highlight
-<TYI terminal-input:channel>
-```
+    <TYI terminal-input:channel>
 
 returns one `CHARACTER` from *channel* (optional, `.INCHAN` by
 default) when it is typed, rather than after `$` (<kbd>ESC</kbd>) is
@@ -830,11 +754,9 @@ typed, as is the case with `READCHR`. The following example echos
 input characters as their ASCII values, until a carriage-return is
 typed:
 
-```no-highlight
-<REPEAT ((FOO <TTYECHO .INCHAN <>>))
-   <AND <==? 13 <PRINC <ASCII <TYI .INCHAN>>>>
-        <RETURN <TTYECHO .INCHAN T>>>>
-```
+    <REPEAT ((FOO <TTYECHO .INCHAN <>>))
+       <AND <==? 13 <PRINC <ASCII <TYI .INCHAN>>>>
+            <RETURN <TTYECHO .INCHAN T>>>>
 
 ## 11.9. Internal CHANNELs
 
@@ -870,9 +792,7 @@ that does not take all strings as its arguments to `OPEN`, and it
 must take an additional optional argument to specify the byte size of
 the socket. The format of a call to open a network socket is
 
-```no-highlight
-<OPEN mode:string local-socket:fix "NET" foreign-host:fix byte-size:fix>
-```
+    <OPEN mode:string local-socket:fix "NET" foreign-host:fix byte-size:fix>
 
 where:
 
@@ -918,9 +838,7 @@ device. These are described next.
 
 ### 11.10.1. NETSTATE
 
-```no-highlight
-<NETSTATE network:channel>
-```
+    <NETSTATE network:channel>
 
 returns a `UVECTOR` of three `FIX`es. The first is the state of the
 connection, the second is a code specifying why a connection was
@@ -930,9 +848,7 @@ installation-dependent and so are not included here.
 
 ### 11.10.2. NETACC
 
-```no-highlight
-<NETACC network:channel>
-```
+    <NETACC network:channel>
 
 accepts a connection to a socket that is open for listening and
 returns its argument. It will return a `FALSE` if the connection is
@@ -940,9 +856,7 @@ in the wrong state.
 
 ### 11.10.3. NETS
 
-```no-highlight
-<NETS network:channel>
-```
+    <NETS network:channel>
 
 returns its argument, after forcing any system-buffered network
 output to be sent. ITS normally does this every half second anyway.

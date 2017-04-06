@@ -37,9 +37,7 @@ A `FUNCTION` is just another data object in MDL, of `TYPE` `FUNCTION`.
 It can be manipulated like any other data object. `PRINT` represents a 
 `FUNCTION` like this:
 
-```no-highlight
-#FUNCTION (elements)
-```
+    #FUNCTION (elements)
 
 that is, a number sign, the `ATOM` `FUNCTION`, a left parenthesis, 
 each of the elements of the `FUNCTION`, and a right parenthesis. Since 
@@ -51,17 +49,13 @@ The elements of a `FUNCTION` can be "any number of anythings";
 however, when you **use** a `FUNCTION` (apply it with a `FORM`), 
 `EVAL` will complain if the `FUNCTION` does not look like
 
-```no-highlight
-#FUNCTION (act:atom arguments:list decl body)
-```
+    #FUNCTION (act:atom arguments:list decl body)
 
 where *act* and *decl* are optional (section 9.8 and chapter 14); 
 *body* is **at least one** MDL object -- any old MDL object; and, in 
 this simple case, *arguments* is
 
-```no-highlight
-(any number of ATOMs)
-```
+    (any number of ATOMs)
 
 that is, something `READ` and `PRINT`ed as: left parenthesis, any 
 number -- including zero -- of `ATOM`s, right parenthesis. (This is 
@@ -79,13 +73,11 @@ Thus, these `FUNCTION`s will cause errors -- but only **when used**:
 
 These `FUNCTION`s will never cause errors because of format:
 
-```no-highlight
-#FUNCTION (() 1 2 3 4 5)
-#FUNCTION ((A) A)
-#FUNCTION (()()()()()()()())
-#FUNCTION ((A B C D EE F G H HIYA) <+ .A .HIYA>)
-#FUNCTION ((Q) <SETG C <* .Q ,C>> <+ <MOD ,C 3> .Q>)
-```
+    #FUNCTION (() 1 2 3 4 5)
+    #FUNCTION ((A) A)
+    #FUNCTION (()()()()()()()())
+    #FUNCTION ((A B C D EE F G H HIYA) <+ .A .HIYA>)
+    #FUNCTION ((Q) <SETG C <* .Q ,C>> <+ <MOD ,C 3> .Q>)
 
 and the last two actually do something which might be useful. (The 
 first three are rather pathological, but legal.)
@@ -94,10 +86,8 @@ first three are rather pathological, but legal.)
 
 `FUNCTION`s, like `SUBR`s and `FSUBR`s, are applied using `FORM`s. So,
 
-```no-highlight
-<#FUNCTION ((X) <* .X .X>) 5>$
-25
-```
+    <#FUNCTION ((X) <* .X .X>) 5>$
+    25
 
 applied the indicated `FUNCTION` to 5 and returned 25.
 
@@ -134,37 +124,31 @@ leaves the `FUNCTION`. However, if you `SET` an `ATOM` which is
 **not** in the argument `LIST` (or `SETG` **any** `ATOM`) the new 
 local (or global) value **will** be remembered. Examples:
 
-```no-highlight
-<SET X 0>$
-0
-<#FUNCTION ((X) <SET X <* .X .X>>) 5>$
-25
-.X$
-0
-```
+    <SET X 0>$
+    0
+    <#FUNCTION ((X) <SET X <* .X .X>>) 5>$
+    25
+    .X$
+    0
 
 On the other hand,
 
-```no-highlight
-<SET Y 0>$
-0
-<#FUNCTION ((X) <SET Y <* .X .X>>) 5>$
-25
-.Y$
-25
-```
+    <SET Y 0>$
+    0
+    <#FUNCTION ((X) <SET Y <* .X .X>>) 5>$
+    25
+    .Y$
+    25
 
 By using `PRINT` as a `SUBR`, we can "see" that an argument's `LVAL` 
 really is changed while `EVAL`uating the body of a `FUNCTION`:
 
-```no-highlight
-<SET X 5>$
-5
-<#FUNCTION ((X) <PRINT .X> <+ .X 10>) 3>$
-3 13
-.X$
-5
-```
+    <SET X 5>$
+    5
+    <#FUNCTION ((X) <PRINT .X> <+ .X 10>) 3>$
+    3 13
+    .X$
+    5
 
 The first number after the application `FORM` was typed out by the 
 `PRINT`; the second is the value of the applcation.
@@ -172,12 +156,10 @@ The first number after the application `FORM` was typed out by the
 Remembering that `LVAL`s of `ATOM`s **not** in argument `LIST`s are 
 not changed, we can reference them within `FUNCTION`s, as in
 
-```no-highlight
-<SET Z 100>$
-100
-<#FUNCTION ((Y) </ .Z .Y>) 5>$
-20
-```
+    <SET Z 100>$
+    100
+    <#FUNCTION ((Y) </ .Z .Y>) 5>$
+    20
 
 `ATOM`s used like `Z` or `Y` in the above examples are referred to as 
 "free variables". The use of free variables, while often quite 
@@ -204,38 +186,30 @@ re-bound....)
 
 One way to "name" a `FUNCTION` is
 
-```no-highlight
-<SETG SQUARE #FUNCTION ((X) <* .X .X>)>$
-#FUNCTION ((X) <* .X .X>
-```
+    <SETG SQUARE #FUNCTION ((X) <* .X .X>)>$
+    #FUNCTION ((X) <* .X .X>
 
 So that
 
-```no-highlight
-<SQUARE 5>$
-25
-<SQUARE 100>$
-10000
-```
+    <SQUARE 5>$
+    25
+    <SQUARE 100>$
+    10000
 
 Another way, which is somewhat cleaner in its typing:
 
-```no-highlight
-<SETG SQUARE <FUNCTION (X) <* .X .X>>>$
-#FUNCTION ((X) <* .X .X>
-```
+    <SETG SQUARE <FUNCTION (X) <* .X .X>>>$
+    #FUNCTION ((X) <* .X .X>
 
 `FUNCTION` is an `FSUBR` which simply makes a `FUNCTION` out of its 
 arguments and returns the created `FUNCTION`.
 
 This, however, is generally the **best** way:
 
-```no-highlight
-<DEFINE SQUARE (X) <* .X .X>>$
-SQUARE
-,SQUARE$
-#FUNCTION ((X) <* .X .X>
-```
+    <DEFINE SQUARE (X) <* .X .X>>$
+    SQUARE
+    ,SQUARE$
+    #FUNCTION ((X) <* .X .X>
 
 The last two lines immediately above are just to prove that `DEFINE` 
 did the "right thing".
@@ -261,16 +235,14 @@ will produce no errors. The normal state can be restored by evaluating
 
 Using `SQUARE` as defined above:
 
-```no-highlight
-<DEFINE HYPOT (SIDE-1 SIDE-2)
-        ;"This is a comment. This FUNCTION finds the
-          length of the hypotenuse of a right triangle
-          of sides SIDE-1 and SIDE-2."
-    <SQRT <+ <SQUARE .SIDE-1> <SQUARE .SIDE-2>>>>$
-HYPOT
-<HYPOT 3 4>$
-5.0
-```
+    <DEFINE HYPOT (SIDE-1 SIDE-2)
+            ;"This is a comment. This FUNCTION finds the
+              length of the hypotenuse of a right triangle
+              of sides SIDE-1 and SIDE-2."
+        <SQRT <+ <SQUARE .SIDE-1> <SQUARE .SIDE-2>>>>$
+    HYPOT
+    <HYPOT 3 4>$
+    5.0
 
 Note that carriage-returns, line-feeds, tabs, etc. are just 
 separators, like spaces. A comment is **any single** MDL object which 
@@ -285,16 +257,14 @@ It always returns a `FLOAT`.)
 
 A whimsical `FUNCTION`:
 
-```no-highlight
-<DEFINE ONE (THETA) ;"This FUNCTION always returns 1."
-        <+ <SQUARE <SIN .THETA>>
-           <SQUARE <COS .THETA>>>>$
-ONE
-<ONE 5>$
-0.99999994
-<ONE 0.23>$
-0.99999999
-```
+    <DEFINE ONE (THETA) ;"This FUNCTION always returns 1."
+            <+ <SQUARE <SIN .THETA>>
+               <SQUARE <COS .THETA>>>>$
+    ONE
+    <ONE 5>$
+    0.99999994
+    <ONE 0.23>$
+    0.99999999
 
 `ONE` always returns (approximately) one, since the sum of the squares 
 of sin(x) and cos(x) is unity for any x. (`SIN` and `COS` always 
@@ -306,69 +276,61 @@ MDL doesn't have a general "to the power" `SUBR`, so let's define one
 using `LOG` and `EXP` (log base e, and e to a power, respectively; 
 again, they return `FLOAT`s).
 
-```no-highlight
-<DEFINE ** (NUM PWR) <EXP <* .PWR <LOG .NUM>>>>$
-**
-<** 2 2>$
-4.0000001
-<** 5 3>$
-125.00000
-<** 25 0.5>$
-5.0000001
-```
+    <DEFINE ** (NUM PWR) <EXP <* .PWR <LOG .NUM>>>>$
+    **
+    <** 2 2>$
+    4.0000001
+    <** 5 3>$
+    125.00000
+    <** 25 0.5>$
+    5.0000001
 
 Two `FUNCTION`s which use a single global variable (Since the `GVAL` 
 is used, it cannot be rebound.):
 
-```no-highlight
-<DEFINE START () <SETG GV 0>>$
-START
-<DEFINE STEP () <SETG GV <+ ,GV 1>>>$
-STEP
-<START>$
-0
-<STEP>$
-1
-<STEP>$
-2
-<STEP>$
-3
-```
+    <DEFINE START () <SETG GV 0>>$
+    START
+    <DEFINE STEP () <SETG GV <+ ,GV 1>>>$
+    STEP
+    <START>$
+    0
+    <STEP>$
+    1
+    <STEP>$
+    2
+    <STEP>$
+    3
 
 `START` and `STEP` take no arguments, so their argument `LIST`s are empty.
 
 An interesting, but pathological, `FUNCTION`:
 
-```no-highlight
-<DEFINE INC (ATM) <SET .ATM <+ ..ATM 1>>>$
-INC
-<SET A 0>$
-0
-<INC A>$
-1
-<INC A>$
-2
-.A$
-2
-```
+    <DEFINE INC (ATM) <SET .ATM <+ ..ATM 1>>>$
+    INC
+    <SET A 0>$
+    0
+    <INC A>$
+    1
+    <INC A>$
+    2
+    .A$
+    2
 
 `INC` takes an **`ATOM`** as an argument, and `SET`s that `ATOM` to 
 its current `LVAL` plus `1`. Note that inside `INC`, the `ATOM` `ATM` 
 is `SET` to the `ATOM` which is its argument; thus `..ATM` returns the 
 `LVAL` of the **argument**. However, there is a problem:
 
-```no-highlight
-<SET ATM 0>$
-0
-<INC ATM>$
+    <SET ATM 0>$
+    0
+    <INC ATM>$
 
-*ERROR*
-ARG-WRONG-TYPE
-+
-LISTENING-AT-LEVEL 2 PROCESS 1
-<ARGS <FRAME <FRAME>>>$
-[ATM 1]
-```
+    *ERROR*
+    ARG-WRONG-TYPE
+    +
+    LISTENING-AT-LEVEL 2 PROCESS 1
+    <ARGS <FRAME <FRAME>>>$
+    [ATM 1]
 
 The error occurred because `.ATM` was `ATM`, the argument to `INC`, 
 and thus `..ATM` was `ATM` also. We really want the outermost `.` in 

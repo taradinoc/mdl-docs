@@ -19,9 +19,7 @@ A MDL object which is used to represent the application of a function
 to its arguments is an argument of `TYPE` `FORM`. Its printed 
 representation is
 
-```no-highlight
-< func arg-1 arg-2 ... arg-N >
-```
+    < func arg-1 arg-2 ... arg-N >
 
 where *func* is an object which designates the function to be applied, 
 and *arg-1* through *arg-N* are object which designate the arguments 
@@ -71,10 +69,8 @@ similar meaning.
 
 ## 3.4. Examples (+ and FIX; Arithmetic) [1]
 
-```no-highlight
-<+ 2 4 6>$
-12
-```
+    <+ 2 4 6>$
+    12
 
 The `SUBR` `+` adds numbers. Most of the usual arithmetic functions 
 are MDL `SUBR`s: `+`, `-`, `*`, `/`, `MIN`, `MAX`, `MOD`, `SIN`, 
@@ -84,28 +80,24 @@ indifferent as to whether their arguments are `FLOAT` or `FIX` or a
 mixture. In the last case they exhibit "contagious `FLOAT`ing": one
 argument of `TYPE` `FLOAT` forces the result to be of `TYPE` `FLOAT`.
 
-```no-highlight
-<FIX 1.0>$
-1
-```
+    <FIX 1.0>$
+    1
 
 The `SUBR` `FIX` explicitly returns a `FIX`ed-point number 
 corresponding to a `FLOAT`ing-point number. `FLOAT` does the opposite.
 
-```no-highlight
-<+ 5 <* 2 3>>$
-11
-<SQRT <+ <* 3 3> <* 4 4>>>$
-5.0
-<- 5 3 2>$
-0
-<- 5>$
--5
-<MIN 1 2.0>$
-1.0
-</ 11 7 2.0>$
-0.5
-```
+    <+ 5 <* 2 3>>$
+    11
+    <SQRT <+ <* 3 3> <* 4 4>>>$
+    5.0
+    <- 5 3 2>$
+    0
+    <- 5>$
+    -5
+    <MIN 1 2.0>$
+    1.0
+    </ 11 7 2.0>$
+    0.5
 
 Note this last result: the division of two `FIX`es gives a `FIX` with 
 truncation, not rounding, of the remainder: the intermediate result 
@@ -134,7 +126,5 @@ call, which become seeds for a new sequence. Popular choices of new
 seeds are the numbers given by `TIME` (which see), possibly with bits 
 modified (chapter 18). Example ("pick a number from one to ten"):
 
-```no-highlight
-<+ 1 <MOD <RANDOM> 10>>$
-4
-```
+    <+ 1 <MOD <RANDOM> 10>>$
+    4

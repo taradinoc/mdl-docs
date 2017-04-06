@@ -34,9 +34,7 @@ There are many `TYPE`s for which MDL has no specific representation.
 There aren't enough different kinds of brackets. The representation 
 used for `TYPE`s without any special representation is
 
-```no-highlight
-#type representation-as-if-it-were-its-primitive-type
-```
+    #type representation-as-if-it-were-its-primitive-type
 
 `READ` will understand that format for **any** `TYPE`, and `PRINT` 
 will use it by default. This representational format will be referred 
@@ -46,9 +44,7 @@ to below as "# notation". It was used above to represent `FUNCTION`s.
 
 ### 6.3.1. TYPE [1]
 
-```no-highlight
-<TYPE any>
-```
+    <TYPE any>
 
 returns an **`ATOM`** whose `PNAME` corresponds to the `TYPE` of 
 *any*. There is no `TYPE` "TYPE". To type a `TYPE` (aren't homonyms 
@@ -60,24 +56,20 @@ example, *foo:type* means that the `TYPE` of *foo* is `ATOM`, but the
 
 Examples:
 
-```no-highlight
-<TYPE 1>$
-FIX
-<TYPE 1.0>$
-FLOAT
-<TYPE +>$
-ATOM
-<TYPE ,+>$
-SUBR
-<TYPE GEORGE>$
-ATOM
-```
+    <TYPE 1>$
+    FIX
+    <TYPE 1.0>$
+    FLOAT
+    <TYPE +>$
+    ATOM
+    <TYPE ,+>$
+    SUBR
+    <TYPE GEORGE>$
+    ATOM
 
 ### 6.3.2. PRIMTYPE [1]
 
-```no-highlight
-<PRIMTYPE any>
-```
+    <PRIMTYPE any>
 
 evaluates to the primitive type of *any*. The `PRIMTYPE` of *any* is 
 an `ATOM` which also represents a `TYPE`. The way an object can be 
@@ -86,54 +78,44 @@ an `ATOM` which also represents a `TYPE`. The way an object can be
 
 Examples:
 
-```no-highlight
-<PRIMTYPE 1>$
-WORD
-<PRIMTYPE 1.0>$
-WORD
-<PRIMTYPE ,+>$
-WORD
-<PRIMTYPE GEORGE>$
-ATOM
-```
+    <PRIMTYPE 1>$
+    WORD
+    <PRIMTYPE 1.0>$
+    WORD
+    <PRIMTYPE ,+>$
+    WORD
+    <PRIMTYPE GEORGE>$
+    ATOM
 
 ### 6.3.3. TYPEPRIM [1]
 
-```no-highlight
-<TYPEPRIM type>
-```
+    <TYPEPRIM type>
 
 returns the `PRIMTYPE` of an object whose `TYPE` is *type*. *type* is, 
 as usual, an `ATOM` used to designate a `TYPE`.
 
 Examples:
 
-```no-highlight
-<TYPEPRIM FIX>$
-WORD
-<TYPEPRIM FLOAT>$
-WORD
-<TYPEPRIM SUBR>$
-WORD
-<TYPEPRIM ATOM>$
-ATOM
-<TYPEPRIM FORM>$
-LIST
-```
+    <TYPEPRIM FIX>$
+    WORD
+    <TYPEPRIM FLOAT>$
+    WORD
+    <TYPEPRIM SUBR>$
+    WORD
+    <TYPEPRIM ATOM>$
+    ATOM
+    <TYPEPRIM FORM>$
+    LIST
 
 ### 6.3.4. CHTYPE [1]
 
-```no-highlight
-<CHTYPE any type>
-```
+    <CHTYPE any type>
 
 ("change type") returns a new object that has `TYPE` *type* and the 
 same "data part" as *any* (appendix 1).
 
-```no-highlight
-<CHTYPE (+ 2 2) FORM>$
-<+ 2 2>
-```
+    <CHTYPE (+ 2 2) FORM>$
+    <+ 2 2>
 
 An error is generated if the `PRIMTYPE` of *any* is not the same as 
 the `TYPEPRIM` of *type*. An error will also be generated if the 
@@ -159,9 +141,7 @@ Passing note: "# notation" is just an instruction to `READ` saying
 
 ### 6.4.1. ALLTYPES
 
-```no-highlight
-<ALLTYPES>
-```
+    <ALLTYPES>
 
 returns a `VECTOR` (chapter 7) containing just those `ATOM`s which can 
 currently be returned by `TYPE` or `PRIMTYPE`. This is the very 
@@ -170,9 +150,7 @@ don't touch. No examples: try it, or see appendix 3.
 
 ### 6.4.2. VALID-TYPE?
 
-```no-highlight
-<VALID-TYPE? atom>
-```
+    <VALID-TYPE? atom>
 
 returns `#FALSE ()` if *atom* is not the name of a `TYPE`, and the 
 same object that `<TYPE-C atom>` (section 19.5) returns if it is.
@@ -257,9 +235,7 @@ various programs, you can either dissociate any declaration from the
 declaration is typically more useful to a programmer during 
 development than it is to the compiler.)
 
-```no-highlight
-<NEWTYPE atom type>
-```
+    <NEWTYPE atom type>
 
 returns *atom*, after causing it to become the representation of a 
 brand-new `TYPE` whose `PRIMTYPE` is `<TYPEPRIM type>`. What `NEWTYPE` 
@@ -276,34 +252,26 @@ arguments. But see below.
 
 Examples:
 
-```no-highlight
-<NEWTYPE GARGLE FIX>$
-GARGLE
-<TYPEPRIM GARGLE>$
-WORD
-<SET A <CHTYPE 1 GARGLE>>$
-#GARGLE *000000000001*
-<SET B #GARGLE 100>$
-#GARGLE *000000000144*
-<TYPE .B>$
-GARGLE
-<PRIMTYPE .B>$
-WORD
-```
+    <NEWTYPE GARGLE FIX>$
+    GARGLE
+    <TYPEPRIM GARGLE>$
+    WORD
+    <SET A <CHTYPE 1 GARGLE>>$
+    #GARGLE *000000000001*
+    <SET B #GARGLE 100>$
+    #GARGLE *000000000144*
+    <TYPE .B>$
+    GARGLE
+    <PRIMTYPE .B>$
+    WORD
 
 ### 6.4.4. PRINTTYPE, EVALTYPE and APPLYTYPE
 
-```no-highlight
-<PRINTTYPE type how>
-```
+    <PRINTTYPE type how>
 
-```no-highlight
-<EVALTYPE type how>
-```
+    <EVALTYPE type how>
 
-```no-highlight
-<APPLYTYPE type how>
-```
+    <APPLYTYPE type how>
 
 all return *type*, after specifying *how* MDL is to deal with it.
 
@@ -350,106 +318,98 @@ special treatment in that operation.
 Unfortunately, these examples are fully understandable only after you 
 have read through chapter 11.
 
-```no-highlight
-<DEFINE ROMAN-PRINT (NUMB)
-<COND (<OR <L=? .NUMB 0> <G? .NUMB 3999>>
-       <PRINC <CHTYPE .NUMB TIME>>)
-      (T
-       <RCPRINT </ .NUMB 1000> '![!\M]>
-       <RCPRINT </ .NUMB  100> '![!\C !\D !\M]>
-       <RCPRINT </ .NUMB   10> '![!\X !\L !\C]>
-       <RCPRINT    .NUMB       '![!\I !\V !\X]>)>>$
-ROMAN-PRINT
+    <DEFINE ROMAN-PRINT (NUMB)
+    <COND (<OR <L=? .NUMB 0> <G? .NUMB 3999>>
+           <PRINC <CHTYPE .NUMB TIME>>)
+          (T
+           <RCPRINT </ .NUMB 1000> '![!\M]>
+           <RCPRINT </ .NUMB  100> '![!\C !\D !\M]>
+           <RCPRINT </ .NUMB   10> '![!\X !\L !\C]>
+           <RCPRINT    .NUMB       '![!\I !\V !\X]>)>>$
+    ROMAN-PRINT
 
-<DEFINE RCPRINT (MODN V)
-<SET MODN <MOD .MODN 10>>
-<COND (<==? 0 .MODN>)
-      (<==? 1 .MODN> <PRINC <1 .V>>)
-      (<==? 2 .MODN> <PRINC <1 .V>> <PRINC <1 .V>>)
-      (<==? 3 .MODN> <PRINC <1 .V>> <PRINC <1 .V>> <PRINC <1 .V>>)
-      (<==? 4 .MODN> <PRINC <1 .V>> <PRINC <2 .V>>)
-      (<==? 5 .MODN> <PRINC <2 .V>>)
-      (<==? 6 .MODN> <PRINC <2 .V>> <PRINC <1 .V>>)
-      (<==? 7 .MODN> <PRINC <2 .V>> <PRINC <1 .V>> <PRINC <1 .V>>)
-      (<==? 8 .MODN>
-       <PRINC <2 .V>>
-       <PRINC <1 .V>>
-       <PRINC <1 .V>>
-       <PRINC <1 .V>>)
-      (<==? 9 .MODN> <PRINC <1 .V>> <PRINC <3 .V>>)>>$
-RCPRINT
+    <DEFINE RCPRINT (MODN V)
+    <SET MODN <MOD .MODN 10>>
+    <COND (<==? 0 .MODN>)
+          (<==? 1 .MODN> <PRINC <1 .V>>)
+          (<==? 2 .MODN> <PRINC <1 .V>> <PRINC <1 .V>>)
+          (<==? 3 .MODN> <PRINC <1 .V>> <PRINC <1 .V>> <PRINC <1 .V>>)
+          (<==? 4 .MODN> <PRINC <1 .V>> <PRINC <2 .V>>)
+          (<==? 5 .MODN> <PRINC <2 .V>>)
+          (<==? 6 .MODN> <PRINC <2 .V>> <PRINC <1 .V>>)
+          (<==? 7 .MODN> <PRINC <2 .V>> <PRINC <1 .V>> <PRINC <1 .V>>)
+          (<==? 8 .MODN>
+           <PRINC <2 .V>>
+           <PRINC <1 .V>>
+           <PRINC <1 .V>>
+           <PRINC <1 .V>>)
+          (<==? 9 .MODN> <PRINC <1 .V>> <PRINC <3 .V>>)>>$
+    RCPRINT
 
-<PRINTTYPE TIME FIX> ;"fairly harmless but necessary here"$
-TIME
-<PRINTTYPE FIX ,ROMAN-PRINT>    ;"hee hee!"$
-FIX
-<+ 2 2>$
-IV
-1984$
-MCMLXXXIV
-<PRINTTYPE FIX ,PRINT>$
-FIX
+    <PRINTTYPE TIME FIX> ;"fairly harmless but necessary here"$
+    TIME
+    <PRINTTYPE FIX ,ROMAN-PRINT>    ;"hee hee!"$
+    FIX
+    <+ 2 2>$
+    IV
+    1984$
+    MCMLXXXIV
+    <PRINTTYPE FIX ,PRINT>$
+    FIX
 
-<NEWTYPE GRITCH LIST>   ;"a new TYPE of PRIMTYPE LIST"$
-GRITCH
-<EVALTYPE GRITCH>$
-#FALSE ()
-<EVALTYPE GRITCH LIST>  ;"evaluated like a LIST"$
-GRITCH
-<EVALTYPE GRITCH>$
-LIST
-#GRITCH (A <+ 1 2 3> !<SET A "ABC">)    ;"Type in one."$
-#GRTICH (A 6 !\A !\B !\C)
+    <NEWTYPE GRITCH LIST>   ;"a new TYPE of PRIMTYPE LIST"$
+    GRITCH
+    <EVALTYPE GRITCH>$
+    #FALSE ()
+    <EVALTYPE GRITCH LIST>  ;"evaluated like a LIST"$
+    GRITCH
+    <EVALTYPE GRITCH>$
+    LIST
+    #GRITCH (A <+ 1 2 3> !<SET A "ABC">)    ;"Type in one."$
+    #GRTICH (A 6 !\A !\B !\C)
 
-<NEWTYPE HARRY VECTOR>  ;"a new TYPE of PRIMTYPE VECTOR"$
-HARRY
-<EVALTYPE HARRY #FUNCTION ((X) <1 .X>)>
-    ;"When a HARRY is EVALed, return its first element."$
-HARRY
-#HARRY [1 2 3 4]$
-1
+    <NEWTYPE HARRY VECTOR>  ;"a new TYPE of PRIMTYPE VECTOR"$
+    HARRY
+    <EVALTYPE HARRY #FUNCTION ((X) <1 .X>)>
+        ;"When a HARRY is EVALed, return its first element."$
+    HARRY
+    #HARRY [1 2 3 4]$
+    1
 
-<NEWTYPE WINNER LIST>   ;"a TYPE with funny application"$
-WINNER
-<APPLYTYPE WINNER>$
-#FALSE ()
-<APPLYTYPE WINNER <FUNCTION (W "TUPLE" T) (!.W !.T)>>$
-WINNER
-<APPLYTYPE WINNER>$
-#FUNCTION ((W "TUPLE" T (!.W !.T))
-<#WINNER (A B C) <+ 1 2> q>$
-(A B C 3 q)
-```
+    <NEWTYPE WINNER LIST>   ;"a TYPE with funny application"$
+    WINNER
+    <APPLYTYPE WINNER>$
+    #FALSE ()
+    <APPLYTYPE WINNER <FUNCTION (W "TUPLE" T) (!.W !.T)>>$
+    WINNER
+    <APPLYTYPE WINNER>$
+    #FUNCTION ((W "TUPLE" T (!.W !.T))
+    <#WINNER (A B C) <+ 1 2> q>$
+    (A B C 3 q)
 
 The following sequence makes MDL look just like Lisp. (This example is 
 understandable only if you know Lisp (Moon, 1974); it is included only 
 because it is so beautiful.)
 
-```no-highlight
-<EVALTYPE LIST FORM>$
-LIST
-<EVALTYPE ATOM ,LVAL>$
-ATOM
-```
+    <EVALTYPE LIST FORM>$
+    LIST
+    <EVALTYPE ATOM ,LVAL>$
+    ATOM
 
 So now:
 
-```no-highlight
-(+ 1 2)$
-3
-(SET 'A 5)$
-5
-A$
-5
-```
+    (+ 1 2)$
+    3
+    (SET 'A 5)$
+    5
+    A$
+    5
 
 To complete the job, of course, we would have to do some `SETG`'s: 
 `car` is `1`, `cdr` is `,REST`, and `lambda` is `,FUNCTION`. If you 
 really do this example, you should "undo" it before continuing:
 
-```no-highlight
-<EVALTYPE 'ATOM ,EVAL>$
-ATOM
-<EVALTYPE LIST ,EVAL>$
-LIST
-```
+    <EVALTYPE 'ATOM ,EVAL>$
+    ATOM
+    <EVALTYPE LIST ,EVAL>$
+    LIST

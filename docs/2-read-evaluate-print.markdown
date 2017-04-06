@@ -63,10 +63,8 @@ produces.
 
 ## 2.3. Example (TYPE FIX) [1]
 
-```no-highlight
-1$
-1
-```
+    1$
+    1
 
 The following has occurred:
 
@@ -87,10 +85,8 @@ integer.
 
 ## 2.4. Example (TYPE FLOAT) [1]
 
-```no-highlight
-1.0$
-1.0
-```
+    1.0$
+    1.0
 
 What went on was entirely analogous to the preceding example, except 
 that the MDL object was of `TYPE` `FLOAT`. (`FLOAT` means a real 
@@ -100,10 +96,8 @@ where it "really" belongs.)
 
 ## 2.5. Example (TYPE ATOM, PNAME) [1]
 
-```no-highlight
-GEORGE$
-GEORGE
-```
+    GEORGE$
+    GEORGE
 
 This time a lot more has happened.
 

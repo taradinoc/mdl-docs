@@ -14,9 +14,7 @@ in the Tenex version or `SYS:MDL.EXE` in the Tops-20 version. The
 interpreter will first type out some news relating to MDL, if any, 
 then type
 
-```no-highlight
-LISTENING-AT-LEVEL 1 PROCESS 1
-```
+    LISTENING-AT-LEVEL 1 PROCESS 1
 
 and then wait for you to type something.
 
@@ -76,9 +74,7 @@ computation. <kbd>^G</kbd> is "reversible" -- that is, it does not
 destroy any of the "state" of the computation it interrupts. To "undo" 
 a <kbd>^G</kbd>, type the characters
 
-```no-highlight
-<ERRET T>$
-```
+    <ERRET T>$
 
 (This is discussed more fully far below, in section 16.4.)
 
@@ -117,9 +113,7 @@ MDL accepts and distinguishes between upper and lower case. All
 If you have a program in MDL that you have written as an ASCII file on 
 some device, you can "load" it by typing
 
-```no-highlight
-<FLOAD file>$
-```
+    <FLOAD file>$
 
 where *file* is the name of the file, in standard operating-system 
 syntax, enclosed in "s (double-quotes). Omitted parts of the file name 
@@ -142,12 +136,10 @@ When MDL decides for some reason that something is wrong, the standard
 sequence of evaluation is interrupted and an error function is called. 
 This produces the following terminal output:
 
-```no-highlight
-*ERROR*
-often-hyphenated-reason
-function-in-which-error-occurred
-LISTENING-AT-LEVEL integer PROCESS integer
-```
+    *ERROR*
+    often-hyphenated-reason
+    function-in-which-error-occurred
+    LISTENING-AT-LEVEL integer PROCESS integer
 
 You can now interact with MDL as usual, typing expressions and having 
 them evaluated. There exist facilities (built-in functions) allowing 
@@ -157,19 +149,15 @@ undo everything but side effects and return to the initial typing
 phase -- by typing the following first line, to which MDL will respond
 with the second line:
 
-```no-highlight
-<ERRET>$
-LISTENING-AT-LEVEL 1 PROCESS 1
-```
+    <ERRET>$
+    LISTENING-AT-LEVEL 1 PROCESS 1
 
 If you type the following first line while still in the error state 
 (before `<ERRET>`), MDL will print, as shown, the arguments (or 
 "parameters or "inputs" or "independent variables") which gave 
 indigestion to the unhappy function:
 
-```no-highlight
-<ARGS <FRAME <FRAME>>>$
-[ arguments to unhappy function ]
-```
+    <ARGS <FRAME <FRAME>>>$
+    [ arguments to unhappy function ]
 
 This will be explained by and by.
