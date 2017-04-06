@@ -104,22 +104,22 @@ Patterns:
 
 >`'0` indicates that no special action is to be taken when this
 >character is encountered.
-
+>
 >`CHARACTER` indicates that the encountered character is to be
 >translated into the given `CHARACTER` whenever it appears, except
 >when as an object of `TYPE` `CHARACTER`, or in a `STRING`, or
 >immediately following a `\`.
-
+>
 >`FIX` indicates that the character is to be given the same treatment
 >as the character with the ASCII value of the `FIX`.  This allows you
 >to cause other characters to be treated in the same way as A-Z for
 >example.  The same exceptions apply as for a `CHARACTER`.
-
+>
 >`<LIST FIX>` indicates the same thing, except that the character
 >does not by itself cause a break.  Therefore, if it occurs when
 >reading an `ATOM` or number, it will be treated as part of that
 >`ATOM` or number.
-
+>
 >`APPLICABLE` (to one argument) indicates that the character is to be
 >a break character.  Whenever it is encountered, the reading of the
 >current object is finished, and the corresponding element of the
@@ -135,7 +135,7 @@ Patterns:
 >built, and a `SPLICE` is returned, elements after the first will be
 >ignored.  A `SPLICE` says "expand me", whereas the structure
 >containing a `SEGMENT` says "I will expand you".
-
+>
 >`<LIST APPLICABLE>` indicates the same thing, except that the
 >character does not by itself cause a break.  Therefore, if it occurs
 >when reading an `ATOM` or number, it will be treated as part of that
