@@ -23,4 +23,5 @@ pages:
   - "Chapter 12: Locatives": "12-locatives.markdown"
   - "Chapter 13: Association (Properties)": "13-association-properties.markdown"
   - "Chapter 14: Data-type Declarations": "14-data-type-declarations.markdown"
+  - "Chapter 15: Lexical Blocking": "15-lexical-blocking.markdown"
   - "Chapter 17: Macro Operations": "17-macro-operations.markdown"
