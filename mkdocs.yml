@@ -24,4 +24,5 @@ pages:
   - "Chapter 13: Association (Properties)": "13-association-properties.markdown"
   - "Chapter 14: Data-type Declarations": "14-data-type-declarations.markdown"
   - "Chapter 15: Lexical Blocking": "15-lexical-blocking.markdown"
+  - "Chapter 16: Errors, Frames, etc.": "16-errors-frames-etc.markdown"
   - "Chapter 17: Macro Operations": "17-macro-operations.markdown"
