@@ -26,3 +26,4 @@ pages:
   - "Chapter 15: Lexical Blocking": "15-lexical-blocking.markdown"
   - "Chapter 16: Errors, Frames, etc.": "16-errors-frames-etc.markdown"
   - "Chapter 17: Macro Operations": "17-macro-operations.markdown"
+  - "Chapter 18: Machine Words and Bits": "18-machine-words-and-bits.markdown"
