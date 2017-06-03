@@ -85,10 +85,10 @@ This work was supported by the Advanced Research Projects Agency of
 the Department of Defense and was monitored by the Office of Naval 
 Research under contract N00014-75-C-0661.
 
-This document was prepared using [the PUB system]
-(http://www.nomodes.com/pub_manual.html) (originally from the Stanford
-Artificial Intelligence Laboratory) and printed on the Xerox Graphics
-Printer of the M.I.T. Artificial Intelligence Laboratory.
+This document was prepared using [the PUB
+system](http://www.nomodes.com/pub_manual.html) (originally from the
+Stanford Artificial Intelligence Laboratory) and printed on the Xerox
+Graphics Printer of the M.I.T. Artificial Intelligence Laboratory.
 
 ## Foreword
 
