@@ -10,7 +10,7 @@ compiled programs are used (chapter 19).
 
 A `WORD` in MDL is a PDP-10 machine word of 36 bits. A `WORD` always
 `PRINT`s in "# format", and its contents are always printed in octal
-(hence preceded and followed by *). Examples:
+(hence preceded and followed by `*`). Examples:
 
     #WORD 0                  ;"all 0s"$
     #WORD *000000000000*
@@ -26,7 +26,7 @@ A `WORD` in MDL is a PDP-10 machine word of 36 bits. A `WORD` always
 one machine word.
 
 A `WORD` cannot be an argument to `+`, `-`, or indeed any `SUBR`s
-except for `CHTYPE`, `GETBITS`, `PUTBITS` and several bitwise logical
+except for `CHTYPE`, `GETBITS`, `PUTBITS` and several bit-manipulating
 functions, all to be described below. Thus any arithmetic bit
 manipulation must be done by `CHTYPE`ing a `WORD` to `FIX`, doing the
 arithmetic, and then `CHTYPE`ing back to `WORD`. However, bit
@@ -47,33 +47,33 @@ numbered 0 and the leftmost numbered 35, as in
 
     35 34 33 ... 2 1 0
 
-(This is not the "standard" ordering: the "standard" ordering one goes
-from left to right.)
+(This is not the "standard" ordering: the "standard" one goes from
+left to right.)
 
 A `BITS` is most conveniently created via the `SUBR` `BITS`:
 
     <BITS width:fix right-edge:fix>
 
-returns a `BITS` which "points to" a set of bits *width* wide. with
+returns a `BITS` which "points to" a set of bits *width* wide, with
 rightmost bit *right-edge*. Both arguments must be of `TYPE` `FIX`,
 and the second is optional, 0 by default.
 
 Examples: the indicated application of `BITS` returns an object of
 `TYPE` `BITS` which points to the indicated set of bits in a `WORD`:
 
-    <BITS 7>         35 ... 7 6 ... 0
-
-    <BITS 4 18>      35 ... 22 21 20 19 18 17 ... 0
-
-    <BITS 36>        35 ... 0
+| Example       | Returns                            |
+|---------------|------------------------------------|
+| `<BITS 7>`    | 35 ... 7 **6 ... 0**               |
+| `<BITS 4 18>` | 35 ... 22 **21 20 19 18** 17 ... 0 |
+| `<BITS 36>`   | ***35 ... 0***                     |
 
 ## 18.3. GETBITS
 
     <GETBITS from:primtype-word bits>
 
-where *from* is an object of `PRIMTYPE` `WORD`. Returns a **new**
-object whose `TYPE` is. `WORD`. This object is constructed in the
-following way: the set of bits in *from* pointed to by *bits*, is
+where *from* is an object of `PRIMTYPE` `WORD`, returns a **new**
+object whose `TYPE` is `WORD`. This object is constructed in the
+following way: the set of bits in *from* pointed to by *bits* is
 copied into the new object, right-adjusted, that is, lined up against
 the right end (bit number 0) of the new object. All those bits of the
 new object which are not copied are set to zero. In other words,
@@ -83,9 +83,9 @@ affected.
 
 Examples:
 
-    <GETBITS #WORD *777777777777* (BITS 3>>$
+    <GETBITS #WORD *777777777777* <BITS 3>>$
     #WORD *000000000007*
-    <GETBITS *012345670123* (BITS 6 18>>$
+    <GETBITS *012345670123* <BITS 6 18>>$
     #WORD *000000000045*
 
 ## 18.4. PUTBITS
@@ -103,7 +103,7 @@ affected.
 Examples:
 
     <PUTBITS #WORD *777777777777* <BITS 6 3>>$
-    #'WORD *777777777007*
+    #WORD *777777777007*
     <PUTBITS #WORD *666777000111* <BITS 5 15> #WORD *123*>$
     #WORD *666776300111*
     <PUTBITS #WORD *765432107654* <BITS 18>>$
@@ -114,7 +114,7 @@ Examples:
 Each of the `SUBR`s `ANDB`, `ORB`, `XORB`, and `EQVB` takes arguments
 of `PRIMTYPE` `WORD` and returns a `WORD` which is the bitwise Boolean
 "and", inclusive "or", exclusive "or", or "equivalence" (inverse of
-exclusive "or"), respectively. of its arguments. Each takes any number
+exclusive "or"), respectively, of its arguments. Each takes any number
 of arguments. If no argument is given, a `WORD` with all bits off
 (`ORB` and `XORB`) or on (`ANDB` and `EQVB`) is returned. If only one
 argument is given, it is returned unchanged but `CHTYPE`d to a `WORD`.
