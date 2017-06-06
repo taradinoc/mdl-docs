@@ -131,7 +131,7 @@ archaic kind of `UVECTOR` that is not garbage-collected.]
     "characters"
 
 represents a `STRING` of ASCII text. A `STRING` containing the 
-chatacter `"` (double-quote) is represented by placing a `\` 
+character `"` (double-quote) is represented by placing a `\` 
 (backslash) before the double-quote inside the `STRING`. A `\` in a 
 `STRING` is represented by two consecutive backslashes.
 
