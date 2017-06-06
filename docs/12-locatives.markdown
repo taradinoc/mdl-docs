@@ -58,7 +58,7 @@ is optional, `1` by default. The exact `TYPE` of the locative
 returned depends on the `PRIMTYPE` of *structured*: `LOCL` for
 `LIST`, `LOCV` for `VECTOR`, `LOCU` for `UVECTOR`, `LOCS` for
 `STRING`, `LOCB` for `BYTES`, `LOCT` for `TEMPLATE`, and `LOCA` for
-`TUPLE`. If *N* is greated than `<LENGTH structured>` or less than
+`TUPLE`. If *N* is greater than `<LENGTH structured>` or less than
 `1`, or an `OFFSET` with a Pattern that doesn't match *structured*,
 an error occurs. The locative is unaffected by applications of
 `REST`, `BACK`, `TOP`, `GROW`, etc. to *structured*.
