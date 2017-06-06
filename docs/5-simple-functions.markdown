@@ -151,7 +151,7 @@ really is changed while `EVAL`uating the body of a `FUNCTION`:
     5
 
 The first number after the application `FORM` was typed out by the 
-`PRINT`; the second is the value of the applcation.
+`PRINT`; the second is the value of the application.
 
 Remembering that `LVAL`s of `ATOM`s **not** in argument `LIST`s are 
 not changed, we can reference them within `FUNCTION`s, as in
