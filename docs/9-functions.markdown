@@ -210,7 +210,7 @@ confusion inevitably results.
 
 The indicator `"ARGS"` can appear in an argument `LIST` with precisely 
 the same syntax as `"TUPLE"`. However, `"ARGS"` causes the `ATOM` 
-following it to be bound to a `LIST` of the remaining **unevaluted** 
+following it to be bound to a `LIST` of the remaining **unevaluated** 
 arguments.
 
 `"ARGS"` does not cause any copying to take place. It simply gives you

@@ -185,7 +185,7 @@ are not used with terminals. `"READ"` is the mode used by default.
 The next one to four arguments to `OPEN` specify the file involved.
 If only one `STRING` is used, it can contain the entire
 specification, according to standard operating-system syntax.
-Otherwise, the string(s) are intepreted as follows:
+Otherwise, the string(s) are interpreted as follows:
 
 *name1* is the first file name, that part to the left of the space
 (in the ITS version) or period (in the Tenex and Tops-20 versions).

@@ -4,7 +4,7 @@
 
 Once you type `$` and all brackets are correctly paired and nested, 
 the current contents of the input buffer go through processing by 
-three functions successively: first `READ`, whcih passes its output to 
+three functions successively: first `READ`, which passes its output to 
 `EVAL` ("evaluate"), which passes its output to `PRINT`, whose output 
 is typed on the terminal.
 
@@ -80,7 +80,7 @@ Then `EVAL` noted that its input was of `TYPE` `FIX`. An object of
 undisturbed.
 
 Then `PRINT` saw that its input was of `TYPE` `FIX`, and printed on 
-the terminal the decimal characer representation of the corresponding 
+the terminal the decimal character representation of the corresponding 
 integer.
 
 ## 2.4. Example (TYPE FLOAT) [1]

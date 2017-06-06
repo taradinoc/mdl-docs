@@ -590,7 +590,7 @@ like `DECL`s -- if used properly -- can make debugging considerably
 easier; they will eventually also help the compiler generate more
 efficient code.
 
-The `SUBR` `OFFSET` takes two arguments, a `FIX` and a Pattern, and returns an object of `TYPE` and `PRIMTYPE` `OFFSET`. An `OFFSET`, like a `FIX`, may be given as an argument to `NTH` or `PUT` and may be applied to arguments. The only difference is that the `STRUCTURED` argument must match the Pattern contained in the `OFFSET`, or an error will resuly. Thus:
+The `SUBR` `OFFSET` takes two arguments, a `FIX` and a Pattern, and returns an object of `TYPE` and `PRIMTYPE` `OFFSET`. An `OFFSET`, like a `FIX`, may be given as an argument to `NTH` or `PUT` and may be applied to arguments. The only difference is that the `STRUCTURED` argument must match the Pattern contained in the `OFFSET`, or an error will result. Thus:
 
     <SETG FOO <OFFSET 1 '<CHANNEL FIX>>>$
     %<OFFSET 1 '<CHANNEL FIX>>
