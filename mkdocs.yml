@@ -28,3 +28,4 @@ pages:
   - "Chapter 17: Macro Operations": "17-macro-operations.markdown"
   - "Chapter 18: Machine Words and Bits": "18-machine-words-and-bits.markdown"
   - "Chapter 19: Compiled Programs": "19-compiled-programs.markdown"
+  - "Chapter 20: Coroutines": "20-coroutines.markdown"
