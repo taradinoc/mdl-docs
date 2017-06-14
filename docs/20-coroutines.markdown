@@ -3,12 +3,12 @@
 This chapter purports to explain the coroutine primitives of MDL. It
 does make some attempt to explain coroutines as such, but only as
 required to specify the primitives. If you are unfamiliar with the
-basic concepts, confusion shall probably reign.
+basic concepts, confusion will probably reign.
 
 A coroutine in MDL is implemented by an object of `TYPE` `PROCESS`. In
 this manual, this use of the word "process" is distinguished by a
 capitalization from its normal use of denoting an operating-system
-process (which various systems call a process, job, fork, task, etc.)
+process (which various systems call a process, job, fork, task, etc.).
 
 MDL's built-in coroutine primitives do not include a "time-sharing
 system". Only one `PROCESS` is ever running at a time, and control is
@@ -28,15 +28,15 @@ associations (`ASOC`s), and the contents of `OBLIST`s. `GVAL`s (with
 `OBLIST`s) are a chief means of communication and sharing between
 `PROCESS`es (all `PROCESS`es can refer to the `SUBR` which is the
 `GVAL` of `+`, for instance.) Note that an `LVAL` in one `PROCESS`
-cannot easily be directly references from another `PROCESS`.
+cannot easily be directly referenced from another `PROCESS`.
 
 A `PROCESS` `PRINT`s as `#PROCESS` *p*, where *p* is a `FIX` which
 uniquely identifies the `PROCESS`; *p* is the "`PROCESS` number" typed
-out by `LISTEN`. A `PROCESS` cannot be ready in by `READ`.
+out by `LISTEN`. A `PROCESS` cannot be read in by `READ`.
 
 The term "run a `PROCESS`" will be used below to mean "perform some
 computation, using the `PROCESS` to record the intermediate state of
-that computation."
+that computation".
 
 N.B.: A `PROCESS` is a rather large object; creating one will often
 cause a garbage collection.
@@ -49,12 +49,12 @@ returns an `ATOM` (in the `ROOT` `OBLIST`) which indicates the "state"
 of the `PROCESS` *process*. The `ATOM`s which `STATE` can return, and
 their meanings, are as follows:
 
-- `RUNNABLE` (sic) -- *process* has never ever been run.
+- `RUNABLE` (sic) -- *process* has never ever been run.
 - `RUNNING` -- *process* is currently running, that is, it did the
 application of `STATE`.
 - `RESUMABLE` -- *process* has been run, is not currently running, and
 can run again.
-- `DEAD` -- *process has been run, but it can **not** run again; it
+- `DEAD` -- *process* has been run, but it can **not** run again; it
 has "terminated".
 
 In addition, an interrupt (chapter 21) can be enabled to detect the
@@ -86,11 +86,11 @@ where *retval* is the "returned value" (see below) of the `PROCESS`
 that does the `RESUME`, and *process* is the `PROCESS` to be started
 or continued.
 
-The *process* argument to `RESUME` is optional, and the default is the
-last `PROCESS`, if any, to `RESUME` the `PROCESS` in which this
-`RESUME` is applied. If and when the current `PROCESS` is later
-`RESUME`d by another `PROCESS`, that `RESUME`'s *retval* is returned
-as the value of this `RESUME`.
+The *process* argument to `RESUME` is optional, by default the last
+`PROCESS`, if any, to `RESUME` the `PROCESS` in which this `RESUME` is
+applied. If and when the current `PROCESS` is later `RESUME`d by
+another `PROCESS`, that `RESUME`'s *retval* is returned as the value
+of this `RESUME`.
 
 ## 20.5. Switching PROCESSes
 
@@ -114,7 +114,7 @@ we get that `LVAL` of `A` which is current in `,P0` and the `GVAL` of
 2. The `STATE` of `,P0` is changed to `RESUMABLE` and `,P0` is
 "frozen" right where it is, in the middle of the `RESUME`.
 3. The `STATE` of `,P1` is changed to `RUNNING`, and `,STARTER` is
-applied to `,P0`'S `LVAL` of `A` **in `,P1`**. `,P1` now continues on
+applied to `,P0`'s `LVAL` of `A` **in `,P1`**. `,P1` now continues on
 its way, evaluating the body of `,STARTER.`
 
 The `.A` in the `RESUME` could have been anything, of course. The
@@ -148,10 +148,8 @@ either in `,STARTER` or in something called by `,STARTER`:
 This is what happens:
 
 1. The arguments of the `RESUME` are evaluated **in `,P1`**.
-
 2. The `STATE` of ,P1` is changed to `RESUMABLE`, and `,P1` is
 "frozen" right in the middle of the `RESUME`.
-
 3. The `STATE` of `,P0` is changed to `RUNNING`, and `,P1`'s `LVAL` of
 `BAR` is returned as the value of **`,P0'`s** original `RESUME`
 `,P0` then continues right where it left off.
@@ -182,10 +180,10 @@ off.
                 <SET S <RESUME .S>>>>$
 SUM3
 ;"SUM3, used as the startup function of another PROCESS,
-gets RESUMEd with numbers. If returns the sum of the last
+gets RESUMEd with numbers. It returns the sum of the last
 three numbers it was given every third RESUME."
 <SETG SUMUP <PROCESS ,SUM3>>$
-;"Now we start SUMPUP and give SUM3 its three numbers."
+;"Now we start SUMUP and give SUM3 its three numbers."
 <RESUME 5 ,SUMUP>$
 "GOT 1"
 <RESUME 1 ,SUMUP>$
@@ -211,14 +209,14 @@ could be have been written as:
     <BREAK-SEQ any process>
 
 ("break evaluation sequence") returns *process*, which must be
-`RESUMABLE, after having modified it so that when it is next
+`RESUMABLE`, after having modified it so that when it is next
 `RESUME`d, it will **first** evaluate *any* and **then** do an
 absolutely normal `RESUME`; the value returned by any is thrown away,
 and the value given by the `RESUME` is used normally.
 
 If a `PROCESS` is `BREAK-SEQ`ed more than once between `RESUME`s,
 **all** of the *any*s `BREAK-SEQ`ed onto it will be remembered and
-evaluated when the `RESUME` is finally done. The *anys* will be
+evaluated when the `RESUME` is finally done. The *any*s will be
 evaluated in "last-in first-out" order. The `FRAME` generated by
 `EVAL`ing more than one *any* will have as its `FUNCT` the dummy
 `ATOM` `BREAKER`.
@@ -247,7 +245,7 @@ returns.
     <RESUMER process>
 
 returns the `PROCESS` which last `RESUME`d *process*. If no `PROCESS`
-has ever `RESUME`d process, it returns #FALSE (). *process* is
+has ever `RESUME`d process, it returns `#FALSE ()`. *process* is
 optional, `<ME>` by default. Note that `<MAIN>` does not ever have any
 resumer. Example:
 
@@ -255,7 +253,7 @@ resumer. Example:
 <PROG ((R <RESUMER>))           ;"not effective in <MAIN>"
    #DECL ((R) <OR PROCESS FALSE>)
    <AND .R
-        <==? <STATE .R> RESUMMABLE>
+        <==? <STATE .R> RESUMABLE>
         <RESUME T .R>>>
 ```
 
@@ -334,7 +332,7 @@ evaluation will be created in `P1`; and (2) **`P1`** will be `RUNNING`
 causes a `RESUME` of `P2`, `P2` could functionally return to below the
 point where the `ENVIRONMENT` used in `P1` is defined; a `RESUME` of
 `P1` at this point would cause an `ERROR` due to an invalid
-`ENVIRONMENT`. (Once again. `LEGAL?` can be used to forestall this.)
+`ENVIRONMENT`. (Once again, `LEGAL?` can be used to forestall this.)
 
 ## 20.9. Final Notes
 
@@ -349,5 +347,5 @@ with `LVAL`, `ACTIVATION` with `RETURN` -- hence the invention of
 different `TYPE`s with similar properties.
 3. Bugs in multi-`PROCESS` programs usually exhibit a degree of
 subtlety and nastiness otherwise unknown to the human mind. If when
-attempting to work with multiple processes you begin to feeJ that you
+attempting to work with multiple processes you begin to feel that you
 are rapidly going insane, you are in good company.
