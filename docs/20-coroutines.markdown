@@ -148,7 +148,7 @@ either in `,STARTER` or in something called by `,STARTER`:
 This is what happens:
 
 1. The arguments of the `RESUME` are evaluated **in `,P1`**.
-2. The `STATE` of ,P1` is changed to `RESUMABLE`, and `,P1` is
+2. The `STATE` of `,P1` is changed to `RESUMABLE`, and `,P1` is
 "frozen" right in the middle of the `RESUME`.
 3. The `STATE` of `,P0` is changed to `RUNNING`, and `,P1`'s `LVAL` of
 `BAR` is returned as the value of **`,P0'`s** original `RESUME`
