@@ -30,3 +30,4 @@ pages:
   - "Chapter 19: Compiled Programs": "19-compiled-programs.markdown"
   - "Chapter 20: Coroutines": "20-coroutines.markdown"
   - "Chapter 21: Interrupts": "21-interrupts.markdown"
+  - "Chapter 22: Storage Management": "22-storage-management.markdown"
