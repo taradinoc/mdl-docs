@@ -32,3 +32,4 @@ pages:
   - "Chapter 21: Interrupts": "21-interrupts.markdown"
   - "Chapter 22: Storage Management": "22-storage-management.markdown"
   - "Chapter 23: MDL as a System Process": "23-mdl-as-a-system-process.markdown"
+  - "Chapter 24: Efficiency and Tastefulness": "24-efficiency-and-tastefulness.markdown"
