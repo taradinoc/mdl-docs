@@ -25,7 +25,7 @@ logged-in directory in the Tenex and Tops-20 versions.
 
 returns a `STRING` which is the "intended user name" of MDL's
 process. This is the "xuname" process-control variable in the ITS
-version and identical to <UNAME> in the Tenex and Tops-20 versions.
+version and identical to `<UNAME>` in the Tenex and Tops-20 versions.
 
     <JNAME>
 
