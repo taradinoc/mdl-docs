@@ -225,7 +225,7 @@ Lists
 
 List elements are pairs linked together by the right halves of their
 first words. The list is terminated by a zero in the right half of
-the last pair. For example the LIST (1 2 3) would look like this:
+the last pair. For example the `LIST` `(1 2 3)` would look like this:
 
 ```
 -------------
