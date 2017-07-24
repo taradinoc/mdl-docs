@@ -49,7 +49,7 @@ to the pair. The next bit is used to differentiate between list
 elements and vector dope words. The next bit is unused but could be
 used in the future for an "execute" monitor. The remaining 13 bits
 specify the actual `TYPE` code. What `CHTYPE` does is to copy the
-pair and put a new `TYPE code into the new pair.
+pair and put a new `TYPE` code into the new pair.
 
 Each data `TYPE` (predefined and `NEWTYPE`s) must belong to one of
 about 25 "storage allocation classes" (roughly corresponding to MDL
