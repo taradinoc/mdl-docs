@@ -231,7 +231,7 @@ no arguments.
 
 16.8. Control-S (^S)
 
-Typing control-S (<kbd>^S<kbd>, `<ASCII 19>`) at MDL causes it to stop 
+Typing control-S (<kbd>^S</kbd>, `<ASCII 19>`) at MDL causes it to stop
 what is happening and return to the `FRAME` `.LERR\ !-INTERRUPTS`, 
 returning the `ATOM` `T`. (In the Tenex and Tops-20 versions, 
 <kbd>^O</kbd> also has the same effect.)
