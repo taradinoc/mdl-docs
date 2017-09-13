@@ -447,7 +447,7 @@ are not updated. `IMAGE` returns *fix*.
 
 dumps *any* on *printb* in a clever format so that `GC-READ` (below)
 can reproduce *any* exactly, including sharing. *any* cannot live on
-the control stack, not can it be of `PRIMTYPE` `PROCESS` or `LOCD` or
+the control stack, nor can it be of `PRIMTYPE` `PROCESS` or `LOCD` or
 `ASOC` (which see). *any* is returned as a value.
 
 If *printb* is a `CHANNEL`, it must be open in `"PRINTB"` or
