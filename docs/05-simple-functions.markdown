@@ -187,7 +187,7 @@ re-bound....)
 One way to "name" a `FUNCTION` is
 
     <SETG SQUARE #FUNCTION ((X) <* .X .X>)>$
-    #FUNCTION ((X) <* .X .X>
+    #FUNCTION ((X) <* .X .X>)
 
 So that
 
@@ -199,7 +199,7 @@ So that
 Another way, which is somewhat cleaner in its typing:
 
     <SETG SQUARE <FUNCTION (X) <* .X .X>>>$
-    #FUNCTION ((X) <* .X .X>
+    #FUNCTION ((X) <* .X .X>)
 
 `FUNCTION` is an `FSUBR` which simply makes a `FUNCTION` out of its 
 arguments and returns the created `FUNCTION`.
