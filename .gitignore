@@ -1,2 +1,4 @@
 /site
+/_build
 *~
+*.pyc

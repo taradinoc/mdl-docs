@@ -1,0 +1,22 @@
+.typename {
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/*.section.beginner > *:first-child > a.headerlink:nth-last-child(2)::after {
+  content: " [1]";
+}*/
+
+.expert {
+  font-style: italic;
+}
+.expert::before {
+  content: '[';
+}
+.expert::after {
+  content: ']';
+}
