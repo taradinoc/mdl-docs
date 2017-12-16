@@ -35,9 +35,7 @@ it, most recent first. The keeping is done before the ``PRINT``\ ing, so
 that ^S does not defeat its purpose. The user can decide how much to
 keep around by setting the length of each ``LIST``. Even if ``L-OUTS``
 is not used, the atom ``LAST-OUT`` is always ``SET`` to the last object
-returned by ``EVAL`` in the standard ``LISTEN`` loop. Example:
-
-::
+returned by ``EVAL`` in the standard ``LISTEN`` loop. Example::
 
     <SET L-INS (NEWEST NEWER NEW)>$
     (NEWEST NEWER NEW)
@@ -159,9 +157,7 @@ way down to the **bottom** of the control stack – **before** the level-1
 ``LISTEN`` loop – and then calls ``LISTEN``. As always, ``LISTEN`` first
 ensures that MDL is receptive.
 
-Examples:
-
-::
+Examples::
 
     <* 3 <+ a 1>>$
     *ERROR*
@@ -225,9 +221,7 @@ present when the call to ``UNWIND`` was made. This facility is useful
 for cleaning up data bases that are in inconsistent states and for
 closing temporary ``CHANNEL``\ s that may be left around. ``FLOAD`` sets
 up an ``UNWIND`` to close its ``CHANNEL`` if the user attempts to
-``ERRET`` without finishing the ``FLOAD``. Example:
-
-::
+``ERRET`` without finishing the ``FLOAD``. Example::
 
     <DEFINE CLEAN ACT ("AUX" (C <OPEN "READ" "A FILE">))
         #DECL ((C) <OR CHANNEL FALSE> ...)

@@ -14,9 +14,7 @@ programs are used (chapter 19).
 
 A ``WORD`` in MDL is a PDP-10 machine word of 36 bits. A ``WORD`` always
 ``PRINT``\ s in “# format”, and its contents are always printed in octal
-(hence preceded and followed by ``*``). Examples:
-
-::
+(hence preceded and followed by ``*``). Examples::
 
     #WORD 0                  ;"all 0s"$
     #WORD *000000000000*
@@ -60,9 +58,7 @@ numbered 0 and the leftmost numbered 35, as in
 (This is not the “standard” ordering: the “standard” one goes from left
 to right.)
 
-A ``BITS`` is most conveniently created via the ``SUBR`` ``BITS``:
-
-::
+A ``BITS`` is most conveniently created via the ``SUBR`` ``BITS``::
 
     <BITS width:fix right-edge:fix>
 
@@ -100,9 +96,7 @@ which are not copied are set to zero. In other words, ``GETBITS`` takes
 bits from an arbitrary place in *from* and puts them at the right of a
 new object. The *from* argument to ``GETBITS`` is not affected.
 
-Examples:
-
-::
+Examples::
 
     <GETBITS #WORD *777777777777* <BITS 3>>$
     #WORD *000000000007*
@@ -124,9 +118,7 @@ takes bits from the right of *from* and stuffs them into an arbitrary
 position in a copy of *to*. **None** of the arguments to ``PUTBITS`` is
 affected.
 
-Examples:
-
-::
+Examples::
 
     <PUTBITS #WORD *777777777777* <BITS 6 3>>$
     #WORD *777777777007*
@@ -161,9 +153,7 @@ returns a **new** ``WORD`` containing the bits in *from*, shifted the
 number of bits specified by *amount* (mod 256, says the hardware). Zero
 bits are brought in at the end being vacated; bits shifted out at the
 other end are lost. If *amount* is positive, shifting is to the left; if
-*amount* is negative, shifting is to the right. Examples:
-
-::
+*amount* is negative, shifting is to the right. Examples::
 
     <LSH 8 6>$
     #WORD *000000001000*
@@ -176,9 +166,7 @@ returns a **new** ``WORD`` containing the bits from *from*, rotated the
 number of bits specified by *amount* (mod 256, says the hardware).
 Rotation is a cyclic bitwise shift where bits shifted out at one end are
 put back in at the other. If *amount* is positive, rotation is to the
-left; if *amount* is negative, rotation is to the right. Examples:
-
-::
+left; if *amount* is negative, rotation is to the right. Examples::
 
     <ROT 8 6>$
     #WORD *000000001000*

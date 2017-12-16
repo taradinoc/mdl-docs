@@ -208,16 +208,12 @@ applies it to ``REST``\ s of the structures – that is, ``<REST si 0>``,
 10.2.3. Examples [1]
 ~~~~~~~~~~~~~~~~~~~~
 
-Make the element-wise sum of two ``LIST``\ s:
-
-::
+Make the element-wise sum of two ``LIST``\ s::
 
     <MAPF .LIST .+ '(1 2 3 4) '(10 11 12 13)>$
     (11 13 15 17)
 
-Change a ``UVECTOR`` to contain double its values:
-
-::
+Change a ``UVECTOR`` to contain double its values::
 
     <SET UV '![5 6 7 8 9]>$
     ![5 6 7 8 9!]
@@ -228,24 +224,18 @@ Change a ``UVECTOR`` to contain double its values:
     .UV$
     ![10 12 14 16 18!]
 
-Create a ``STRING`` from ``CHARACTER``\ s:
-
-::
+Create a ``STRING`` from ``CHARACTER``\ s::
 
     <MAPF ,STRING 1 '["MODELING" "DEVELOPMENT" "LIBRARY"]>$
     "MDL"
 
-Sum the squares of the elements of a ``UVECTOR``:
-
-::
+Sum the squares of the elements of a ``UVECTOR``::
 
     <MAPF ,+ #FUNCTION ((N) <* .N .N>) '![3 4]>$
     25
 
 A parallel assignment ``FUNCTION`` (Note that the arguments to ``MAPF``
-are of different lengths.):
-
-::
+are of different lengths.)::
 
     <DEFINE PSET ("TUPLE" TUP)
             <MAPF <>
@@ -265,9 +255,7 @@ are of different lengths.):
 Note: it is easy to forget that *finalf* **must** evaluate its
 arguments, which precludes the use of an ``FSUBR``. It is primarily for
 this reason that the ``SUBR``\ s ``AND?`` and ``OR?`` were invented. As
-an example, the predicate ``=?`` could have been defined this way:
-
-::
+an example, the predicate ``=?`` could have been defined this way::
 
     <DEFINE =? (A B)
             <COND (<MONAD? .A> <==? .A .B>)
@@ -301,9 +289,7 @@ as ``GVAL``\ s the corresponding ``SUBR``\ s to build objects of those
 ``MAPR`` or ``MAPF`` (and lexically within it, that is, not separated
 from it by a function call) to return from zero to any number of values
 as opposed to just one. For example, suppose a ``MAPF`` of the following
-form is used:
-
-::
+form is used::
 
     <MAPF ,LIST <FUNCTION (E) ...> ...>
 
@@ -321,9 +307,7 @@ must be ``#FUNCTION (...)`` or ``<FUNCTION ...>`` if ``MAPRET`` is to be
 used.
 
 Example: the following returns a ``LIST`` of all the ``ATOM``\ s in an
-``OBLIST`` (chapter 15):
-
-::
+``OBLIST`` (chapter 15)::
 
     <DEFINE ATOMS (OB)
             <MAPF .LIST
@@ -337,9 +321,7 @@ Example: the following returns a ``LIST`` of all the ``ATOM``\ s in an
 arguments, if any, to the final ``TUPLE``, it forces the application of
 *finalf* to occur, whether or not the structured objects have run out of
 objects. Example: the following copies the first ten (or all) elements
-of its argument into a ``LIST``:
-
-::
+of its argument into a ``LIST``::
 
     <DEFINE FIRST-TEN (STRUC "AUX" (I 10))
      <MAPF ,LIST
@@ -358,9 +340,7 @@ its argument (optional, ``T`` by default) as the value of the ``MAPF``
 or ``MAPR``. (It finds the MAPF/R that should returns in the current
 binding of the ``ATOM`` ``LMAP\ !-INTERRUPTS`` (“last map”).) Example:
 the following finds and returns the first non-zero element of its
-argument, or ``#FALSE ()`` if there is none:
-
-::
+argument, or ``#FALSE ()`` if there is none::
 
     <DEFINE FIRST-N0 (STRUC)
             <MAPF <>

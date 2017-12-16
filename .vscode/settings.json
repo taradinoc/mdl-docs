@@ -1,0 +1,16 @@
+{
+    "restructuredtext.linter.sphinxDirectives": [
+        "toctree",
+        "default-domain",
+        "rst-class",
+        "jenga",
+        "highlight",
+    ],
+    "restructuredtext.linter.sphinxTextRoles": [
+        "doc",
+        "ref",
+        "t",
+        "func",
+    ],
+    "restructuredtext.builtDocumentationPath": "${workspaceRoot}/_build/html",
+}

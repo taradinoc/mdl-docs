@@ -41,6 +41,8 @@ Typing a character at MDL normally just causes that character to be
 echoed (printed on your terminal) and remembered in a buffer. The only
 characters for which this is normally not true act as follows:
 
+.. index:: $
+
 Typing ``$`` (:kbd:`ESC`) causes MDL to echo dollar-sign and causes the
 contents of the buffer (the characters which you’ve typed) to be
 interpreted as an expression(s) in MDL. When this interpretation is
@@ -111,12 +113,12 @@ Loading a File [1]
 If you have a program in MDL that you have written as an ASCII file on
 some device, you can “load” it by typing
 
-::
+.. parsed-literal::
 
-    <FLOAD file>$
+    :samp:`<FLOAD {file}>`
 
 where *file* is the name of the file, in standard operating-system
-syntax, enclosed in ``“``\s (double-quotes). Omitted parts of the file name
+syntax, enclosed in ``"``\s (double-quotes). Omitted parts of the file name
 are taken by default from the file name :file:`DSK: INPUT >` (in the ITS
 version) or :file:`DSK: INPUT.MUD` (in the Tenex and Tops-20 versions) in
 the current disk directory.

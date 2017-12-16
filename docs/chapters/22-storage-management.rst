@@ -1,3 +1,5 @@
+.. _ch-storage-management:
+
 Chapter 22. Storage Management
 ==============================
 
@@ -62,6 +64,8 @@ Thus, if you just “forget about” an object, that is, lose all possible
 means of referencing it, its storage is automatically reclaimed.
 “Object” in this context includes that stack-structured storage space
 used in ``PROCESS``\ es for functional application.
+
+.. _sec-stacks-and-other-internal-vectors:
 
 22.1.1. Stacks and Other Internal Vectors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -232,9 +236,7 @@ Then you will get an error. ``<ERRET 1>`` from this error will cause the
 later time – unless the operating system feels nicer when the storage is
 absolutely necessary.)
 
-A call to BLOAT looks like this:
-
-::
+A call to BLOAT looks like this::
 
     <BLOAT fre stk lcl glb typ sto pstk
            min plcl pglb ptyp imp pur dpstk dstk>
@@ -341,15 +343,11 @@ is true. It returns the previous state. Calling it with no argument
 returns the current state. The initial state is false.
 
 When typing is enabled, the “copying” garbage collector prints, when it
-starts:
-
-::
+starts::
 
     GIN reason subr-that-caused:atom
 
-and, when it finishes:
-
-::
+and, when it finishes::
 
     GOUT seconds-needed
 

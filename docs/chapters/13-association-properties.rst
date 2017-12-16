@@ -118,9 +118,7 @@ works because ``<==? .N 0>`` is true.
 
 To associate something with the Nth **position** in a structure, as
 opposed to its Nth **element**, associate it with
-``<REST structure N-1>``, as in the following:
-
-::
+``<REST structure N-1>``, as in the following::
 
     <PUT <REST .L 3> PERCENT 0.3>$
     (3 4)
@@ -152,9 +150,7 @@ dimension (for example, a sparse matrix that does not deserve to be
 linearized), associations can be cascaded to achieve the desired result.
 In effect an extra level of indirection maps two indicators into one.
 For example, to associate *value* with *item* under *indicator-1* and
-*indicator-2* simultaneously:
-
-::
+*indicator-2* simultaneously::
 
     <PUTPROP indicator-1 indicator-2 T>
     <PUTPROP item <GETPL indicator-1 indicator-2> value>
@@ -171,9 +167,7 @@ are none. ``NEXT`` takes an association as an argument and returns the
 next association in the chain, or ``#FALSE ()`` if there are no more.
 ``ITEM``, ``INDICATOR`` and ``AVALUE`` all take an association as an
 argument and return the item, indicator and value, respectively.
-Associations print as:
-
-::
+Associations print as::
 
     #ASOC (item indicator value)
 

@@ -120,9 +120,7 @@ become unbound from an ``ATOM``. This is the same as the problem in
 referencing ``TUPLE``\ s as mentioned in section 9.2, and it can be
 avoided by first testing ``<LEGAL? locd>``.
 
-Example:
-
-::
+Example::
 
     <SET A 1>$
     1
@@ -143,9 +141,7 @@ non-\ ``LEGAL?`` ``LVAL`` or if you try to put an object of the wrong
 ``TYPE`` into a ``PRIMTYPE`` ``UVECTOR``, ``STRING``, ``BYTES``, or
 ``TEMPLATE``.
 
-Example:
-
-::
+Example::
 
     <SET A (1 2 3)>$
     (1 2 3)

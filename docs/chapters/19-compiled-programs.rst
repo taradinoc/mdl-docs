@@ -92,9 +92,7 @@ code”), the code vector of the ``RSUBR`` is pure and sharable. ``TYPE``
 ``PCODE`` is of ``PRIMTYPE`` ``WORD``. The left half of the word
 specifies an offset into an internal table of pure ``RSUBR``\ s, and the
 right half specifies an offset into the block of code where this
-``RSUBR`` starts. The ``PCODE`` prints out as:
-
-::
+``RSUBR`` starts. The ``PCODE`` prints out as::
 
     %<PCODE name:string offset:fix>
 
@@ -112,17 +110,20 @@ file is written, so that the code is not duplicated on disk. A purified
 ``RSUBR`` must use ``RGLOC`` (“relative GLOC”) instead of ``GLOC``.
 ``RGLOC`` produces objects of ``TYPE`` ``LOCR`` instead of ``LOCD``.
 
+.. index:: TYPE-C, TYPE-W
+
+.. _function-type-c:
+.. _function-type-w:
+
 19.5. TYPE-C and TYPE-W
-=======================
+-----------------------
 
 In order to handle user ``NEWTYPE``\ s reasonably, the internal ``TYPE``
 codes for them have to be able to be different from one MDL run to
 another. Therefore, references to the ``TYPE`` codes must be in the
 reference vector rather than the code vector. To help handle this
 problem, two ``TYPE``\ s exist, ``TYPE-C`` (“type code”) and ``TYPE-W``
-(“type word”), both of ``PRIMTYPE`` ``WORD``. They print as:
-
-::
+(“type word”), both of ``PRIMTYPE`` ``WORD``. They print as::
 
     %<TYPE-C type primtype:atom>
     %<TYPE-W type primtype:atom>
@@ -160,9 +161,7 @@ information, except in the case of ``TEMPLATE``\ s: all ``TYPE``\ s of
 legality. ``RSUBR`` is rarely called other than in the MDL Assembler
 (Lebling, 1979). It can be used if changes must be made to an ``RSUBR``
 that are prohibited by MDL’s built-in safety mechanisms. For example, if
-the ``GVAL`` of *name* is an ``RSUBR``:
-
-::
+the ``GVAL`` of *name* is an ``RSUBR``::
 
     <SET FIXIT <CHTYPE ,name VECTOR>>$
     [...]
@@ -248,9 +247,7 @@ of MDL as that from which it was last written out.
 There are three forms of fixups, corresponding to the three kinds of
 ``RSUBR`` files. ASCII ``RSUBR``\ s, found in ``BINARY`` files, have
 ASCII fixups. The fixups are contained in a ``LIST`` that has the
-following format:
-
-::
+following format::
 
     (MDL-release:fix
         name:atom value:fix (use:fix use:fix ...)

@@ -1,3 +1,5 @@
+.. _ch-data-type-declarations:
+
 Chapter 14. Data-type Declarations
 ==================================
 
@@ -13,9 +15,7 @@ There are two kinds of ``DECL``\ s. The first kind of ``DECL`` is the
 most common. It is called the ``ATOM`` ``DECL`` and is used most
 commonly to specify the type/structure of the ``LVAL``\ s of the
 ``ATOM``\ s in the argument ``LIST`` of a ``FUNCTION`` or *aux* ``LIST``
-of a ``PROG`` or ``REPEAT``. This ``DECL`` has the form:
-
-::
+of a ``PROG`` or ``REPEAT``. This ``DECL`` has the form::
 
     #DECL (atoms:list Pattern ...)
 
@@ -33,9 +33,7 @@ body.
 The second kind of ``DECL`` is rarely seen by the casual MDL user,
 except in appendix 2. It is called the ``RSUBR`` ``DECL``. It is used to
 specify the type/structure of the arguments and result of an ``RSUBR``
-or ``RSUBR-ENTRY`` (chapter 19). It is of the following form:
-
-::
+or ``RSUBR-ENTRY`` (chapter 19). It is of the following form::
 
     #DECL ("VALUE" Pattern Pattern ...)
 
@@ -51,9 +49,7 @@ element of an ``RSUBR`` or ``RSUBR-ENTRY``.
 
 The simplest possible Pattern is to say that a value is exactly some
 other object, by giving that object, ``QUOTE``\ d. For example, to
-declare that a variable is a particular ``ATOM``:
-
-::
+declare that a variable is a particular ``ATOM``::
 
     #DECL ((X) 'T)
 
@@ -90,9 +86,7 @@ type names are allowed:
    can be used as a “compound type name”.
 
 The single ``TYPE`` name can be generalized slightly, allowing anything
-of a given ``PRIMTYPE``, using the following construction:
-
-::
+of a given ``PRIMTYPE``, using the following construction::
 
     #DECL ((X) <PRIMTYPE WORD> (Y) <PRIMTYPE LIST>)
 
@@ -101,16 +95,12 @@ element is the ``ATOM`` ``PRIMTYPE``, and the second the name of a
 primitive type.
 
 The next step is to specify the elements of a structure. This is done in
-the simplest way as follows:
-
-::
+the simplest way as follows::
 
     < structured:type Pattern Pattern ...>
 
 where there is a one-to-one correspondence between the *Pattern* and the
-elements of the structure. For example:
-
-::
+elements of the structure. For example::
 
     #DECL ((X) <VECTOR FIX FLOAT>)
 
@@ -120,17 +110,13 @@ convenient to allow additional elements, so that only the elements being
 used in the local neighborhood of the ``DECL`` need to be declared. To
 disallow additional elements, a ``SEGMENT`` is used instead of a
 ``FORM`` (the “excl-ed” brackets make it look more emphatic). For
-example:
-
-::
+example::
 
     #DECL ((X) !<VECTOR FIX FLOAT>)
 
 declares ``.X`` to be a ``VECTOR`` having **exactly** two elements, the
 first of which is a ``FIX`` and the second a ``FLOAT``. Note that the
-*Patterns* given for elements can be any legal Pattern:
-
-::
+*Patterns* given for elements can be any legal Pattern::
 
     #DECL ((X) <VECTOR <VECTOR FIX FLOAT>> (Y) <<PRIMTYPE LIST> LIST>)
 
@@ -138,9 +124,7 @@ declares ``.X`` to be a ``VECTOR`` containing another ``VECTOR`` of at
 least two elements, and ``.Y`` to be of ``PRIMTYPE LIST``, containing a
 ``LIST``. In the case of a ``BYTES``, the individual elements cannot be
 declared (they must be ``FIX``\ es anyway), only the size and number of
-the bytes:
-
-::
+the bytes::
 
     #DECL ((B) <BYTES 7 3>)
 
@@ -156,9 +140,7 @@ satisfy a given Pattern (or sequence of Patterns). This is called an
     [ number:fix Pattern Pattern ... ]
 
 states that the sequence of *Patterns* which is ``REST`` of the
-``VECTOR`` is repeated the *number* of times given. For example:
-
-::
+``VECTOR`` is repeated the *number* of times given. For example::
 
     #DECL ((X) <VECTOR [3 FIX] FLOAT> (Y) <LIST [3 FIX FLOAT]>)
 
@@ -171,16 +153,12 @@ only the first six elements.
 For indefinite repetition, the same construction is used, but, instead
 of the number of repetitions of the sequence of Patterns, the ``ATOM``
 ``REST`` is given. This allows any number of repetitions, from zero on
-up. For example:
-
-::
+up. For example::
 
     #DECL ((X) <VECTOR [REST FIX]> (Y) <LIST [3 FIX] [REST FIX]>)
 
 A “``REST`` construction” can contain any number of Patterns, just like
-an ``NTH`` construction:
-
-::
+an ``NTH`` construction::
 
     #DECL ((X) <VECTOR [REST FIX FLOAT LIST]>)
 
@@ -192,9 +170,7 @@ end at any point.
 A variation on ``REST`` is ``OPT`` (or ``OPTIONAL``), which is similar
 to ``REST`` except that the construction is scanned once at most instead
 of indefinitely, and further undeclared elements can follow. For
-example:
-
-::
+example::
 
     #DECL ((X) <VECTOR [OPT FIX]>)
 
@@ -211,9 +187,7 @@ structure still has that Pattern.
 
 This exhausts the possible single Patterns that can be given in a
 declaration. However, there is also a compound Pattern defined. It
-allows specification of several possible Patterns for one value:
-
-::
+allows specification of several possible Patterns for one value::
 
     <OR Pattern Pattern ... >
 
@@ -259,9 +233,7 @@ no-value error or refer to an erroneous binding. Usually only
 ``ATOM``\ s which have the opposite specialty from that of the current
 ``SPECIAL-MODE`` are explicitly declared. The usual ``SPECIAL-MODE`` is
 ``UNSPECIAL``, so typically only ``SPECIAL`` declarations use this
-construction:
-
-::
+construction::
 
     #DECL ((ACT)) <SPECIAL ACTIVATION>)
 
@@ -427,9 +399,7 @@ There are some rules of thumb concerning “good” ``DECL``\ s. A “good”
 mechanism as the compiler, but that gives the maximum amount of
 information. It is simple to state what gives offense to the compiler
 and ``DECL``-checking mechanism: complexity. For example, a large
-compound ``DECL`` like:
-
-::
+compound ``DECL`` like::
 
     #DECL ((X) <OR FIX LIST UVECTOR FALSE>)
 
@@ -469,9 +439,7 @@ declaration”) and the ``SUBR`` ``MANIFEST``.
     <GDECL atoms:list Pattern ...>
 
 ``GDECL`` allows the type/structure of global values to be declared in
-much the same way as local values. Example:
-
-::
+much the same way as local values. Example::
 
     <GDECL (X) FIX (Y) <LIST FIX>>
 
@@ -484,9 +452,7 @@ at least one ``FIX``.
 
 ``MANIFEST`` takes as arguments ``ATOM``\ s whose ``GVAL``\ s are
 declared to be constants. It is used most commonly to indicate that
-certain ``ATOM``\ s are the names of offsets in structures. For example:
-
-::
+certain ``ATOM``\ s are the names of offsets in structures. For example::
 
     <SETG X 1>
     <MANIFEST X>
@@ -544,25 +510,19 @@ third (and optional) argument of ``NEWTYPE`` is a ``QUOTE``\ d Pattern.
 If given, it will be saved as the value of an association (chapter 13)
 using the name of the ``NEWTYPE`` as the item and the ``ATOM`` ``DECL``
 as the indicator, and it will be used to check any object that is about
-to be ``CHTYPE``\ d to the ``NEWTYPE``. For example:
-
-::
+to be ``CHTYPE``\ d to the ``NEWTYPE``. For example::
 
     <NEWTYPE COMPLEX-NUMBER VECTOR '<<PRIMTYPE VECTOR> FLOAT FLOAT>>
 
 creates a new ``TYPE``, with its first two elements declared to be
-``FLOAT``\ s. If later someone types:
-
-::
+``FLOAT``\ s. If later someone types::
 
     #COMPLEX-NUMBER [1.0 2]
 
 an error will result (the second element is not a ``FLOAT``). The
 Pattern can be replaced by doing another ``NEWTYPE`` for the same
 ``TYPE``, or by putting a new value in the association. Further
-examples:
-
-::
+examples::
 
     <NEWTYPE FOO LIST '<<PRIMTYPE LIST> FIX FLOAT [REST ATOM]>>
 
@@ -584,9 +544,7 @@ even ``<CHTYPE <1 .A> <TYPE <1 .A>>>`` will cause an error.
 
 In each of these examples, the ``<<PRIMTYPE ...> ...>`` construction was
 used, in order to permit ``CHTYPE``\ ing an object into itself. See what
-happens otherwise:
-
-::
+happens otherwise::
 
     <NEWTYPE OOPS LIST '<LIST ATOM FLOAT>>$
     OOPS
@@ -664,9 +622,7 @@ by default is ``UNSPECIAL``.
 
 returns the ``DECL`` Pattern (if any, otherwise ``#FALSE ()``)
 associated with the global or local value slot of an ``ATOM``. For
-example:
-
-::
+example::
 
     <PROG (X)
           #DECL ((X) <OR FIX FLOAT>)
@@ -703,9 +659,7 @@ it is not legal to ``PUT-DECL`` a “Pattern” of ``MANIFEST`` or
 
     <DECL? any Pattern>
 
-specifically checks *any* against *Pattern*. For example:
-
-::
+specifically checks *any* against *Pattern*. For example::
 
     <DECL? '[1 2 3] '<VECTOR [REST FIX]>>$
     T
@@ -727,9 +681,7 @@ and returns an object of ``TYPE`` and ``PRIMTYPE`` ``OFFSET``. An
 ``OFFSET``, like a ``FIX``, may be given as an argument to ``NTH`` or
 ``PUT`` and may be applied to arguments. The only difference is that the
 ``STRUCTURED`` argument must match the Pattern contained in the
-``OFFSET``, or an error will result. Thus:
-
-::
+``OFFSET``, or an error will result. Thus::
 
     <SETG FOO <OFFSET 1 '<CHANNEL FIX>>>$
     %<OFFSET 1 '<CHANNEL FIX>>
@@ -746,18 +698,14 @@ will not do the right thing with them unless they are ``MANIFEST``.
 Since there’s no good reason not to ``MANIFEST`` them, this isn’t a
 problem.
 
-The ``SUBR`` ``INDEX``, given an ``OFFSET``, returns its ``FIX``:
-
-::
+The ``SUBR`` ``INDEX``, given an ``OFFSET``, returns its ``FIX``::
 
     <INDEX ,FOO>$
     1
 
 ``GET-DECL`` of an ``OFFSET`` returns the associated Pattern;
 ``PUT-DECL`` of an ``OFFSET`` and a Pattern returns a new ``OFFSET``
-with the same ``INDEX`` as the argument, but with a new Pattern:
-
-::
+with the same ``INDEX`` as the argument, but with a new Pattern::
 
     <GET-DECL ,FOO>$
     <CHANNEL FIX>
@@ -779,9 +727,7 @@ further describe the argument (or value).
 
 The simplest ``RSUBR`` ``DECL`` is for an ``RSUBR`` or ``RSUBR-ENTRY``
 (chapter 19) which has all of its arguments evaluated and returns a
-``DECL``\ ed value. For example:
-
-::
+``DECL``\ ed value. For example::
 
     #DECL ("VALUE" FIX FIX FLOAT)
 
@@ -793,33 +739,25 @@ declared, but (again by custom) in this case it is usually declared
 ``ANY``.
 
 If any arguments are optional, the ``STRING`` ``"OPTIONAL"`` (or
-``"OPT"``) is placed before the Pattern for the first optional argument:
-
-::
+``"OPT"``) is placed before the Pattern for the first optional argument::
 
     #DECL ("VALUE" FIX FIX "OPTIONAL" FLOAT)
 
 If any of the arguments is not to be evaluated, it is preceded by the
-``STRING`` ``"QUOTE"``:
-
-::
+``STRING`` ``"QUOTE"``::
 
     #DECL ("VALUE" FIX "QUOTE" FORM)
 
 declares one argument, which is not ``EVAL``\ ed.
 
 If the arguments are to be evaluated and gathered into a ``TUPLE``, the
-Pattern for it is preceded by the ``STRING`` ``"TUPLE"``:
-
-::
+Pattern for it is preceded by the ``STRING`` ``"TUPLE"``::
 
     #DECL ("VALUE" FIX "TUPLE" <TUPLE [REST FIX]>)
 
 If the arguments are to be unevaluated and gathered into a ``LIST``, or
 if the calling ``FORM`` is the only “argument”, the Pattern is preceded
-by the appropriate ``STRING``:
-
-::
+by the appropriate ``STRING``::
 
     #DECL ("VALUE" FIX "ARGS" LIST)
 

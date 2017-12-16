@@ -1,3 +1,5 @@
+.. _ch-lexical-blocking:
+
 Chapter 15. Lexical Blocking
 ============================
 
@@ -142,9 +144,7 @@ separators (like space, tab, carriage-return, etc.). There is a name
 used by default (section 15.5) which types out and is typed in as
 ``!-``\ *separator*.
 
-Trailers can be used recursively:
-
-::
+Trailers can be used recursively::
 
     B!-A!-OB
 

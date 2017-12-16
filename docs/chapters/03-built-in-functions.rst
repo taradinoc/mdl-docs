@@ -51,8 +51,6 @@ evaluating or not evaluating the arguments (chapters :numref:`%s <ch-functions>`
 and :numref:`%s <ch-compiled-programs>`) and then “apply the function” – that
 is, :func:`EVAL` the body of the object gotten from *func*.
 
-.. todo:: "example" should be "examine"?
-
 Built-in Functions (TYPE SUBR, TYPE FSUBR) [1]
 ----------------------------------------------
 
@@ -69,10 +67,8 @@ be used herein to mean both |F/SUBR|\ s and compiled user programs
 (:t:`RSUBR`\ s and :t:`RSUBR-ENTRY`\ s –
 :numref:`chapter %s <ch-compiled-programs>`).
 
-.. |SUBR-underlined| replace:: :ut:`SUBR`
-
 Unless otherwise stated, **every** MDL built-in Subroutine is of
-|TYPE| |SUBR-underlined|. Also, when it is stated that an argument of a
+|TYPE| :ut:`SUBR`. Also, when it is stated that an argument of a
 |SUBR| must be of a particular |TYPE|, note that this means that
 :func:`EVAL` of what is there must be of the particular |TYPE|.
 

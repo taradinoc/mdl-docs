@@ -1,3 +1,5 @@
+.. _ch-coroutines:
+
 Chapter 20. Coroutines
 ======================
 
@@ -89,9 +91,7 @@ returns a value, that ``PROCESS`` becomes ``DEAD``.
 
 The ``SUBR`` ``RESUME`` is used to cause a computation to start or to
 continue running in another ``PROCESS``. An application of ``RESUME``
-looks like this:
-
-::
+looks like this::
 
     <RESUME retval:any process>
 
@@ -163,9 +163,7 @@ applying ``,STARTER`` to ``.A`` in ``,P0``.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now suppose that while still in ``,P1``, the following is evaluated,
-either in ``,STARTER`` or in something called by ``,STARTER``:
-
-::
+either in ``,STARTER`` or in something called by ``,STARTER``::
 
     <RESUME .BAR ,P0>
 
@@ -218,9 +216,7 @@ off.
     8
 
 Just as a note, by taking advantage of MDL’s order of evaluation, SUM3
-could be have been written as:
-
-::
+could be have been written as::
 
     <DEFINE SUM3 (A)
             <REPEAT ((S .A))
@@ -284,9 +280,7 @@ always returns.
 returns the ``PROCESS`` which last ``RESUME``\ d *process*. If no
 ``PROCESS`` has ever ``RESUME``\ d process, it returns ``#FALSE ()``.
 *process* is optional, ``<ME>`` by default. Note that ``<MAIN>`` does
-not ever have any resumer. Example:
-
-::
+not ever have any resumer. Example::
 
     <PROG ((R <RESUMER>))           ;"not effective in <MAIN>"
        #DECL ((R) <OR PROCESS FALSE>)

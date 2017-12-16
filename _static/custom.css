@@ -20,3 +20,7 @@
 .expert::after {
   content: ']';
 }
+
+dl .literal-block + a.headerlink {
+  display: none;  /* XXX */
+}

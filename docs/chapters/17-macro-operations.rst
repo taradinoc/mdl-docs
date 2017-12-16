@@ -27,9 +27,7 @@ the object following the ``%%``. However, it completely ignores the
 result of that evaluation. Side effects of that evaluation remain, of
 course.
 
-Example:
-
-::
+Example::
 
     <DEFINE SETUP () <SET A 0>>$
     SETUP
@@ -63,9 +61,7 @@ with the same ``PNAME``.
 The primary use of ``LINK``\ s is in interactive work with MDL:
 expressions which are commonly used, but annoyingly long to type, can be
 “linked” to ``PNAME``\ s which are shorter. The standard example is the
-following:
-
-::
+following::
 
     <LINK '<ERRET> "^E" <ROOT>>
 
@@ -159,9 +155,7 @@ Patterns:
 instead of the local value of the ``ATOM`` ``READ-TABLE`` as the
 ``VECTOR`` of read-macro characters. If this argument is supplied,
 ``READ-TABLE`` is rebound to it within the call to ``READ``. ``READ``
-takes from zero to four arguments. The fullest call to ``READ`` is thus:
-
-::
+takes from zero to four arguments. The fullest call to ``READ`` is thus::
 
     <READ channel eof-routine look-up read-table:vector>
 
@@ -174,9 +168,7 @@ The other arguments are explained in sections 11.1.1.1, 11.3, and
 17.1.3.2. Examples
 ^^^^^^^^^^^^^^^^^^
 
-Examples of each of the different kinds of entries in macro tables:
-
-::
+Examples of each of the different kinds of entries in macro tables::
 
     <SET READ-TABLE <IVECTOR 256 0>>$
     [...]
@@ -281,9 +273,7 @@ be ``EVAL``\ ed in the second step. The first ``EVAL`` generates two
 extra ``FRAME``\ s: one for a call to ``EXPAND``, and one for a call to
 ``EVAL`` the ``MACRO`` application in a top-level environment.
 
-Example:
-
-::
+Example::
 
     <DEFMAC INC (ATM "OPTIONAL" (N 1))
             #DECL ((VALUE) FORM (ATM) ATOM (N) <OR FIX FLOAT>)
@@ -300,9 +290,7 @@ Example:
     <EXPAND '<INC X>>$
     <SET X <+ .X 1>>
 
-Perhaps the intention is clearer if ``PARSE`` and ``%`` are used:
-
-::
+Perhaps the intention is clearer if ``PARSE`` and ``%`` are used::
 
     <DEFMAC INC (ATM "OPTIONAL" (N 1))
             #DECL (...)
@@ -317,15 +305,11 @@ compiler will simply cause the first ``EVAL``\ uation to occur (via
 ~~~~~~~~~~~~~~~
 
 Suppose you want to change the following simple ``FUNCTION`` to a
-``MACRO``:
-
-::
+``MACRO``::
 
     <DEFINE DOUBLE (X) #DECL ((X) FIX) <+ .X .X>>
 
-You may be tempted to write:
-
-::
+You may be tempted to write::
 
     <DEFMAC DOUBLE (X) #DECL ((X) FIX) <FORM + .X .X>>
 
@@ -363,9 +347,7 @@ You might hope that
                        -> 4
 
 But, when ``DOUBLE`` is applied to that ``FORM``, the argument is
-``QUOTE``\ d, so:
-
-::
+``QUOTE``\ d, so::
 
     <INC-AND-DOUBLE 1> -> <DOUBLE <SET Y <+ 1 1>>>
                        -> <FORM + <SET Y <+ 1 .Y>> <SET Y <1 .Y>>>
@@ -374,9 +356,7 @@ But, when ``DOUBLE`` is applied to that ``FORM``, the argument is
 
 So, since the evaluation of ``DOUBLE``\ ’s argument has a side effect,
 you should ensure that the evaluation is done exactly once, say by
-``FORM``:
-
-::
+``FORM``::
 
     <DEFMAC DOUBLE ('ANY)
             <FORM PROG ((X .ANY)) #DECL ((X) FIX) '<+ .X .X>>>

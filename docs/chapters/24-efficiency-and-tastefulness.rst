@@ -42,9 +42,7 @@ The use of ``PROG`` may be sensible when the normal flow of control can
 be cut short by unusual conditions, so that the program wants to
 ``RETURN`` before reaching the end of ``PROG``. Of course, nested
 ``COND``\ s can accomplish the same end, but deep nesting may tend to
-make the program unreadable. For example:
-
-::
+make the program unreadable. For example::
 
     <PROG (TEMP)
           <OR <SET TEMP <OK-FOR-STEP-1?>>
@@ -135,9 +133,7 @@ Comments:
    one is appropriate) to tell what is wrong, and it includes
    identifying yourself.
 
-So, do it this way:
-
-::
+So, do it this way::
 
     <DEFINE PLOTVDSK (X Y OUTCHAN)
     #DECL ((OUTCHAN <SPECIAL CHANNEL>)
@@ -158,9 +154,7 @@ you can avoid using the inner ``REPEAT`` loop and have explicit
 ``PRINC``\ s for each element. This can be done even better by using
 ``MAPF``, as in the next version, which does exactly the same thing as
 the previous one, but uses ``MAPF`` to do the ``REST``\ ing and the end
-conditional:
-
-::
+conditional::
 
     <DEFINE PLOTVDSK (X Y OUTCHAN)
     #DECL ((OUTCHAN <SPECIAL CHANNEL>)
@@ -184,9 +178,7 @@ end. One way is to use ``MAPF`` or ``MAPR`` with a first argument of
 storage, until the final call to ``LIST``. If you know how many elements
 there will be, you can put them on the control stack yourself, in a
 ``TUPLE`` built for that purpose. Another way is used when ``REPEAT`` is
-necessary:
-
-::
+necessary::
 
     <REPEAT ((FIRST (T)) (LAST .FIRST) ...)
             #DECL ((VALUE FIRST LAST) LIST ...)
@@ -210,9 +202,7 @@ to a dummy ``UNSPECIAL`` ``ATOM`` in the Function’s ``"AUX"`` list. This
 is true because an ``UNSPECIAL`` ``ATOM`` gets compiled into a slot on
 the control stack, which is accessible very quickly. The tradeoff is
 probably worthwhile if a *special* is referenced more than once, or if
-an *unmanifest* is referenced more than twice. Example:
-
-::
+an *unmanifest* is referenced more than twice. Example::
 
     <DEFINE MAP-LOOKUP (THINGS "AUX" (DB ,DATA-BASE))
             #DECL ((VALUE) VECTOR (THINGS DB) <UNSPECIAL <PRIMTYPE LIST>>)

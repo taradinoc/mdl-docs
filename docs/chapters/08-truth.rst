@@ -10,15 +10,11 @@ MDL represents “false” with an object of a particular ``TYPE``: ``TYPE``
 making them elements of a ``FALSE``. (Again, ``EVAL``\ ing a ``FALSE``
 neither copies it nor ``EVAL``\ s its elements, so it is not necessary
 to ``QUOTE`` a ``FALSE`` appearing in a program.) Objects of ``TYPE``
-``FALSE`` are represented in “# notation”:
-
-::
+``FALSE`` are represented in “# notation”::
 
     #FALSE list-of-its-elements
 
-The empty ``FORM`` evaluates to the empty ``FALSE``:
-
-::
+The empty ``FORM`` evaluates to the empty ``FALSE``::
 
     <>$
     #FALSE ()
@@ -81,9 +77,7 @@ evaluates to ``T`` only if *e1* is the **same object** as *e2* (appendix
 ``==?``. Two ``FIX``\ es of the same “value” are “the same object”; so
 are two ``FLOAT``\ s of **exactly** the same “value”. Empty objects of
 ``PRIMTYPE`` ``LIST`` (and no other structured ``PRIMTYPE``) are ``==?``
-if their ``TYPE``\ s are the same. Example:
-
-::
+if their ``TYPE``\ s are the same. Example::
 
     <==? <SET X "RANDOM STRING"> <TOP <REST .X 6>>>$
     T
@@ -106,9 +100,7 @@ return the same value for ``FIX``\ es, ``FLOAT``\ s, ``ATOM``\ s, etc.
 it tests for actual physical identity.)
 
 Example, illustrating non-copying of a ``SEGMENT`` in Direct
-Representation of a ``LIST``:
-
-::
+Representation of a ``LIST``::
 
     <SET A '(1 2 3)>$
     (1 2 3)
@@ -143,9 +135,7 @@ The search is more efficient if *structured* is of ``PRIMTYPE``
 ``QUOTE``\ d.
 
 If *object* and *structured* are of ``PRIMTYPE`` ``STRING`` [or
-``BYTES``], ``MEMBER`` does a substring search. Example:
-
-::
+``BYTES``], ``MEMBER`` does a substring search. Example::
 
     <MEMBER "PART" "SUM OF PARTS">$
     "PARTS"
@@ -270,9 +260,7 @@ can do ``<REST structured <+ 1 fix>>`` without error, do the test
 
 The MDL Subroutine which is most used for varying evaluation depending
 on a truth value is the ``FSUBR`` ``COND`` (“conditional”). A call to
-``COND`` has this format:
-
-::
+``COND`` has this format::
 
     <COND clause-1:list ... clause-N:list>
 
@@ -346,9 +334,7 @@ are true or only if all the *pre-exclusions* are false, respectively. By
 nesting and using both ``AND`` and ``OR``, fairly powerful constructs
 can be made. Of course, if *action(s)* are more than one thing, you must
 be careful that none but the last returns false or true, respectively.
-Watch out especially for ``TERPRI`` (chapter 11). Examples:
-
-::
+Watch out especially for ``TERPRI`` (chapter 11). Examples::
 
     <AND <ASSIGNED? FLAG> .FLAG <FCN .ARG>>
 
@@ -371,9 +357,7 @@ One of the disadvantages of ``COND`` is that there is no straightforward
 way to do things unconditionally in between tests. One way around this
 problem is to insert a dummy clause that never succeeds, because its
 only ``LIST`` element is an ``AND`` that returns a ``FALSE`` for the
-test. Example:
-
-::
+test. Example::
 
     <COND   (<0? .N> <F0 .N>)
             (<1? .N> <F1 .N>)
@@ -394,9 +378,7 @@ exception is ``TERPRI`` (which see).) Even safer is to use ``PROG``
 Another variation is to increase the nesting with a new ``COND`` after
 the unconditional part. At least this method does not make the code
 appear to a human reader as though it does something other than what it
-really does. The above example could be done this way:
-
-::
+really does. The above example could be done this way::
 
     <COND   (<0? .N> <F0 .N>)
             (<1? .N> <F1 .N>)

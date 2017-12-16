@@ -154,9 +154,7 @@ returns *handler* after removing it from its list of actions. There is
 no effect on any other ``HANDLER``\ s in the list.
 
 Now that you know how to remove ``IHEADER``\ s and ``HANDLER``\ s from
-their normal places, you need to know how to put them back:
-
-::
+their normal places, you need to know how to put them back::
 
     <EVENT iheader>
 
@@ -186,9 +184,7 @@ The contents of ``IHEADER``\ s and ``HANDLER``\ s can be changed by
 ``PUT``, and the new values will then determine the behavior of MDL.
 
 Before describing the elements of these ``TYPE``\ s in detail, here are
-a picture and a Pattern, both purporting to show how they look:
-
-::
+a picture and a Pattern, both purporting to show how they look::
 
     #IHEADER [name:atom or which
               disabled?
@@ -367,9 +363,7 @@ then the typeout will be
 
 ``DISMISS`` permits a handler to return an arbitrary value for an
 arbitrary ``ACTIVATION`` at an arbitrary interrupt level. The call is as
-follows:
-
-::
+follows::
 
     <DISMISS value:any activation int-level:fix>
 
@@ -438,9 +432,7 @@ will. **However**, the ``IHEADER`` for ``,INCHAN`` should not be
 ``OFF``\ ed: MDL knows that ``$`` is typed only by an interrupt!
 
 Example: the following causes the given message to be printed out
-whenever a \ ``^Y``\  is typed on ``.INCHAN``:
-
-::
+whenever a \ ``^Y``\  is typed on ``.INCHAN``::
 
     <SET H <HANDLER <GET .INCHAN INTERRUPT>
          #FUNCTION ((CHAR CHAN)
@@ -549,9 +541,7 @@ not try to cause a garbage collection.
 
 ``"CLOCK"``, when enabled, occurs every half second (the ITS
 “slow-clock” tick.) It is not available in the Tenex or Tops-20
-versions. It wants handlers which take no arguments. Example:
-
-::
+versions. It wants handlers which take no arguments. Example::
 
     <ON "CLOCK" <FUNCTION () <PRINC "TICK ">> 1>
 
@@ -599,9 +589,7 @@ object being monitored as the extra *which* argument, just as a
 ``CHANNEL`` is given for ``"CHAR"``. A handler for ``"READ"`` takes two
 arguments: the locative and the ``FRAME`` of the function application
 that make the reference. A handler for ``"WRITE"`` takes three
-arguments: the locative, the new value, and the ``FRAME``. For example:
-
-::
+arguments: the locative, the new value, and the ``FRAME``. For example::
 
     <SET A (1 2 3)>$
     (1 2 3)

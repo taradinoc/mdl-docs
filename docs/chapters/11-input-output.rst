@@ -1,3 +1,5 @@
+.. _ch-input-output:
+
 Input/Output
 ============
 
@@ -675,9 +677,7 @@ prevent losing a previous :func:`SAVE` file if a crash occurs. In the Tenex
 and Tops-20 versions, version/generation numbers provide the same
 safety.
 
-Example:
-
-::
+Example::
 
     <DEFINE SAVE-IT ("OPTIONAL"
                      (FILE '("PUBLIC" "SAVE" "DSK" "GUEST"))
@@ -873,16 +873,12 @@ If the operation is successful, :func:`RENAME` returns ``T``, otherwise
 :samp:`#FALSE ({reason:string} {status:fix})`.
 
 In case (a) the file specified by the first argument is renamed to the
-second argument. For example:
-
-::
+second argument. For example::
 
     <RENAME "FOO 3" TO "BAR">       ;"Rename FOO 3 to BAR >."
 
 In case (b) the single file name specifies a file to be deleted. For
-example:
-
-::
+example::
 
     <RENAME "FOO FOO DSK:HARRY;">  ;"Rename FOO 3 to BAR >."
 
@@ -959,9 +955,7 @@ TYI
 returns one ``CHARACTER`` from *channel* (optional, ``.INCHAN`` by
 default) when it is typed, rather than after ``$`` (ESC) is typed, as is
 the case with :func:`READCHR`. The following example echos input characters
-as their ASCII values, until a carriage-return is typed:
-
-::
+as their ASCII values, until a carriage-return is typed::
 
     <REPEAT ((FOO <TTYECHO .INCHAN <>>))
        <AND <==? 13 <PRINC <ASCII <TYI .INCHAN>>>>

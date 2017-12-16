@@ -12,6 +12,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+#pylint: disable=C0413,C0103,C0111,W0622
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -19,6 +21,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('./_util'))
+import mdl_docs_sphinx
 
 # -- General configuration ------------------------------------------------
 
@@ -30,10 +33,18 @@ sys.path.insert(0, os.path.abspath('./_util'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.graphviz',
     'sphinx.ext.todo',
     # 'sphinxcontrib.inlinesyntaxhighlight',    # breaks :samp:
     'mdl_docs_sphinx',
     'zil_domain',
+]
+
+# graphviz_dot = r'c:\program files (x86)\graphviz2.38\bin\dot.exe'
+graphviz_output_format = 'png'
+graphviz_dot_args = [
+    '-v',
+    # '-Tpng:gdiplus',
 ]
 
 inline_highlight_respect_highlight = True
@@ -85,7 +96,6 @@ pygments_style = 'zil_lexer.styles.ZilDocStyle'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-import mdl_docs_sphinx
 numfig = True
 numfig_format = {
     'section': mdl_docs_sphinx.SectionNumfigFormat(),

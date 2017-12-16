@@ -1,17 +1,28 @@
-from docutils import nodes
-from docutils import utils
-from docutils.parsers.rst import Directive
-from docutils.parsers.rst import directives
-from docutils.parsers.rst import states
+# pylint: disable=C0111
+import os
+import re
+from textwrap import dedent
+
+from docutils import nodes, utils
+from docutils.parsers.rst import Directive, directives, states
 from docutils.parsers.rst.roles import set_classes
+from docutils.statemachine import ViewList
 from sphinx.util.docutils import sphinx_domains
+
+from mdl_docs_sphinx.jenga import JengaDiagramDirective
 from zil_domain import ZilXRefRole
 
 
-def macro_role(role, rawtext, text, lineno, inliner,
-               options={}, content=[]):
+def macro_role(_role, rawtext, text, _lineno, _inliner,
+               options=None, content=None):
+    """Substitutes the parameter into some inline markup.
+
+    Put a single %s in the role content.
+    """
+
+    options = options or {}
     set_classes(options)
-    node = nodes.inline(rawtext, ''.join(content) % utils.unescape(text),
+    node = nodes.inline(rawtext, ''.join(content or []) % utils.unescape(text),
                         **options)
     return [node], []
 
@@ -23,11 +34,17 @@ TREF_TO_XREF = {
     'FSUBR': 'func',
     'TYPE': 't',
     'PRIMTYPE': 't',
-    # 'ATOM': ...
+
+    'ATOM': 'literal',
+    'PNAME': 'literal',
 }
 
-def tref_role(role, rawtext, text, lineno, inliner,
-              options={}, content=[]):
+# pylint: disable=R0913
+def tref_role(role, rawtext, text, lineno, inliner, options=None, content=None):
+    """Marks an inline typed reference.
+    """
+    options = options or {}
+    content = content or []
     parts = text.split(' ', 1)
     typename = parts[0]
 
@@ -68,12 +85,19 @@ def tref_role(role, rawtext, text, lineno, inliner,
     return result, []
 
 
-class SectionNumfigFormat:
+class SectionNumfigFormat(object):
+    # pylint: disable=R0903
+
+    def __str__(self):
+        # our trick doesn't work in LaTeX mode...
+        return 'section {number}'
+
     # sneaky!
     def __contains__(self, arg):
         # this is called to test our formatting capabilities
         return arg in ('{name}', 'number')
 
+    # pylint: disable=R0201
     def format(self, number, name=None):
         dots = number.count('.')
         kind = 'section' if dots else 'chapter'
@@ -94,13 +118,13 @@ class ReplaceClassDirective(Directive):
                 'Invalid context: the "%s" directive can only be used within '
                 'a substitution definition.' % self.name)
         try:
-             class_value = directives.class_option(self.arguments[0])
+            class_value = directives.class_option(self.arguments[0])
         except ValueError:
             raise self.error(
                 'Invalid class attribute value for "%s" directive: "%s".'
                 % (self.name, self.arguments[0]))
         self.assert_has_content()
-        text = '\n'.join(self.content)
+        text = os.linesep.join(self.content)
         element = nodes.Element(text)
         self.state.nested_parse(self.content, self.content_offset,
                                 element)
@@ -117,7 +141,7 @@ class ReplaceClassDirective(Directive):
                 return [
                     self.state_machine.reporter.error(
                         'Error in "%s" directive: may contain a single paragraph '
-                        'only.' % (self.name), line=self.lineno) ]
+                        'only.' % (self.name), line=self.lineno)]
         if node:
             newnode = nodes.inline('', '', *node.children, classes=class_value)
             return messages + [newnode]
@@ -129,3 +153,4 @@ def setup(app):
     app.add_role('tref', tref_role)
     # app.add_directive('macro', MacroDirective)
     app.add_directive('replace-class', ReplaceClassDirective)
+    app.add_directive('jenga', JengaDiagramDirective)

@@ -1,3 +1,5 @@
+.. _ch-structured-objects:
+
 Chapter 7. Structured Objects
 =============================
 
@@ -81,16 +83,12 @@ with ``PUT``.
 a “shorthand” call to ``NTH`` or ``PUT``, depending on whether it is
 given one or two arguments, respectively [unless the ``APPLYTYPE`` of
 ``FIX`` is changed]. That is, ``EVAL`` considers the following two to be
-identical:
-
-::
+identical::
 
     <fix structured>
     <NTH structured fix>
 
-and these:
-
-::
+and these::
 
     <fix structured object>
     <PUT structured fix object>
@@ -98,9 +96,7 @@ and these:
 [However, the compiler (Lebling, 1979) cannot generate efficient code
 from the longer forms unless it is sure that *fix* is a ``FIX`` (section
 9.10). The two constructs are not identical even to ``EVAL``, if the
-order of evaluation is significant: for example, these two:
-
-::
+order of evaluation is significant: for example, these two::
 
     <NTH .X <LENGTH <SET X .Y>>>        <<LENGTH <SET X .Y>> .X>
 
@@ -270,9 +266,7 @@ neither has been ``EVALTYPE``\ d nor has a built-in ``EVALTYPE``, as do
 ``QUOTE`` is an ``FSUBR`` of one argument which returns its argument
 unevaluated. ``READ`` and ``PRINT`` understand the character ``'``
 (single-quote) as an abbreviation for a call to ``QUOTE``, the way
-period and comma work for ``LVAL`` and ``GVAL``. Examples:
-
-::
+period and comma work for ``LVAL`` and ``GVAL``. Examples::
 
     <+ 1 2>$
     3
@@ -304,9 +298,7 @@ effect (in the absence of errors), and the intention is more apparent.
 whereas ``(!.L)`` doesn’t; see section 7.7.] ``STRING``, on the other
 hand, produces effect very different from literal ``STRING``\ s.
 
-Examples:
-
-::
+Examples::
 
     <LIST 1 <+ 2 3> ABC>$
     (1 5 ABC)
@@ -353,9 +345,7 @@ the ``'`` in place.]
 ``IUVECTOR`` and ``ISTRING`` again have limitations on what *expression*
 may ``EVAL`` to; again, see sections 7.6.5 and 7.6.6.
 
-Examples:
-
-::
+Examples::
 
     <ILIST 5 6>$
     (6 6 6 6 6)
@@ -374,9 +364,7 @@ Sometimes the need arises to create a ``FORM`` without ``EVAL``\ ing it
 or making it the body of a ``FUNCTION``. In such cases the ``SUBR``\ s
 ``FORM`` and ``IFORM`` (“implicit form”) can be used (or ``QUOTE`` can
 be used). They are entirely analogous to ``LIST`` and ``ILIST``.
-Example:
-
-::
+Example::
 
     <DEFINE INC-FORM (A)
             <FORM SET .A <FORM + 1 <FORM LVAL .A>>>>$
@@ -407,9 +395,7 @@ element. The ``SUBR``\ s which work only on objects of ``PRIMTYPE``
 changes *head* so that ``<REST head>`` is *tail* (actually
 ``<CHTYPE tail LIST>``), then evaluates to *head*. Note that this
 actually changes *head*; it also changes anything having *head* as an
-element or a value. For example:
-
-::
+element or a value. For example::
 
     <SET BOW [<SET ARF (B W)>]>$
     [(B W)]
@@ -468,9 +454,7 @@ section *array* represents an object of such a ``PRIMTYPE``.)
 This is the opposite of ``REST``. It evaluates to *array*, with *fix*
 elements put back onto its front end, and changed to its ``PRIMTYPE``.
 *fix* is optional, 1 by default. If *fix* is greater than the number of
-elements which have been ``REST``\ ed off, an error occurs. Example:
-
-::
+elements which have been ``REST``\ ed off, an error occurs. Example::
 
     <SET ZOP <REST '![1 2 3 4] 3>>$
     ![4!]
@@ -490,9 +474,7 @@ elements which have been ``REST``\ ed off, an error occurs. Example:
 
 “``BACK``\ s up all the way” – that is, evaluates to *array*, with all
 the elements which have been ``REST``\ ed off put back onto it, and
-changed to its ``PRIMTYPE``. Example:
-
-::
+changed to its ``PRIMTYPE``. Example::
 
     <TOP .ZOP>$
     ![1 2 3 4!]
@@ -532,9 +514,7 @@ a garbage collection (section 22.4) **every** time it is used. It should
 be reserved for **very special** circumstances, such as where the
 pattern of shared elements is terribly important.
 
-Example:
-
-::
+Example::
 
     <SET A '![1]>$
     ![1!]
@@ -589,9 +569,7 @@ Note: the ``SUBR`` ``SORT`` calls the ``RSUBR`` (chapter 19) ``SORTX``;
 if the ``RSUBR`` must be loaded, you may see some output from the loader
 on your terminal.
 
-Examples:
-
-::
+Examples::
 
     <SORT <> <SET A <IUVECTOR 500 '<RANDOM>>>>$
     ![...!]
@@ -672,9 +650,7 @@ The following ``SUBR``\ s work on ``PRIMTYPE`` ``UVECTOR``\ s along.
     <UTYPE primtype-uvector>
 
 (“uniform type”) evaluates to the ``TYPE`` of every element in its
-argument. Example:
-
-::
+argument. Example::
 
     <UTYPE '![A B C]>$
     ATOM
@@ -697,9 +673,7 @@ the elements of *uv* can remain the same through the whole procedure.
 ``CHUTYPE`` actually changes *uv*; hence **all** references to that
 object will reflect the change. This is quite different from ``CHTYPE``.
 
-Examples:
-
-::
+Examples::
 
     <SET LOST <IUVECTOR 2>>$
     ![#LOSE *000000000000* #LOSE *000000000000*!]
@@ -818,9 +792,7 @@ specify the byte size and the second to specify the number of elements.
 The third argument is repeatedly evaluated to generate ``FIX``\ es that
 become elements of the ``BYTES`` (if it is omitted, bytes filled with
 zeros are generated). The analog to ``UTYPE`` is ``BYTE-SIZE``.
-Examples:
-
-::
+Examples::
 
     <BYTES 3 <+ 2 2> 9 -1>$
     #3 {4 1 7}
@@ -858,9 +830,7 @@ objects from elements of other structured objects.
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The representation of an object of ``TYPE`` ``SEGMENT`` is the
-following:
-
-::
+following::
 
     !< func arg-1 arg-2 ... arg-N !>
 
@@ -869,9 +839,7 @@ where the second ``!`` (exclamation-point) is optional, and *fun* and
 is, anything). The pointed brackets can be implicit, as in the period
 and comma notation for ``LVAL`` and ``GVAL``.
 
-All of the following are ``SEGMENT``\ s:
-
-::
+All of the following are ``SEGMENT``\ s::
 
     !<3 .FOO>    !.FOO    !,FOO
 
@@ -928,23 +896,17 @@ is similar to ``CONS`` and is the principle reason why ``PRIMTYPE``
 ``LIST``\ s have their structures more easily varied than ``PRIMTYPE``
 ``VECTOR`` or ``UVECTOR``.
 
-Examples:
-
-::
+Examples::
 
     .ARF$
     (B 3 4)
 
-This does not copy ARF:
-
-::
+This does not copy ARF::
 
     (1 2 !.ARF)$
     (1 2 B 3 4)
 
-These do:
-
-::
+These do::
 
     (1 !.ARF 2)              ;"not last element"$
     (1 B 3 4 2)
@@ -954,9 +916,7 @@ These do:
     (1 2 B 3 4)
 
 Note the following, which occurs because copying does **not** take
-place:
-
-::
+place::
 
     <SET DOG (A !.ARF)>$
     (A B 3 4)
@@ -979,9 +939,7 @@ changed too.
 
 When a ``SEGMENT`` appears as an element of a ``FORM``, the effect is
 approximately the same as if the elements of the ``EVAL`` of the
-``SEGMENT`` were in the ``FORM``. Example:
-
-::
+``SEGMENT`` were in the ``FORM``. Example::
 
     <SET A '![1 2 3 4]>$
     ![1 2 3 4!]
@@ -1028,9 +986,7 @@ give ``PRINT`` similar trouble: see chapters 12 and 15.)
 If *head* is a subset of *tail*, that is, if ``<REST tail fix>`` is the
 same object as ``<REST head 0>`` for some *fix*, then both *head* and
 *tail* will be “circular” (and this self-referencing) after the
-``PUTREST``. Example:
-
-::
+``PUTREST``. Example::
 
     <SET WALTZ (1 2 3)>$
     (1 2 3)
@@ -1045,9 +1001,7 @@ same object as ``<REST head 0>`` for some *fix*, then both *head* and
     <PUT s1:structured fix s2:structured>
 
 If *s1* is the same object as *s2*, then it will “contain” itself (and
-thus be self-referencing) after the ``PUT``. Examples:
-
-::
+thus be self-referencing) after the ``PUT``. Examples::
 
     <SET S <LIST 1 2 3>>        ;"or VECTOR"$
     (1 2 3)
