@@ -104,16 +104,16 @@ on.
 
 There are no "practice problems"; you are assumed to be learning MDL 
 for some purpose, and your work in achieving that purpose will be more 
-useful and motivated than artificial problems. In several cases, the 
+useful and motivating than artificial problems. In several cases, the 
 examples contain illustrations of important points which are not 
-covered in the text. Ignore examples as your peril.
+covered in the text. Ignore examples at your peril.
 
 This document does not assume knowledge of any specific programming
-language on the [sic] your part. However, "computational literacy" is
-assumed: you should have written at least one program before. Also
-very little familiarity is assumed with the interactive time-sharing
-operating systems under which MDL runs -- ITS, Tenex, and Tops-20 --
-namely just file and user naming conventions.
+language on your part. However, "computational literacy" is assumed:
+you should have written at least one program before. Also very little
+familiarity is assumed with the interactive time-sharing operating
+systems under which Muddle runs -- ITS, Tenex, and Tops-20 -- namely
+just file and user naming conventions.
 
 ### Notation
 
