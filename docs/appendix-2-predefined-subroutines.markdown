@@ -164,26 +164,26 @@ tells whether argument is applicable (predicate)
 APPLY (APPLICABLE "TUPLE") ARGUMENTS
  $DECL ((VALUE) ANY
         (APPLICABLE) APPLICABLE (ARGUMENTS) TUPLE)
-````
+```
 applies first argument to the other arguments
 
-````
+```
 APPLYTYPE (TYPE "OPTIONAL" HOW)
  #DECL ((VALUE <OR ATOM APPLICABLE '#FALSE ()>
         (TYPE) ATOM (HOW) <OR ATOM APPLICABLE>)
-````
+```
 specifies or returns how a data type is applied
 
-````
+```
 ARGS (CALL)
  #DECL ((VALUE) TUPLE
         (CALL) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
-````
+```
 returns arguments of a given un-returned Subroutine call
 
-````
+```
 ASCII (CODE-OR-CHARACTER)
  #DECL ((VALUE) <OR CHARACTER FIX>
         (CODE-OR-CHARACTER) <OR FIX CHARACTER>)
-````
+```
 returns `CHARACTER` with given ASCII code or vice versa
