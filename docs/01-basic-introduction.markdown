@@ -79,7 +79,7 @@ a <kbd>^G</kbd>, type the characters
 (This is discussed more fully far below, in section 16.4.)
 
 Typing <kbd>^S</kbd> (<kbd>CTRL</kbd>+<kbd>S</kbd>) causes MDL to 
-**throw away** what it is currently doing and return a normal 
+**throw away** what it is currently doing and return to a normal 
 "listening" state. (In the Tenex and Tops-20 versions, <kbd>^O</kbd> 
 also should have the same effect.) <kbd>^S</kbd> is generally most 
 useful for aborting infinite loops and similar terrible things. 
