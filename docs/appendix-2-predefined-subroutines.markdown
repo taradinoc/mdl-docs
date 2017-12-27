@@ -529,3 +529,254 @@ FILE-EXISTS? ("TUPLE" FILE-NAME)
         (FILE-NAME) TUPLE)
 ```
 tests for existence of a file (predicate)
+
+```
+FILE-LENGTH (INCH)
+ #DECL ((VALUE) FIX
+        (INCH) CHANNEL)
+```
+returns the system-provided length of a file open on an input `CHANNEL`
+
+```
+FILECOPY ("OPTIONAL" (INCH .INCHAN) (OUCH .OUTCHAN))
+ #DECL ((VALUE) FIX
+        (INCH OUCH) CHANNEL)
+```
+copies characters from one `CHANNEL` to another until end-of-file on the input `CHANNEL`
+
+```
+FIX (NUMBER)
+ #DECL ((VALUE) FIX
+        (NUMBER) <OR FLOAT FIX>
+```
+returns integer part of a number (arithmetic)
+
+```
+FLATSIZE (ANY MAX "OPTIONAL" (RADIX 10))
+ #DECL ((VALUE) <OR FIX '#FALSE ()>
+        (ANY) ANY (MAX RADIX) FIX)
+```
+returns number of characters needed to PRIN1 an object, if not greate than given maximum.
+
+```
+FLOAD ("TUPLE" FILE-NAME-AND-LOOK-UP)
+ #DECL ((VALUE) '"DONE"
+        (FILE-NAME-AND-LOOK-UP) TUPLE)
+```
+reads and evaluates all object in a file
+
+```
+FLOAT (NUMBER)
+ #DECL ((VALUE) FLOAT
+        (NUMBER) <OR FIX FLOAT>)
+```
+returns floating-point value of a number (arithmetic)
+
+```
+FORM ("TUPLE" ELEMENTS)
+ #DECL ((VALUE) FORM
+        (ELEMENTS) TUPLE
+```
+creates a `FORM` from explicit arguments
+
+```
+FRAME ("OPTIONAL" (FRAME .LERR\ !-INTERRUPTS))
+ #DECL ((VALUE) FRAME
+        (FRAME) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+returns a previous Subroutine call
+
+```
+FREE-RUN (PROCESS)
+ #DECL ((VALUE) <OR PROCESS '#FALSE ()>
+        (PROCESS) PROCESS)
+```
+causes a `PROCESS` to leave single-step mode
+
+```
+FREEZE (STRUCTURE)
+ #DECLINE ((VALUE) <OR VECTOR UVECTOR STRING BYTES>
+           (STRUCTURE) <OR <PRIMTYPE VECTOR> <PRIMTYPE TUPLE> <PRIMTYPE UVECTOR>
+                           <PRIMTYPE STRING> <PRIMTYPE BYTES>>)
+```
+makes a copy of an arugment in non-moving garbage-collected space
+
+```
+FUNCT (FRAME)
+ #DECL ((VALUE) ATOM
+        (FRAME) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+returns Subroutine name of a given previous Subroutine call
+
+FUNCTION ("ARGS" ARGS)
+ #DECL ((VALUE) FUNCTION
+        (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
+```
+creates a `FUNCTION`
+
+```
+G=? (NUMBER-1 NUMBER-2)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
+```
+tells whether first argument is greater than or equal to the second (predicate)
+
+```
+G? (NUMBER-1 NUMBER-2)
+ #DECL ((VALUE) <OR 'T' '#FALSE ()>
+        (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
+```
+tells whether first argument is greater than the second (predicate)
+
+```
+GASSIGNED? (ATOM)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (ATOM) ATOM)
+```
+tells whether an `ATOM` has a global value (predicate)
+
+```
+GBOUND? (ATOM
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (ATOM) ATOM)
+```
+tells whether an `ATOM` has a global value (predicate)
+
+```
+GC ("OPTIONAL" MIN (EXHAUSTIVE? <>) MS-FREQ)
+ #DECL ((VALUE) FIX
+        (MIN MS-FREQ) FIX (EXHAUSTIVE?) <OR FALSE ANY>)
+```
+causes a garbage collection and changes garbage-collection parameters
+
+```
+GC-DUMP (ANY PRINTB)
+ #DECL ((VALUE) <OR ANY <UVECTOR <PRIMTYPE WORD>>>
+        (ANY) ANY (PRINTB) <OR CHANNEL FALSE>)
+```
+dumps an object so that it can be reproduced exactly
+
+```
+GC-MON ("OPTIONAL" SWITCH)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (SWITCH) <OR FALSE ANY>)
+```
+turns garbage-collection monitoring off or on
+
+```
+GC-READ (READB "OPTIONAL" (EOF-ROUTINE '<ERROR ...>))
+ #DECL ((VALUE) ANY
+        (READB) CHANNEL (EOF-ROUTINE) ANY)
+```
+inputs an object that was previously `GC-DUMP`ed
+
+```
+GDECL ("ARGS" ARGS)
+ #DECL ((VALUE) ANY
+        (ARGS <LIST [REST <LIST [REST ATOM]> <OR ATOM FORM>]>)
+```
+declates the type/structure of the global value of `ATOM`s
+
+```
+GET (ITEM INDICATOR "OPTIONAL" (IF-NONE <>))
+ #DECL ((VALUE) ANY
+        (ITEM <OR STRUCTURED ANY> (INDICATOR) <OR FIX OFFSET ANY> (IF-NONE) ANY)
+```
+does `NTH` or `GETPROP`
+
+```
+GET-DECL (ATOM-OR-OFFSET)
+ #DECL ((VALUE) <OR ATOM FORM '#FALSE ()>
+        (ATOM-OR-OFFSET) <OR LOCD OFFSET>)
+```
+gets the type declaration for an `ATOM`'s value or an `OFFSET`
+
+```
+GETBITS (FROM FIELD)
+ #DECL ((VALUE) WORD
+        (FROM ) <OR <PRIMTYPE WORD> <PRIMTYPE STORAGE>> (FIELD) BITS)
+```
+returns a bit field of a machine word or `STORAGE` address
+
+```
+GETL (ITEM INDICATOR "OPTIONAL" (IF-NONE <>))
+ #DECL ((VALUE <OR LOCATIVE LOCAS ANY>
+        (ITEM) <OR STRUCTURED ANY> (INDICATOR) <OR FIX OFFSET ANY> (IF-NONE) ANY)
+```
+does `AT` or `GETPL`
+
+```
+GETPL (ITEM INDICATOR "OPTIONAL" (IF-NONE <>))
+ #DECL ((VALUE) <OR LOCAS ANY>
+        (ITEM INDICATOR IF-NONE) ANY)
+```
+returns a locative to an association
+
+```
+GETPROP (ITEM INDICATOR "OPTIONAL" (IF-NONE <>))
+ #DECL ((VALUE) ANY
+        (ITEM INDICATOR IF-NONE) ANY)
+```
+returns the value associated with an item under an indicator
+
+```
+GLOC (ATOM "OPTIONAL" (MAKE-SLOT <>))
+ #DECL ((VALUE) LOCD)
+        (ATOM) ATOM (MAKE-SLOT) <OR FALSE ANY>)
+```
+returns a locative to thje global-value cell of an `ATOM`
+
+```
+GO (LABEL)
+ #DECL ((VALUE) ANY
+        (LABEL) <OR ATOM TAG>)
+```
+goes to a label and continues evaluation from there
+
+```
+GROW (U/VECTOR END BEG)
+ #DECL ((VALUE)    <OR <PRIMTYPE VECTOR> <PRIMTYPE UVECTOR>
+        (U/VECTOR) <OR <PRIMTYPE VECTOR> <PRIMTYPE UVECTOR>> (END BEG) FIX)
+```
+increases the size of a vector or uniform vector
+
+```
+GUNASSIGN (ATOM)
+ #DECL ((VALUE ATOM) ATOM)
+```
+causes an ATOM to have no global value
+
+```
+GVAL (ATOM)
+ #DECL ((VALUE) ANY
+        (ATOM) ATOM)
+```
+returns the global value of an `ATOM`
+
+```
+HANDLER (IHEADER HANDLER "OPTIONAL" (PROCESS #PROCESS 0))
+ #DECL ((VALUE) HANDLER
+        (IHEADER) IHEADER (HANDLER) <OR HANDLER APPLICABLE> (PROCESS) PROCESS)
+```
+creates an interrupter `HANDLER`
+
+```
+HANG ("OPTIONAL" (UNHANG <>))
+ #DECL ((VALUE) ANY
+        (UNHANG) ANY)
+```
+Does nothing, interruptibly, potentially forever
+
+```
+IBYTES (SIZE LENGTH "OPTIONAL" (ELEMENT 0))
+ #DECL ((VALUE) BYTES
+        (SIZE LENGTH) FIX (ELEMENT) ANY)
+```
+creates a byte-sized string from implicit arguments
+
+```
+IFORM (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
+ #DECL ((VALUE FORM
+        (LENGTH FIX ELEMENT) ANY)
+```
+creates a `FORM` from implicit arguments
