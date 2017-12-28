@@ -780,3 +780,367 @@ IFORM (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
         (LENGTH FIX ELEMENT) ANY)
 ```
 creates a `FORM` from implicit arguments
+
+```
+ILIST (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
+ #DECL ((VALUE) LIST
+        (LENGTH) DIX (ELEMENT) ANY)
+```
+creates a `LIST` from implicit arguments
+
+```
+IMAGE (CODE "OPTIONAL" (CHANNEL .OUTCHAN))
+ #DECL ((VALUE CODE) FIX
+        (CHANNEL) CHANNEL)
+```
+sends an image-mode characters via an output `CHANNEL`
+
+```
+IN (POINTER)
+ #DECL ((VALUE) ANY
+        (POINTER) LOCATIVE)
+```
+returns the object pointed to by a locative
+
+```
+INDEX (OFFSET)
+ #DECL ((VALUE) FIX
+        (OFFSET) OFFSET)
+```
+fetches the integral part of an `OFFSET`
+
+```
+INDICATOR (ASSOCIATION)
+ #DECL ((VALUE) ANY
+        (ASSOCIATION) ASSOC)
+```
+returns the "indicator" field of an association
+
+```
+INSERT (PNAME OBLIST)
+ #DECL ((VALUE) ATOM
+        (PNAME <OR ATOM STRING> (OBLIST) OBLIST)
+```
+adds an `ATOM` to an `OBLIST`
+
+```
+INT-LEVEL ("OPTIONAL" NEW-INT-LEVEL)
+ #DECL ((VALUE) FIX
+        (NEW-INT-LEVEL) FIX)
+```
+returns or sets current interrupt level
+
+```
+INTERRUPT (NAME "TUPLE" HANDLER-ARGS)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (NAME <OR STRING ATOM IHEADER> (HANDLER-ARGS) TUPLE)
+```
+causes an interrupt to occur
+
+```
+INTERRUPTS ()
+ #DECL ((VALUE) OBLIST)
+```
+returns an `OBLIST` on which interrupt names are kept
+
+```
+IPC-HANDLER (BODY TYPE OTHER-NAME-1 OTHER-NAME-2
+             "OPTIONAL" (MY-NAME-1 <UNAME>) (MY-NAME-2 <JNAME>))
+ #DECL ((VALUE) 'T
+        (BODY) <OR STRING VECTOR> (TYPE) FIX
+        (OTHER-NAME-1 OTHER-NAME-2 MY-NAME-2) STRING)
+```
+is the built-in handler for "IPC" (ITS version only)
+
+```
+IPC-OFF ()
+ #DECL ((VALUE) 'T)
+```
+stops listening on the IPC device (ITS version only)
+
+```
+IPC-ON ("OPTIONAL" (MY-NAME-1 <UNAME>) (MY-NAME-2 <JNAME>))
+ #DECL ((VALUE) 'T
+        (MY-NAME -1 MY-NAME-2) STRING)
+```
+listens on the IPC device (ITS version only)
+
+```
+ISTORAGE (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
+ #DECL ((VALUE) STORAGE
+        (LENGTH) FIX (ELEMENT) ANY)
+```
+creates a non-garbage-collected `STORAGE` from implicit arguments
+
+```
+ISTRING (LENGTH "OPTIONAL" (ELEMENT !\^@))
+ #DECL ((VALUE) STRING
+        (LENGTH) FIX (ELEMENT) ANY)
+```
+creates a character-string from implicit arguments
+
+```
+ITEM (ASSOCIATION)
+ #DECL ((VALUE) ANY
+        (ASSOCIATION) ASSOC)
+```
+returns the "item" field of an association
+
+```
+ITUPLE (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
+ #DECL ((VALUE) TUPLE
+        (LENGTH) FIX (ELEMENT) ANY)
+```
+creates a `TUPLE` from implicit arguments
+
+```
+IUVECTOR (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
+ #DECL ((VALUE) UVECTOR
+        (LENGTH) FIX (ELEMENT) ANY)
+```
+creates a UVECTOR from implicit arguments
+
+```
+IVECTOR (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
+ #DECL ((VALUE) VECTOR
+        (LENGTH) FIX (ELEMENT) ANY)
+```
+creates a `VECTOR` from implicit arguments
+
+```
+JNAME ()
+ #DECL ((VALUE) STRING)
+```
+returns the "job name" of MDL's process
+
+```
+L=? (NUMBER-1 NUMBER-2)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
+```
+tells whether the first argument is less than or equal to second (predicate)
+
+```
+L? (NUMBER-1 NUMBER-2)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
+```
+tells whether first argument is less than second (predicate)
+
+```
+LEAL? (STACK-OBJECT)
+ #DECL ((VALUE <OR 'T '#FALSE ()>
+        (STACK-OBJECT) ANY)
+```
+tells whether argument (which might live on the control stack) is still legal (predicate)
+
+```
+LENGTH (OBJECT)
+ #DECL ((VALUE) FIX
+        (OBJECT) STRUCTURED)
+```
+returns the number of elements in a structure
+
+```
+LENGTH? (OBJECT MAX)
+ #DECL ((VALUE <OR FIX '#FALSE ()>
+        (OBJECT) STRUCTURED (MAX) FIX)
+```
+tells whether length of structure is less than or equal to an interger (predicate)
+
+```
+LINK (EXPR PNAME "OPTIONAL" (OBLIST <` .OBLIST>))
+ #DECL ((VALUE EXPR) ANY
+        (PNAME) STRING (OBLIST) OBLIST)
+```
+creates a symbolic `LINK` in any expression for `READ`ing
+
+```
+LIST ("TUPLE" ELEMENTS)
+ #DECL ((VALUE) LIST
+        (ELEMENTS) TUPLE)
+```
+creates a `LIST` from explicit arguments
+
+```
+LISTEN ("TUPLE" INFO)
+ #DECL ((VALUE) ANY
+        (INFO) TUPLE)
+```
+stops and informs user that MDL is listening
+
+```
+LLOC (ATOM "OPTIONAL" ENV)
+ #DECL ((VALUE) LOCD
+        (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+returns a locative to the local-value cell of an `ATOM`
+
+```
+LOAD (CHANNEL "OPTIONAL" (LOOK-PU .OBLIST))
+ #DECL ((VALUE '"DONE"
+        (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>)
+```
+reads and evaluates all objects via an input `CHANNEL`
+
+```
+LOCATIVE? (OBJECT)
+ #DECL ((VALUE <OR 'T '#FALSE ()>
+        (OBJECT) ANY)
+```
+tells whether an object is a locative (predicate)
+
+```
+LOG (NUMBER)
+ #DECL ((VALUE) FLOAT
+        (NUMBER) <OR FIX FLOAT>)
+```
+returns natural logarithm of a number (arithmetic)
+
+```
+LOGOUT ()
+ #DECL ((VALUE) '#FALSE ())
+```
+logs out of the operating system (useful for background processes)
+
+```
+LOOKUP (PNAME OBLIST)
+ #DECL ((VALUE) <OR ATOM '#FALSE ()>
+        (PNAME) STRING (OBLIST) OBLIST)
+```
+returns an `ATOM` found on a given `OBLIST`
+
+```
+LPARSE ("OPTIONAL"
+        (STRING .PARSE-STRING) (RADIX 10) (LOOK-UP .OBLIST) PARSE-TABLE LOOK-AHEAD)
+ #DECL ((VALUE) LIST
+        (STRING) STRING (RADIX) FIX (PARSE-TABLE) VECTOR (LOOK-AHEAD) CHARACTER
+        (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>_
+```
+returns a `LIST` of the object parsed from a `STRING` (sections 7.6.6.3, 15.7.2, 17.1.3)
+
+```
+LSH (WORD AMOUNT)
+ #DECL ((VALUE) WORD
+        (WORD) <PRIMTYPE WORD> (AMOUNT) FIX)
+```
+shifts bits in a machine word
+
+```
+LVAL (ATOM "OPTIONAL" ENV)
+ #DECL ((VALUE) ANY
+        (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+returns the local value of an `ATOM`
+
+```
+MAIN ()
+ #DECL ((VALUE) PROCESS)
+```
+returns `#PROCESS 1` (the main `PROCESS`)
+
+```
+MANIFEST ("TUPLE" ATOMS)
+ #DECL ((VALUE 'T
+        (ATOMS) <TUPLE [REST ATOM]>)
+```
+declares the global values of `ATOM`s to be constant
+
+```
+MANIFEST? (ATOM)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (ATOM) ATOM)
+```
+tells whether the global value of an `ATOM` is a constant (predicate)
+
+```
+MAPF (FINAL-FN LOOP-FCN "TUPLE" STRUCTURE)
+ #DECL ((VALUE) ANY
+        (FINAL-FCN) <OR APPLICABLE FALSE> (LOOP-FCN) APPLICABLE
+        (STRUCTURES) <TUPLE [REST STRUCTURED]>)
+```
+maps function onto elements of structures
+
+```
+MAPLEAVE ("OPTIONAL" (VAL T))
+ #DECL (
+        (VAL) ANY)
+```
+leaves the most recent `MAPF/R` with a value
+
+```
+MAPR (FINAL-FCN LOOP-FCN "TUPLE" STRUCTURES)
+ #DECL ((VALUE) ANY
+        (FINAL-FCN) <OR APPLICABLE FALSE> (LOOP-FCN) APPLICABLE
+        (STRUCTURES) <TUPLE [REST STRUCTURED]>)
+```
+maps function onto `REST`s of structures
+
+```
+MAPRET ("TUPLE" ELEMENTS)
+ #DECL (
+        (ELEMENTS) TUPLE)
+```
+returns a variable number of objects to the current `MAPF/R`
+
+```
+MAPSTOP ("TUPLE" ELEMENTS)
+ #DECL (
+        (ELEMENTS) TUPLE)
+```
+`MAPRET`s, then stops looping of `MAPF/R` and causes application
+
+```
+MAX ("TUPLE" NUMBERS)
+ #DECL ((VALUE) <OR FIX FLOAT>
+        (NUMBERS) <TUPLE [REST <OR FIX FLOAT>]>)
+```
+returns the greatest of its arguments (arithmetic)
+
+```
+ME ()
+ #DECL ((VALUE) PROCESS)
+```
+returns the current `PROCESS`
+
+```
+MEMBER (OBJECT STRUCTURE)
+ #DECL ((VALUE) <OR STRUCTURED '#FALSE ()>
+        (OBJECT) ANY (STRUCTURE) STRUCTURED)
+```
+tells whether an object is "structurally" equal to some elements of a structure (predicate)
+
+```
+MEMQ (OBJECT STRUCTURE)
+ #DECL ((VALUE) <OR STRUCTURED '#FALSE ()>
+        (OBJECT) ANY (STRUCTURE) STRUCTURED)
+```
+tells whether an object is "exactly" equal to some element of a structure (predicate)
+
+```
+MIN ("TUPLE") NUMBERS)
+ #DECL ((VALUE) <OR FIX FLOAT>
+        (NUMBERS) <TUPLE [REST <OR FIX FLOAT>]>)
+```
+returns the least of its arguments (arithmetic)
+
+```
+MOBLIST "NAME "OPTIONAL" (LENGTH 13))
+ #DECL ((VALUE) OBLIST
+        (NAME) ATOM (LENGTH) FIX)
+```
+creates a gets an `OBLIST`
+
+```
+MOD (NUMBER MODULUS)
+ #DECL ((VALUE FIX
+        (NUMBER MODULUS) FIX)
+```
+returns number-theoretic remainder (fixed-point residue) (arithmetic)
+
+```
+MONAD? (OBJECT)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (OBJECT) ANY)
+```
+tells whether an object is either unstructured or an empty structure (predicate)
