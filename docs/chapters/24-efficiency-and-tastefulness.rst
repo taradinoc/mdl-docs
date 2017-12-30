@@ -1,7 +1,7 @@
-Chapter 24. Efficiency and Tastefulness
+Efficiency and Tastefulness
 =======================================
 
-24.1. Efficiency
+Efficiency
 ----------------
 
 Actually, you make MDL programs efficient by thinking hard about what
@@ -87,7 +87,7 @@ the same thing. However, the ``REPEAT`` or ``PROG`` will be slower if it
 has an ``ACTIVATION`` that is ``SPECIAL`` or used other than by
 ``RETURN`` or ``AGAIN``.
 
-24.1.1. Example
+Example
 ~~~~~~~~~~~~~~~
 
 There follows an example of a ``FUNCTION`` that does many things wrong.
@@ -168,7 +168,7 @@ conditional::
           .Y>
     "DONE">
 
-24.2. Creating a LIST in Forward Order
+Creating a LIST in Forward Order
 --------------------------------------
 
 If you must create the elements of a ``LIST`` in sequence from first to
@@ -192,7 +192,7 @@ Here, ``.LAST`` always points to the current last element of the
 ``LIST``. Because of the order of evaluation, the ``<SET LAST ...>``
 could also be written ``<PUTREST .LAST (SET LAST (.NEW)>>``.
 
-24.3. Read-only Free Variables
+Read-only Free Variables
 ------------------------------
 
 If a Function uses the value of a free variable
@@ -208,7 +208,7 @@ an *unmanifest* is referenced more than twice. Example::
             #DECL ((VALUE) VECTOR (THINGS DB) <UNSPECIAL <PRIMTYPE LIST>>)
             <MAPF ,VECTOR <FUNCTION (T) <MEMQ .T .DB>> .THINGS>>
 
-24.4. Global and Local Values
+Global and Local Values
 -----------------------------
 
 In the interpreter the sequence ``,X .X ,X .X`` is slower than
@@ -218,7 +218,7 @@ In the interpreter the sequence ``,X .X ,X .X`` is slower than
 to the ``LVAL`` will be compiled away (made into control stack
 references).
 
-24.5. Making Offsets for Arrays
+Making Offsets for Arrays
 -------------------------------
 
 It is often the case that you want to attach some meaning to each
@@ -232,7 +232,7 @@ Thirdly, to establish the ``GVAL``\ s, both the interpreter and the
 compiler will be happier with ``<SETG name offset>`` rather than
 ``<DEFINE name ("TUPLE" T) <offset !.T>>``.
 
-24.6. Tables
+Tables
 ------------
 
 There are several ways in MDL to store a table, that is, a collection of
@@ -264,7 +264,7 @@ time.) The number of hashing buckets can be chosen for best efficiency.
 Duplicates are eliminated by ``=?`` testing. MAPF/R can be used to find
 all the entries in the table.
 
-24.7. Nesting
+Nesting
 -------------
 
 The beauty of deeply-nested control structures in a single ``FUNCTION``

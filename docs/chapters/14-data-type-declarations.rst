@@ -1,6 +1,6 @@
 .. _ch-data-type-declarations:
 
-Chapter 14. Data-type Declarations
+Data-type Declarations
 ==================================
 
 In MDL, it is possible to declare the permissible range of “types”
@@ -44,7 +44,7 @@ The full specification of the ``RSUBR`` ``DECL`` will be given in
 section 14.9. The ``RSUBR`` ``DECL`` is useful in only one place: as an
 element of an ``RSUBR`` or ``RSUBR-ENTRY``.
 
-14.1. Patterns
+Patterns
 --------------
 
 The simplest possible Pattern is to say that a value is exactly some
@@ -254,7 +254,7 @@ by default – makes only one reference to the current binding of
 ``OUTCHAN`` and stuffs the result in a slot on the stack for use within
 the Function.
 
-14.2. Examples
+Examples
 --------------
 
 ::
@@ -354,7 +354,7 @@ The above declares ``L`` and ``N`` to be ``UNSPECIAL``, says that ``.N``
 is a ``FIX``, and says that ``.L``, along with the value returned, is a
 ``LIST`` of any length composed entirely of ``FIX``\ es.
 
-14.3. The DECL Syntax
+The DECL Syntax
 ---------------------
 
 This section gives quasi-BNF productions for the MDL ``DECL`` syntax. In
@@ -391,7 +391,7 @@ the following table MDL type-specifiers are distinguished *in this way*.
 
     opt     ::=     OPT | OPTIONAL
 
-14.4. Good DECLs
+Good DECLs
 ----------------
 
 There are some rules of thumb concerning “good” ``DECL``\ s. A “good”
@@ -424,10 +424,10 @@ it. Second, the amount of storage saved in the ``DECL``\ s of
 ``FUNCTION``\ s and so on is large, not to mention the effort of typing
 in and keeping up to date several instances of the full ``DECL``.
 
-14.5. Global DECLs
+Global DECLs
 ------------------
 
-15.4.1. GDECL and MANIFEST
+GDECL and MANIFEST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are two ways to declare ``GVAL``\ s for the ``DECL``-checking
@@ -474,7 +474,7 @@ either:
 2. the old value is ``==?`` to the new value; or
 3. ``.REDEFINE`` is not ``FALSE``.
 
-14.5.2. MANIFEST? and UNMANIFEST
+MANIFEST? and UNMANIFEST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -490,7 +490,7 @@ returns ``T`` if *atom* is ``MANIFEST``, ``#FALSE ()`` otherwise.
 removes the ``MANIFEST`` of the global value of each of its arguments so
 that the value can be changed.
 
-14.5.3. GBOUND?
+GBOUND?
 ~~~~~~~~~~~~~~~
 
 ::
@@ -502,7 +502,7 @@ is, if it has ever been ``SETG``\ ed, ``MANIFEST``, ``GDECL``\ ed, or
 ``GLOC``\ ed (chapter 12) with a true second argument), ``#FALSE ()``
 otherwise.
 
-14.6. NEWTYPE (again)
+NEWTYPE (again)
 ---------------------
 
 ``NEWTYPE`` gives the programmer another way to ``DECL`` objects. The
@@ -558,13 +558,13 @@ Now ``<CHTYPE .A OOPS>`` will cause an error. Unfortunately, you must
     <CHTYPE <CHTYPE .A LIST> OOPS>$
     #OOPS (E 2.71828)
 
-14.7. Controlling DECL Checking
+Controlling DECL Checking
 -------------------------------
 
 There are several ``SUBR``\ s and ``FSUBR``\ s in MDL that are used to
 control and interact with the ``DECL``-checking mechanism.
 
-14.7.1. DECL-CHECK
+DECL-CHECK
 ~~~~~~~~~~~~~~~~~~
 
 This entire complex checking mechanism can get in the way during
@@ -590,7 +590,7 @@ global values. Attempts to ``CHTYPE`` an object to a ``NEWTYPE`` (if the
 ``NEWTYPE`` has the optional ``DECL``) are also checked. When ``DECL``
 checking is off, none of these checks is performed.
 
-14.7.2. SPECIAL-CHECK and SPECIAL-MODE
+SPECIAL-CHECK and SPECIAL-MODE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -610,7 +610,7 @@ either way) and returns the previous such declaration, or the current
 such declaration if no argument is given. The initial declaration used
 by default is ``UNSPECIAL``.
 
-14.7.3. GET-DECL and PUT-DECL
+GET-DECL and PUT-DECL
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``GET-DECL`` and ``PUT-DECL`` are used to examine and change the current
@@ -652,7 +652,7 @@ Pattern. ``PUT-DECL`` is normally used in debugging, to change the
 it is not legal to ``PUT-DECL`` a “Pattern” of ``MANIFEST`` or
 ``#FALSE ()``.
 
-14.7.4. DECL?
+DECL?
 ~~~~~~~~~~~~~
 
 ::
@@ -666,7 +666,7 @@ specifically checks *any* against *Pattern*. For example::
     <DECL? '[1 2.0 3.0] '<VECTOR [REST FIX]>>$
     #FALSE ()
 
-14.8. OFFSET
+OFFSET
 ------------
 
 An ``OFFSET`` is essentially a ``FIX`` with a Pattern attached,
@@ -717,7 +717,7 @@ with the same ``INDEX`` as the argument, but with a new Pattern::
 An ``OFFSET`` is not a structured object, as this example should make
 clear.
 
-14.9. The RSUBR DECL
+The RSUBR DECL
 --------------------
 
 The ``RSUBR`` ``DECL`` is similar to the ``ATOM`` ``DECL``, except that

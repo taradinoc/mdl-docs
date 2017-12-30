@@ -1,4 +1,4 @@
-Chapter 21. Interrupts
+Interrupts
 ======================
 
 The MDL interrupt handling facilities provide the ability to say the
@@ -16,7 +16,7 @@ handling is a kind of parallel processing: a program can be divided into
 a “main-level” part and one or more interrupt handlers that execute only
 when conditions are ripe.
 
-21.1. Definitions of Terms
+Definitions of Terms
 --------------------------
 
 An **interrupt** is not an object in MDL, but rather a class of events,
@@ -72,7 +72,7 @@ supplied by the interrupt system. The number and meaning of the
 arguments depend on the name of the interrupt. In each ``HANDLER`` is an
 element telling in which ``PROCESS`` the action should be performed.
 
-21.2. EVENT
+EVENT
 -----------
 
 ::
@@ -103,7 +103,7 @@ associated with *name*, ``EVENT`` just returns it, ignoring the given
 If the interrupt is external, MDL arranges for the operating system to
 signal its occurrences.
 
-21.3. HANDLER (the SUBR)
+HANDLER (the SUBR)
 ------------------------
 
 ::
@@ -125,7 +125,7 @@ actions in the list will be performed.
 The processing of an interrupt’s actions can terminate prematurely if a
 handler calls the ``SUBR`` ``DISMISS`` (see below.)
 
-21.4. OFF
+OFF
 ---------
 
 ::
@@ -169,7 +169,7 @@ If *handler* was previously removed from its list, ``HANDLER`` will add
 it to the front of *iheader*\ ’s list of actions. Note that *process*
 cannot be specified.
 
-21.5. IHEADER and HANDLER (the TYPEs)
+IHEADER and HANDLER (the TYPEs)
 -------------------------------------
 
 Both these ``TYPE``\ s are of ``PRIMTYPE`` ``VECTOR``, but they do not
@@ -198,7 +198,7 @@ a picture and a Pattern, both purporting to show how they look::
              <HANDLER HANDLER <OR HANDLER IHEADER> APPLICABLE PROCESS>
              FIX>
 
-21.5.1. IHEADER
+IHEADER
 ~~~~~~~~~~~~~~~
 
 The elements of an ``IHEADER`` are as follows:
@@ -230,7 +230,7 @@ If you lose track of an ``IHEADER``, you can get it via the association:
    ``<EVENT "CLOCK" 0>`` returns the ``IHEADER``, creating it if there
    is no association.
 
-21.5.2. HANDLER
+HANDLER
 ~~~~~~~~~~~~~~~
 
 A ``HANDLER`` specifies a **particular** action for a **particular**
@@ -252,7 +252,7 @@ interrupt. The elements of a ``HANDLER`` are as follows:
    ``RESUMABLE``, and the stored ``PROCESS`` becomes ``RUNNING``, but no
    other ``PROCESS`` variables (for example ``RESUMER``) are changed.)
 
-21.6. Other SUBRs
+Other SUBRs
 -----------------
 
 ::
@@ -286,7 +286,7 @@ is effectively ``<PUT iheader 2 #LOSE 0>``. Actually the ``TYPE``
 ``LOSE`` is unimportant, but the ``0`` signfies that *iheader* is
 enabled.
 
-21.7. Priorities and Interrupt Levels
+Priorities and Interrupt Levels
 -------------------------------------
 
 At any given time there is a defined **interrupt level**. This is a
@@ -296,7 +296,7 @@ satisfied. Normal, non-interrupt programs operate at an interrupt level
 of 0 (zero.) An interrupt is processed at an interrupt level equal to
 the interrupt’s priority.
 
-21.7.1. Interrupt Processing
+Interrupt Processing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Interrupts “actually” only occur at well-defined points in time: during
@@ -324,7 +324,7 @@ and processing continues on what was left off (perhaps for no time
 duration); and (2) “acts as if” any queued interrupt occurrences
 actually occurred right then, in their original order of occurrence.
 
-21.7.2. INT-LEVEL
+INT-LEVEL
 ~~~~~~~~~~~~~~~~~
 
 The ``SUBR`` ``INT-LEVEL`` is used to examine and change the current
@@ -358,7 +358,7 @@ then the typeout will be
 
     LISTENING-AT-LEVEL I PROCESS p INT-LEVEL i
 
-21.7.3. DISMISS
+DISMISS
 ~~~~~~~~~~~~~~~
 
 ``DISMISS`` permits a handler to return an arbitrary value for an
@@ -372,7 +372,7 @@ is to the place interrupted from, and *value* is ignored. If *int-level*
 is omitted, the ``INT-LEVEL`` prior to the current interrupt is
 restored.
 
-21.8. Specific Interrupts
+Specific Interrupts
 -------------------------
 
 Descriptions of the characteristics of particular “built-in” MDL
@@ -401,7 +401,7 @@ interrupts occur to be handled through that ``IHEADER``.
    the operating system generates a screen-full interrupt for the
    terminal.
 
-21.8.1. “CHAR” received
+“CHAR” received
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 A handler for an input ``"CHAR"`` interrupt on a real terminal must take
@@ -463,7 +463,7 @@ Tops-20 versions.
 For any other flavor of ITS channel interrupt, a handler gets applied to
 only **one** argument, the ``CHANNEL``.
 
-21.8.2. “CHAR” wanted
+“CHAR” wanted
 ~~~~~~~~~~~~~~~~~~~~~
 
 A ``"CHAR"`` interrupt can be associated with an output ``CHANNEL`` open
@@ -477,7 +477,7 @@ character (and the operating-system buffer is empty). A handler gets
 applied to one argument, the ``CHANNEL``. Pseudo-terminals are not
 available in the Tenex and Tops-20 versions.
 
-21.8.3. “CHAR” for new line
+“CHAR” for new line
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A handler for an output ``"CHAR"`` interrupt on a real terminal must
@@ -492,7 +492,7 @@ subtle ways, for example, via ``IMAGE`` calls or special control
 characters. (The program can compensate by putting the proper line
 number into the ``CHANNEL``.)
 
-21.8.4. “GC”
+“GC”
 ~~~~~~~~~~~~
 
 ``"GC"`` occurs just **after** every garbage collection. Enabling this
@@ -520,7 +520,7 @@ collection: ``GC-READ``, ``BLOAT``, ``GROW``, ``LIST``, ``VECTOR``,
 ``PURE-PAGE-LOADER`` (pure storage was exhausted), or
 ``INTERRUPT-HANDLER`` (stack overflow, unfortunately).
 
-21.8.5. “DIVERT-AGC”
+“DIVERT-AGC”
 ~~~~~~~~~~~~~~~~~~~~
 
 ``"DIVERT-AGC"`` (“Automatic Garbage Collection”) occurs just **before**
@@ -536,7 +536,7 @@ satisfied, a garbage collection occurs anyway. ``AGC-FLAG`` is ``SET``
 to ``T`` while the handler is running, so that new storage requests do
 not try to cause a garbage collection.
 
-21.8.6. “CLOCK”
+“CLOCK”
 ~~~~~~~~~~~~~~~
 
 ``"CLOCK"``, when enabled, occurs every half second (the ITS
@@ -545,7 +545,7 @@ versions. It wants handlers which take no arguments. Example::
 
     <ON "CLOCK" <FUNCTION () <PRINC "TICK ">> 1>
 
-21.8.7. “BLOCKED”
+“BLOCKED”
 ~~~~~~~~~~~~~~~~~
 
 ``"BLOCKED"`` occurs whenever **any** ``PROCESS`` (not only the
@@ -564,7 +564,7 @@ character.
 
     <ON "BLOCKED" #FUNCTION ((IGNORE) <PRINC !\*>) 5>
 
-21.8.8. “UNBLOCKED”
+“UNBLOCKED”
 ~~~~~~~~~~~~~~~~~~~
 
 ``"UNBLOCKED"`` occurs whenever a ``$`` (\ ``ESC``\ ) is typed on a
@@ -572,7 +572,7 @@ terminal if a program was hanging and waiting for input, or when a TYI
 call (which see) is satisfied. A handler takes one argument: the
 ``CHANNEL`` via which the ``$`` or character is input.
 
-21.8.9. “READ” and “WRITE”
+“READ” and “WRITE”
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``"READ"`` and ``"WRITE"`` are associated with read or write references
@@ -615,7 +615,7 @@ arguments: the locative, the new value, and the ``FRAME``. For example::
     <OFF "WRITE" .B>$
     #IHEADER #LOCL 20
 
-21.8.10. “SYSDOWN”
+“SYSDOWN”
 ~~~~~~~~~~~~~~~~~~
 
 ``"SYSDOWN"`` occurs when a system-going-down or system-revived signal
@@ -625,7 +625,7 @@ is printed on the terminal. A handler takes one argument: a ``FIX``
 giving the number of thirtieths of a second until the shutdown (-1 for a
 reprieve).
 
-21.8.11. “ERROR”
+“ERROR”
 ~~~~~~~~~~~~~~~~
 
 In an effort to simplify error handling by programs, MDL has a facility
@@ -643,13 +643,13 @@ If an error occurs at an ``INT-LEVEL`` greater than or equal to that of
 the ``"ERROR"`` interrupt, real ``ERROR`` will be called, because
 ``"ERROR"``\ interrupts cannot be queued.
 
-21.8.12. “IPC”
+“IPC”
 ~~~~~~~~~~~~~~
 
 ``"IPC"`` occurs when a message is received on the ITS IPC device
 (chapter 23). It is not available in the Tenex and Tops-20 versions.
 
-21.8.13. “INFERIOR”
+“INFERIOR”
 ~~~~~~~~~~~~~~~~~~~
 
 ``"INFERIOR"`` occurs when an inferior ITS process interrupts the MDL
@@ -657,7 +657,7 @@ process. It is not available in the Tenex and Tops-20 versions. A
 handler takes one argument: A ``FIX`` between ``0`` and ``7`` inclusive,
 telling which inferior process is interrupting.
 
-21.8.14. “RUNT and”REALT"
+“RUNT and”REALT"
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 These are not available in the Tenex and Tops-20 versions.
@@ -677,7 +677,7 @@ is called with no argument, it returns a ``FIX``, the number of
 real-time seconds given in the most recent call to ``REALTIMER`` with an
 argument, or ``#FALSE ()`` if ``REALTIMER`` has not been called.
 
-21.8.15. “Dangerous” Interrupts
+“Dangerous” Interrupts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``"MPV"`` (“memory protection violation”) occurs if MDL tries to refer
@@ -706,7 +706,7 @@ system process instead of to MDL. In the ITS version, if and when a
    too high, the error ``ATTEMPT-TO-DEFER-UNDEFERABLE-INTERRUPT``
    occurs.
 
-21.9. User-Defined Interrupts
+User-Defined Interrupts
 -----------------------------
 
 If the interrupt name given to ``EVENT`` or ``ON`` is **not** one of the
@@ -757,10 +757,10 @@ handler, and so the different handlers for a given condition can do
 their thing in different environments quite easily, with less explicit
 control than when using ``RESUME``.
 
-21.10. Waiting for Interrupts
+Waiting for Interrupts
 -----------------------------
 
-21.10.1. HANG
+HANG
 ~~~~~~~~~~~~~
 
 ::
@@ -775,7 +775,7 @@ result of evaluation is not ``FALSE``, ``HANG`` unhangs and returns it
 as a value. If *pred* is not given, there had better be a named
 ``ACTIVATION`` somewhere to which a handler can return.
 
-21.10.2. SLEEP
+SLEEP
 ~~~~~~~~~~~~~~
 
 ::

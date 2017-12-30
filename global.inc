@@ -22,11 +22,14 @@
 .. |sic| replace:: *[sic]*
 
 
+.. |ACTIVATION| replace:: :t:`ACTIVATION`
 .. |ASOC| replace:: :t:`ASOC`
 .. |ATOM| replace:: :t:`ATOM`
 .. |BYTES| replace:: :t:`BYTES`
 .. |CHANNEL| replace:: :t:`CHANNEL`
 .. |DECL| replace:: :t:`DECL`
+.. |ENVIRONMENT| replace:: :t:`ENVIRONMENT`
+.. |FALSE| replace:: :t:`FALSE`
 .. |FIX| replace:: :t:`FIX`
 .. |FLOAT| replace:: :t:`FLOAT`
 .. |FORM| replace:: :t:`FORM`
@@ -39,6 +42,7 @@
 .. |LOCB| replace:: :t:`LOCB`
 .. |LOCD| replace:: :t:`LOCD`
 .. |LOCS| replace:: :t:`LOCS`
+.. |MACRO| replace:: :t:`MACRO`
 .. |NEWTYPE| replace:: :t:`NEWTYPE`
 .. |OBLIST| replace:: :t:`OBLIST`
 .. |PRIMTYPE| replace:: :t:`PRIMTYPE`
@@ -55,13 +59,11 @@
 
 .. |F/SUBR| replace:: :t:`F`\ /\ :t:`SUBR`
 
-.. .. |GVAL| replace:: :func:`GVAL`
 .. |G/LVAL| replace:: :t:`G`\ /\ :t:`LVAL`
-.. .. |LVAL| replace:: :func:`LVAL`
 .. |RSUBR(-ENTRY)| replace:: :t:`RSUBR`\ (\ :t:`-ENTRY`\ )
-.. .. |PNAME| replace:: :func:`PNAME`
 .. |T| replace:: ``T``
 
+.. |EVAL| replace:: :func:`EVAL`
 .. |GVAL| replace:: :t:`GVAL`
 .. |LVAL| replace:: :t:`LVAL`
 .. |PNAME| replace:: :t:`PNAME`

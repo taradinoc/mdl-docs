@@ -1,6 +1,6 @@
 .. _ch-lexical-blocking:
 
-Chapter 15. Lexical Blocking
+Lexical Blocking
 ============================
 
 Lexical, or static, blocking is another means of preventing identifier
@@ -9,7 +9,7 @@ collisions in MDL. (The first was dynamic blocking – binding and
 facilities, the “block structure” of such languages as Algol, PL/I,
 SAIL, etc., can be simulated, should you wish to do so.
 
-15.1. Basic Considerations
+Basic Considerations
 --------------------------
 
 Since what follows appears to be rather complex, a short discussion of
@@ -38,7 +38,7 @@ list”). All the complication which follows arises out of a desire to
 provide a powerful, easily used method of working with ``OBLIST``\ s,
 with reasonable values used by default.
 
-15.2. OBLISTs
+OBLISTs
 -------------
 
 An ``OBLIST`` is of ``PRIMTYPE`` ``UVECTOR`` with ``UTYPE`` ``LIST``;
@@ -46,7 +46,7 @@ the ``LIST`` holds ``ATOM``\ s. The ``ATOM``\ s are ordered by a hash
 coding on their ``PNAME``\ s: each ``LIST`` is a hashing bucket.) What
 follows is information about ``OBLIST``\ s as such.
 
-15.2.1. OBLIST Names
+OBLIST Names
 ~~~~~~~~~~~~~~~~~~~~
 
 Every normally constituted ``OBLIST`` has a name. The name of an
@@ -99,7 +99,7 @@ of an ``OBLIST`` without having it go away, since then ``ATOM``\ s in
 that ``OBLIST`` will ``PRINT`` the name as if they were in no ``OBLIST``
 – which is defeating the purpose of this whole exercise.
 
-15.2.2. MOBLIST
+MOBLIST
 ~~~~~~~~~~~~~~~
 
 ::
@@ -114,7 +114,7 @@ hashing buckets. *fix* is optional (ignored if the ``OBLIST`` already
 exists), 13 by default. If specified, *fix* should be a prime number,
 since that allows the hashing to work better.
 
-15.2.3. OBLIST?
+OBLIST?
 ~~~~~~~~~~~~~~~
 
 ::
@@ -124,7 +124,7 @@ since that allows the hashing to work better.
 returns ``#FALSE ()`` if *atom* is not in any ``OBLIST``. If *atom* is
 in an ``OBLIST``, it returns that ``OBLIST``.
 
-15.3. READ and OBLISTs
+READ and OBLISTs
 ----------------------
 
 ``READ`` can be explicitly told to look up an ``ATOM`` in a particular
@@ -170,7 +170,7 @@ force ``READ`` to use a different element of the ``LIST`` of
 ``OBLIST``\ s for new insertions. If the ``ATOM`` ``DEFAULT`` is in that
 ``LIST``, the ``OBLIST`` following that ``ATOM`` will be used.)
 
-15.4. PRIN1 and OBLISTs
+PRIN1 and OBLISTs
 -----------------------
 
 When ``PRINT`` is given an ``ATOM`` to output, it outputs as little of
@@ -186,7 +186,7 @@ for which the ``PRINT`` trailer does not terminate. For instance, if an
 an ``ATOM`` in that very same ``OBLIST``, death. Any similar case will
 also give ``PRINT`` a hernia.
 
-15.5. Initial State
+Initial State
 -------------------
 
 In an initial MDL, ``.OBLIST`` contains two ``OBLIST``\ s.
@@ -235,7 +235,7 @@ interpreter.
 The pre-loading of compiled programs may create other ``OBLIST``\ s in
 an initialized MDL (Lebling, 1979).
 
-15.6. BLOCK and ENDBLOCK
+BLOCK and ENDBLOCK
 ------------------------
 
 These ``SUBR``\ s are analogous to **begin** and **end** in Algol, etc.,
@@ -260,10 +260,10 @@ last.
 Note that this “pushing” and “popping” of ``.OBLIST`` is entirely
 independent of functional application, binding, etc.
 
-15.7. SUBRs Associated with Lexical Blocking
+SUBRs Associated with Lexical Blocking
 --------------------------------------------
 
-15.7.1. READ (again)
+READ (again)
 ~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -275,7 +275,7 @@ This is a fuller call to ``READ``. *look-up* is an ``OBLIST`` or a
 and insert them in ``OBLIST``\ s. If not specified, ``.OBLIST`` is used.
 See also section 11.1.1.1, 11.3, and 17.1.3 for other arguments.
 
-15.7.2. PARSE and LPARSE (again)
+PARSE and LPARSE (again)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -288,7 +288,7 @@ prospective ``ATOM``\ s on *look-up*, if given, or ``.OBLIST``.
 ``LPARSE`` can be called in the same way. See also section 7.6.6.2 and
 17.1.3 for other arguments.
 
-15.7.3. LOOKUP
+LOOKUP
 ~~~~~~~~~~~~~~
 
 ::
@@ -300,7 +300,7 @@ if there is such an ``ATOM``; otherwise, it returns ``#FALSE ()``. If
 *string* would ``PARSE`` into an ``ATOM`` anyway, ``LOOKUP`` is faster,
 although it looks in only one ``OBLIST`` instead of a ``LIST`` of them.
 
-15.7.4. ATOM
+ATOM
 ~~~~~~~~~~~~
 
 ::
@@ -313,7 +313,7 @@ is guaranteed not to be on **any** ``OBLIST``.
 An ``ATOM`` which is not on any ``OBLIST`` is ``PRINT``\ ed with a
 trailer of ``!-#FALSE ()``.
 
-15.7.5. REMOVE
+REMOVE
 ~~~~~~~~~~~~~~
 
 ::
@@ -354,7 +354,7 @@ The ``OBLIST`` argument is **never** optional. If you would like the new
 ``ATOM`` to live in the ``OBLIST`` that ``READ`` would have chosen, you
 can ``<PARSE string>`` instead.
 
-15.7.7. PNAME
+PNAME
 ~~~~~~~~~~~~~
 
 ::
@@ -367,7 +367,7 @@ than ``UNPARSE`` on *atom*. (In fact, ``UNPARSE`` has to go all the way
 through the ``PRINT`` algorithm **twice**, the first time to see how
 long a ``STRING`` is needed.)
 
-15.7.8. SPNAME
+SPNAME
 ~~~~~~~~~~~~~~
 
 ``SPNAME`` (“shared printed name”) is identical to ``PNAME``, except
@@ -375,7 +375,7 @@ that the ``STRING`` it returns shares storage with *atom* (appendix 1),
 which is more efficient if the ``STRING`` will not be modified.
 ``PUT``\ ting into such a ``STRING`` will cause an error.
 
-15.8. Example: Another Solution to the INC Problem
+Example: Another Solution to the INC Problem
 --------------------------------------------------
 
 What follows is an example of the way ``OBLIST``\ s are “normally” used

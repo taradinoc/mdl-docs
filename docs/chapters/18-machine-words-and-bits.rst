@@ -1,6 +1,6 @@
 .. _ch-machine-words-and-bits:
 
-Chapter 18. Machine Words and Bits
+Machine Words and Bits
 ==================================
 
 The MDL facility for dealing with uninterpreted machine words and bits
@@ -9,7 +9,7 @@ uninterpreted machine word, while a BITS is a “pointer” to a set of bits
 within a WORD. Operating on WORDs is usually done only when compiled
 programs are used (chapter 19).
 
-18.1. WORDs
+WORDs
 -----------
 
 A ``WORD`` in MDL is a PDP-10 machine word of 36 bits. A ``WORD`` always
@@ -39,7 +39,7 @@ the thing to be played with to a ``WORD``, so long as it is of
 ``PRIMTYPE`` ``WORD``; the result of the manipulation will be of the
 same ``TYPE`` as the original object or can be ``CHTYPE``\ d to it.
 
-18.2. BITS
+BITS
 ----------
 
 An object of ``TYPE`` ``BITS`` is of ``PRIMTYPE`` ``WORD``, and
@@ -80,7 +80,7 @@ Examples: the indicated application of ``BITS`` returns an object of
 | ``<BITS 36>``   | ***35 … 0***                   |
 +-----------------+--------------------------------+
 
-18.3. GETBITS
+GETBITS
 -------------
 
 ::
@@ -103,7 +103,7 @@ Examples::
     <GETBITS *012345670123* <BITS 6 18>>$
     #WORD *000000000045*
 
-18.4. PUTBITS
+PUTBITS
 -------------
 
 ::
@@ -127,7 +127,7 @@ Examples::
     <PUTBITS #WORD *765432107654* <BITS 18>>$
     #WORD *765432000000*
 
-18.5. Bitwise Boolean Operations
+Bitwise Boolean Operations
 --------------------------------
 
 Each of the ``SUBR``\ s ``ANDB``, ``ORB``, ``XORB``, and ``EQVB`` takes
@@ -142,7 +142,7 @@ operator is applied to the first two, then applied to that result and
 the third, etc. Be sure not to confuse ``AND`` and ``OR`` with ``ANDB``
 and ``ORB``.
 
-18.6. Bitwise Shifting Operations
+Bitwise Shifting Operations
 ---------------------------------
 
 ::

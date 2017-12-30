@@ -1,7 +1,7 @@
-Chapter 16. Errors, Frames, etc.
+Errors, Frames, etc.
 ================================
 
-16.1. LISTEN
+LISTEN
 ------------
 
 This ``SUBR`` takes any number of arguments. It first checks the
@@ -56,7 +56,7 @@ returned by ``EVAL`` in the standard ``LISTEN`` loop. Example::
     .FOO$
     105
 
-16.2. ERROR
+ERROR
 -----------
 
 This ``SUBR`` is the same as ``LISTEN``, except that (1) it generates an
@@ -76,7 +76,7 @@ with at least two arguments, including:
    returned. This nonstandard action is specified in the error message
    (first ``ERROR`` argument).
 
-16.3. FRAME (the TYPE)
+FRAME (the TYPE)
 
 A ``FRAME`` is the object placed on a ``PROCESS``\ ’s control stack
 (chapter 20) whenever a ``SUBR``, ``FSUBR``, ``RSUBR``, or
@@ -93,7 +93,7 @@ A ``FRAME`` is an anomalous ``TYPE`` in the following ways:
 2. It does not type out in any standard format, but rather as ``#FRAME``
    followed by the ``PNAME``\ of the Subroutine applied.
 
-16.3.1. ARGS
+ARGS
 
 ::
 
@@ -101,7 +101,7 @@ A ``FRAME`` is an anomalous ``TYPE`` in the following ways:
 
 (“arguments”) returns the argument ``TUPLE`` of *frame*.
 
-16.3.2. FUNCT
+FUNCT
 
 ::
 
@@ -110,7 +110,7 @@ A ``FRAME`` is an anomalous ``TYPE`` in the following ways:
 (“function”} returns the ``ATOM`` whose ``G/LVAL`` is being applied in
 *frame*.
 
-16.3.3. FRAME (the SUBR)
+FRAME (the SUBR)
 
 ::
 
@@ -123,7 +123,7 @@ no arguments, ``FRAME`` returns the topmost ``FRAME`` used in an
 application of ``ERROR`` or ``LISTEN``, which was bound by the
 interpreter to the ``ATOM`` ``LERR\ I-INTERRUPTS`` (“last error”).
 
-16.3.4. Examples
+Examples
 
 Say you have gotten an error. You can now type at ``ERROR``\ ’s
 ``LISTEN`` loop and get things ``EVAL``\ ed. For example,
@@ -137,7 +137,7 @@ Say you have gotten an error. You can now type at ``ERROR``\ ’s
     <ARGS <FRAME <FRAME>>>$
     the-arguments-to-the-Subroutine-which-called-ERROR:tuple
 
-16.4. ERRET
+ERRET
 
 ::
 
@@ -192,7 +192,7 @@ dummy variables while still in the error state. For example,
     <ERRET '(5)>    ; "Make the REST return (5)."$
     ("a string" (5))
 
-16.5. RETRY
+RETRY
 
 ::
 
@@ -208,7 +208,7 @@ is not intended to be used in programs; (2) it can retry any old *frame*
 ``EVAL`` of a ``FORM`` that makes an ``ACTIVATION``, it will cause
 rebinding in the argument ``LIST``, thus duplicating side effects.
 
-16.6. UNWIND
+UNWIND
 
 ``UNWIND`` is an ``FSUBR`` that takes two arguments, usually
 ``FORM``\ s. It ``EVAL``\ s the first one, and, if the ``EVAL`` returns
@@ -229,7 +229,7 @@ up an ``UNWIND`` to close its ``CHANNEL`` if the user attempts to
             <UNWIND <PROG () ... <CLOSE .C>>
                 <CLOSE .C>>)>>
 
-16.7. Control-G (^G)
+Control-G (^G)
 
 Typing control-G (^G, ``<ASCII 7>``) at MDL causes it to act just as if
 an error had occurred in whatever was currently being done. You can then
@@ -238,14 +238,14 @@ to one argument (which is ignored), ``RETRY`` a ``FRAME`` lower on the
 control stack, or flush everything by applying ``ERRET`` to no
 arguments.
 
-16.8. Control-S (^S)
+Control-S (^S)
 
 Typing control-S (^S, ``<ASCII 19>``) at MDL causes it to stop what is
 happening and return to the ``FRAME`` ``.LERR\ !-INTERRUPTS``, returning
 the ``ATOM`` ``T``. (In the Tenex and Tops-20 versions, ^O also has the
 same effect.)
 
-16.9. OVERFLOW
+OVERFLOW
 
 ::
 

@@ -1,9 +1,9 @@
 .. _ch-compiled-programs:
 
-Chapter 19. Compiled Programs
+Compiled Programs
 =============================
 
-19.1. RSUBR (the TYPE)
+RSUBR (the TYPE)
 ----------------------
 
 ``RSUBR``\ s (“relocatable subroutines”) are machine-language programs
@@ -14,7 +14,7 @@ vector” and the “code vector”. In some cases the code vector is in pure
 storage. There is also a set of “fixups” associated with every
 ``RSUBR``, although it may not be available in the running MDL.
 
-19.2. The Reference Vector
+The Reference Vector
 --------------------------
 
 An ``RSUBR`` is basically a ``VECTOR`` that has been ``CHTYPE``\ d to
@@ -37,7 +37,7 @@ When the ``RSUBR`` is running, one of the PDP-10 accumulators (with
 symbolic name ``R``) is always pointing to the reference vector, to
 permit rapid access to the various elements.
 
-19.3. RSUBR Linking
+RSUBR Linking
 -------------------
 
 ``RSUBR``\ s can call any ``APPLICABLE`` object, all in a uniform
@@ -67,7 +67,7 @@ it with a non-\ ``FALSE`` argument enables linking thereafter. It
 returns the previous state of the link flag, either ``T`` or
 ``#FALSE ()``. Calling it with no argument returns the current state.
 
-19.4. Pure and Impure Code
+Pure and Impure Code
 --------------------------
 
 The first element of an ``RSUBR`` is the code vector, of ``TYPE``
@@ -115,7 +115,7 @@ file is written, so that the code is not duplicated on disk. A purified
 .. _function-type-c:
 .. _function-type-w:
 
-19.5. TYPE-C and TYPE-W
+TYPE-C and TYPE-W
 -----------------------
 
 In order to handle user ``NEWTYPE``\ s reasonably, the internal ``TYPE``
@@ -150,7 +150,7 @@ information, except in the case of ``TEMPLATE``\ s: all ``TYPE``\ s of
 ``TEMPLATE``\ s have the same ``TYPEPRIM``, but they all have different
 ``PRIMTYPE-C``\ s.
 
-19.6. RSUBR (the SUBR)
+RSUBR (the SUBR)
 ----------------------
 
 ::
@@ -171,7 +171,7 @@ the ``GVAL`` of *name* is an ``RSUBR``::
     <SETG name <RSUBR .FIXIT>>$
     #RSUBR [...]
 
-19.7. RSUBR-ENTRY
+RSUBR-ENTRY
 -----------------
 
 ``RSUBR``\ s can have multiple entry points. An ``RSUBR-ENTRY`` can be
@@ -192,7 +192,7 @@ a ``DECL`` (``RSUBR`` style), it should come as shown.
 (“entry location”) returns the *offset* into the ``RSUBR`` of this
 entry.
 
-19.8. RSUBRs in Files
+RSUBRs in Files
 ---------------------
 
 There are three kinds of files that can contain ``RSUBR``\ s, identified
@@ -235,7 +235,7 @@ until they are actually needed. The “loading” has other side effects,
 such as the creation of ``OBLIST``\ s (chapter 15). Exactly what is
 pre-loaded is outside the scope of this document.
 
-19.9. Fixups
+Fixups
 ------------
 
 The purpose of “fixups” is to correct references in the ``RSUBR`` to

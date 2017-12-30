@@ -1,6 +1,6 @@
 .. _ch-storage-management:
 
-Chapter 22. Storage Management
+Storage Management
 ==============================
 
 The reason this chapter comes so late in this document is that, except
@@ -27,7 +27,7 @@ each space, and each space gradually fills up as new objects are created
 and as disk files are mapped in. The action taken when space becomes
 full varies, as discussed below.
 
-22.1. Movable Garbage-collected Storage
+Movable Garbage-collected Storage
 ---------------------------------------
 
 Most storage used explicitly by MDL programs is obtained from a pool of
@@ -67,7 +67,7 @@ used in ``PROCESS``\ es for functional application.
 
 .. _sec-stacks-and-other-internal-vectors:
 
-22.1.1. Stacks and Other Internal Vectors
+Stacks and Other Internal Vectors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Control stacks are used in MDL to control the changes in environment
@@ -107,10 +107,10 @@ the ``ATOM`` in question is in this vector, whether or not it currently
 has a global value), and the “``TYPE`` vector” holds ``TYPE`` names
 (predefined and ``NEWTYPE``\ s) and how they are to be treated.
 
-22.2. Immovable Storage
+Immovable Storage
 -----------------------
 
-22.2.1. Garbage-collected: FREEZE
+Garbage-collected: FREEZE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In very special circumstances, such as debugging ``RSUBR``\ s, you may
@@ -121,7 +121,9 @@ non-moving garbage-collected space. ``FREEZE`` returns the copy
 ``CHTYPE``\ d to its ``PRIMTYPE``, except in the case of a ``TUPLE``,
 which is changed to a ``VECTOR``.
 
-22.2.2. Non-garbage-collected: STORAGE (the PRIMTYPE)
+.. _primtype-storage:
+
+Non-garbage-collected: STORAGE (the PRIMTYPE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An object of ``PRIMTYPE`` ``STORAGE`` is really a frozen ``UVECTOR``
@@ -130,7 +132,7 @@ by something internal to MDL and thus is never garbage-collectible. The
 use of ``FREEZE`` is always preferable, except when for historical
 reasons a ``STORAGE`` is necessary.
 
-22.3. Other Storage
+Other Storage
 -------------------
 
 User pure/page space serves two purposes. First, when a user program
@@ -155,7 +157,7 @@ vector), where possible. A ``SET`` or ``SETG`` of a pure ``ATOM``
 automatically impurifies the ``ATOM`` and as much of its ``OBLIST``
 bucket as needs to be impure.
 
-22.4. Garbage Collection: Details
+Garbage Collection: Details
 ---------------------------------
 
 When either of the garbage-collected spaces (movable or immovable)
@@ -221,7 +223,7 @@ longer since the total quantity of storage to be dealt with will
 generally be larger. Smaller *min*\ s result in shorter, more frequent
 garbage collections.
 
-22.6. BLOAT
+BLOAT
 -----------
 
 ``BLOAT`` is used to cause a temporary expansion of the available
@@ -280,7 +282,7 @@ garbage-collection parameters permanently, as follows:
 ``BLOAT`` returns the actual number of words of free movable
 garbage-collected storage available when it is done.
 
-22.7. BLOAT-STAT
+BLOAT-STAT
 ----------------
 
 ``BLOAT-STAT`` can be used with ``BLOAT`` to “tune” the garbage
@@ -329,7 +331,7 @@ certain areas of storage. In detail:
 26. number of words on internal stack in use
 27. maximum size of internal stack ever reached
 
-22.8. GC-MON
+GC-MON
 ------------
 
 ::
@@ -354,7 +356,7 @@ and, when it finishes::
 The “mark-sweep” garbage collector prints ``MSGIN`` and ``MSGOUT``
 instead of ``GIN`` and ``GOUT``.
 
-22.9. Related Subroutines
+Related Subroutines
 -------------------------
 
 Two ``SUBR``\ s, described next, use only part of the garbage-collector
@@ -362,7 +364,7 @@ algorithm, in order to find all pointers to an object. ``GC-DUMP`` and
 ``GC-READ``, as their names imply, also use part in order to translate
 between MDL objects and binary representation thereof.
 
-22.9.1. SUBSTITUTE
+SUBSTITUTE
 ~~~~~~~~~~~~~~~~~~
 
 ::

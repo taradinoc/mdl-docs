@@ -1,14 +1,16 @@
-Chapter 13. Association (Properties)
+.. _ch-association-properties:
+
+Association (Properties)
 ====================================
 
 There is an “associative” data storage and retrieval system embedded in
 MDL which allows the construction of data structures with arbitrary
 selectors. It is used via the ``SUBR``\ s described in this chapter.
 
-13.1. Associative Storage
+Associative Storage
 -------------------------
 
-13.1.1. PUTPROP
+PUTPROP
 ~~~~~~~~~~~~~~~
 
 ::
@@ -18,7 +20,7 @@ selectors. It is used via the ``SUBR``\ s described in this chapter.
 (“put property”) returns *item*, having associated *value* with *item*
 under the indicator *indicator*.
 
-13.1.2. PUT
+PUT
 ~~~~~~~~~~~
 
 ::
@@ -32,7 +34,7 @@ an integral selector is stored in the structure itself, instead of in
 association space. ``PUT`` (like ``AT``) will get an error if
 *indicator* is out of range; ``PUTPROP`` will not.
 
-13.1.3. Removing Associations
+Removing Associations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If ``PUTPROP`` is used **without** its *value* argument, it removes any
@@ -49,10 +51,10 @@ pointing to them, so they were garbage-collected), and no locatives to
 the association exist, then the association between them ceases to exist
 (is garbage-collected).
 
-13.2. Associative Retrieval
+Associative Retrieval
 ---------------------------
 
-13.2.1. GETPROP
+GETPROP
 ~~~~~~~~~~~~~~~
 
 ::
@@ -71,7 +73,7 @@ Note: *item* and *indicator* in ``GETPROP`` must be the **same MDL
 objects** used to establish the association; that is, they must be
 ``==?`` to the objects used by ``PUTPROP`` or ``PUT``.
 
-13.2.2. GET
+GET
 ~~~~~~~~~~~
 
 ::
@@ -82,7 +84,7 @@ is the inverse of ``PUT``, using ``NTH`` or ``GETPROP`` depending on the
 test outlined in section 13.1.2. *exp* is optional and used as in
 ``GETPROP``.
 
-13.3. Examples of Association
+Examples of Association
 -----------------------------
 
 ::
@@ -155,7 +157,7 @@ For example, to associate *value* with *item* under *indicator-1* and
     <PUTPROP indicator-1 indicator-2 T>
     <PUTPROP item <GETPL indicator-1 indicator-2> value>
 
-13.4. Examining Associations
+Examining Associations
 ----------------------------
 
 Associations (created by ``PUT`` and ``PUTPROP``) are chained together

@@ -1,6 +1,6 @@
 .. _ch-data-types:
 
-Chapter 6. Data Types
+Data Types
 =====================
 
 General [1]
@@ -292,6 +292,10 @@ Examples::
     GARGLE
     <PRIMTYPE .B>$
     WORD
+
+.. _printtype:
+.. _evaltype:
+.. _applytype:
 
 PRINTTYPE, EVALTYPE and APPLYTYPE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

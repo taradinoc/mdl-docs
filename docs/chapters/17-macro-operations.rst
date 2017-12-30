@@ -1,10 +1,10 @@
-Chapter 17. Macro-operations
+Macro-operations
 ============================
 
-17.1. READ Macros
+READ Macros
 -----------------
 
-17.1.1. % and %%
+% and %%
 ~~~~~~~~~~~~~~~~
 
 The tokens ``%`` and ``%%`` are interpreted by ``READ`` in such a way as
@@ -36,7 +36,7 @@ Example::
     [%%<SETUP> %<NXT> %<NXT> (%%<SETUP>) %<NXT>]$
     [1 2 () 1]
 
-17.1.2. LINK
+LINK
 ~~~~~~~~~~~~
 
 ::
@@ -68,7 +68,7 @@ following::
 which links the ``ATOM`` of ``PNAME`` ``^E`` in the ``ROOT`` ``OBLIST``
 to the expression ``<ERRET>``.
 
-17.1.3. Program-defined Macro-characters
+Program-defined Macro-characters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 During ``READ``\ ing from an input ``CHANNEL`` or ``PARSE``\ ing a
@@ -82,7 +82,7 @@ actions for some areas: for example, one might want to treat left and
 right parentheses as tokens, rather than as delimiters indicating a
 ``LIST``.
 
-17.1.3.1. READ (finally)
+READ (finally)
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Associated with ``READ`` is an ``ATOM``, ``READ-TABLE!-``, whose local
@@ -165,7 +165,7 @@ The other arguments are explained in sections 11.1.1.1, 11.3, and
 ``ERROR`` and ``LISTEN`` rebind ``READ-TABLE`` to the ``GVAL`` of
 ``READ-TABLE``, if any, else ``UNASSIGN`` it.
 
-17.1.3.2. Examples
+Examples
 ^^^^^^^^^^^^^^^^^^
 
 Examples of each of the different kinds of entries in macro tables::
@@ -217,7 +217,7 @@ Examples of each of the different kinds of entries in macro tables::
     :::FOO$
     (COLON (COLON (COLON FOO)))
 
-17.1.3.3. PARSE and LPARSE (finally)
+PARSE and LPARSE (finally)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
@@ -240,7 +240,7 @@ the *string* being parsed. Other arguments are described in sections
 ``LPARSE`` is exactly like ``PARSE``, except that it tries to parse the
 whole ``STRING``, returning a ``LIST`` of the objects created.
 
-17.2. EVAL Macros
+EVAL Macros
 -----------------
 
 An ``EVAL`` macro provides the convenience of a ``FUNCTION`` without the
@@ -248,7 +248,7 @@ overhead of calling, ``SPECIAL``\ s, etc. in the **compiled** version. A
 special-purpose function that is called often by ``FUNCTION``\ s that
 will be compiled is a good candidate for an ``EVAL`` macro.
 
-17.2.1. DEFMAC and EXPAND
+DEFMAC and EXPAND
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``DEFMAC`` (“define macro”) is syntactically exactly the same as
@@ -301,7 +301,7 @@ compiler will simply cause the first ``EVAL``\ uation to occur (via
 ``EXPAND``) and compile the result. The single element of a compiled
 ``MACRO`` is an ``RSUBR`` or ``RSUBR-ENTRY``.
 
-17.2.2. Example
+Example
 ~~~~~~~~~~~~~~~
 
 Suppose you want to change the following simple ``FUNCTION`` to a

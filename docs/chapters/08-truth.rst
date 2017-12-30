@@ -1,7 +1,7 @@
-Chapter 8. Truth
+Truth
 ================
 
-8.1. Truth Values [1]
+Truth Values [1]
 ---------------------
 
 MDL represents “false” with an object of a particular ``TYPE``: ``TYPE``
@@ -24,7 +24,7 @@ document the “data type” *false-or-any* in metasyntactic variables means
 that the only significant attribute of the object in that context is
 whether its ``TYPE`` is ``FALSE`` or not.
 
-8.2. Predicates [1]
+Predicates [1]
 -------------------
 
 There are numerous MDL F/SUBRs which can return a ``FALSE`` or a true.
@@ -33,7 +33,7 @@ See appendix 2 to find them all. Most return either ``#FALSE ()`` or the
 namely Lisp (Moon, 1974).) Some predicates which are meaningful now are
 described next.
 
-8.2.1. Arithmetic [1]
+Arithmetic [1]
 ~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -65,7 +65,7 @@ if *n* is not algebraically greater than *m*.
 evaluates to ``T`` only if *n* is algebraically less than *m*. ``G=?``
 is the Boolean complement of ``L?``.
 
-8.2.2. Equality and Membership [1]
+Equality and Membership [1]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -158,7 +158,7 @@ numeric order of ASCII, with the standard alphabetizing rules.
 [A predicate suitable for an ascending ``SORT`` (which see) is
 ``<G? <STRCOMP .ARG1 .ARG2> 0>``.]
 
-8.2.3. Boolean Operators [1]
+Boolean Operators [1]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -191,7 +191,7 @@ remaining arguments. If this never occurs, it returns the last ``FALSE``
 it saw. ``<OR>`` returns ``#FALSE ()``. ``OR?`` is the ``SUBR``
 equivalent to ``OR``.
 
-8.2.4. Object Properties [1]
+Object Properties [1]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -255,7 +255,7 @@ return a value, whereas ``LENGTH`` will execute forever. To see if you
 can do ``<REST structured <+ 1 fix>>`` without error, do the test
 ``<NOT <LENGTH? structured fix>>``.]
 
-8.3. COND [1]
+COND [1]
 -------------
 
 The MDL Subroutine which is most used for varying evaluation depending
@@ -283,7 +283,7 @@ clauses and evaluates, in order, the other elements of the current
 clause and returns the last thing it evaluates. If it can’t find a
 non-\ ``FALSE``, it returns the last ``FALSE`` it saw.
 
-8.3.1. Examples
+Examples
 ~~~~~~~~~~~~~~~
 
 ::
@@ -310,10 +310,10 @@ non-\ ``FALSE``, it returns the last ``FALSE`` it saw.
     <FACT 5>$
     120
 
-8.4. Shortcuts with Conditionals
+Shortcuts with Conditionals
 --------------------------------
 
-8.4.1. AND and OR as Short CONDs
+AND and OR as Short CONDs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Since ``AND`` and ``OR`` are ``FSUBR``\ s, they can be used as miniature
@@ -350,7 +350,7 @@ evaluation.
 effectively ``FLOAD``\ s the file (chapter 11) without the possibility
 of getting an error if the file cannot be opened.
 
-8.4.2. Embedded Unconditionals
+Embedded Unconditionals
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 One of the disadvantages of ``COND`` is that there is no straightforward

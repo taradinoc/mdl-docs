@@ -1,4 +1,4 @@
-Chapter 12. Locatives
+Locatives
 =====================
 
 There is in MDL a facility for obtaining and working directly with
@@ -19,10 +19,10 @@ In the following, the object occupying the structured position to which
 you have obtained a locative will be referred to as the object **pointed
 to** by the locative.
 
-12.1. Obtaining Locatives
+Obtaining Locatives
 -------------------------
 
-12.1.1. LLOC
+LLOC
 ~~~~~~~~~~~~
 
 ::
@@ -44,7 +44,7 @@ locative to an ``LVAL`` which has become unbound will fetch up an error.
 used to see if a ``LOCD`` is valid. Caution: ``<SET A <LLOC A>>``
 creates a self-reference and can make ``PRINT`` very unhappy.
 
-12.1.2. GLOC
+GLOC
 ~~~~~~~~~~~~
 
 ::
@@ -57,7 +57,7 @@ returns a locative (``TYPE`` ``LOCD``) to the ``GVAL`` of *atom*. If
 (chapter 22). Caution: ``<SETG A <GLOC A>>`` creates a self-reference
 and can make ``PRINT`` very unhappy.
 
-12.1.3. AT
+AT
 ~~~~~~~~~~
 
 ::
@@ -74,7 +74,7 @@ for ``BYTES``, ``LOCT`` for ``TEMPLATE``, and ``LOCA`` for ``TUPLE``. If
 occurs. The locative is unaffected by applications of ``REST``,
 ``BACK``, ``TOP``, ``GROW``, etc. to *structured*.
 
-12.1.4. GETPL and GETL
+GETPL and GETL
 ~~~~~~~~~~~~~~~~~~~~~~
 
 ::
@@ -92,14 +92,14 @@ either a ``LOCAS`` or a locative to the *indicator*\ th element of a
 structured *item*. ``GETL`` is like ``AT`` if *item* is a structure and
 *indicator* is a ``FIX`` or ``OFFSET``, and like ``GETPL`` if not.
 
-12.2. LOCATIVE?
+LOCATIVE?
 ---------------
 
 This ``SUBR`` is a predicate that tells whether or not is argument is a
 locative. It is cheaper than
 ``<MEMQ <PRIMTYPE arg> '![LOCD LOCL ...]>``.
 
-12.3. Using Locatives
+Using Locatives
 ---------------------
 
 The following two ``SUBR``\ s provide the means for working with
@@ -107,7 +107,7 @@ locatives. They are independent of the specific ``TYPE`` of the
 locative. The notation *locative* indicates anything which could be
 returned by ``LLOC``, ``GLOC``, ``AT``, ``GETPL`` or ``GETL``.
 
-12.3.1. IN
+IN
 ~~~~~~~~~~
 
 ::
@@ -127,7 +127,7 @@ Example::
     <IN <LLOC A>>$
     1
 
-12.3.2. SETLOC
+SETLOC
 ~~~~~~~~~~~~~~
 
 ::
@@ -150,7 +150,7 @@ Example::
     .A$
     (1 HI 3)
 
-12.4. Note on Locatives
+Note on Locatives
 -----------------------
 
 You may have noticed that locatives are, strictly speaking, unnecessary;
