@@ -608,6 +608,7 @@ FUNCT (FRAME)
 ```
 returns Subroutine name of a given previous Subroutine call
 
+```
 FUNCTION ("ARGS" ARGS)
  #DECL ((VALUE) FUNCTION
         (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
