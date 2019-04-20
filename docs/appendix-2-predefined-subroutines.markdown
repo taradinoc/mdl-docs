@@ -1144,3 +1144,826 @@ MONAD? (OBJECT)
         (OBJECT) ANY)
 ```
 tells whether an object is either unstructured or an empty structure (predicate)
+
+```
+N==? (OBJECT-1 OBJECT-2)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (OBJECT-1 OBJECT-2) ANY)
+```
+tells whether two objects are NOT "exactly" equal (predicate)
+
+```
+N=? (OBJECT-1 OBJECT-2)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (OBJECT-1 OBJECT-2) ANY)
+```
+tells whether two objects are NOT "structurally" equal (predicate)
+
+```
+NETACC (CHANNEL)
+ #DECL ((VALUE) <OR CHANNEL '#FALSE ()>
+        (CHANNEL) CHANNEL)
+```
+accepts a network connection
+
+```
+NETS (CHANNEL)
+ #DECL ((VALUE CHANNEL) CHANNEL)
+```
+forces operating-system network-`CHANNEL` buffer to be sent
+
+```
+NETSTATE (CHANNEL)
+ #DECL ((VALUE) <UVECTOR FIX FIX FIX>
+        (CHANNEL) CHANNEL)
+```
+returns state information for a network `CHANNEL`
+
+```
+NEWTYPE (NEW-TYPE OLD-TYPE "OPTIONAL" PATTERN)
+ #DECL ((VALUE NEW-TYPE) ATOM
+        (OLD-TYPE) ATOM (PATTERN) <OR ATOM FORM>)
+```
+defines a new data type
+
+```
+NEXT (ASSOCIATION)
+ #DECL ((VALUE) <OR ASOC '#FALSE ()>
+        (ASSOCIATION) ASOC)
+```
+returns the next object in the association chain
+
+```
+NEXTCHR ("OPTIONAL" (CHANNEL .INCHAN) (EOF-ROUTINE '<ERROR ...>))
+ #DECL ((VALUE) <OR CHARACTER FIX>
+        (CHANNEL) CHANNEL (EOF-ROUTINE) ANY)
+```
+returns the character that will next be read via an input `CHANNEL`
+
+```
+NOT (OBJECT)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (OBJECT) <OR FALSE ANY>)
+```
+computes logical "not" of a truth-value
+
+```
+NTH (STRUCTURED "OPTIONAL" N)
+ #DECL ((VALUE) ANY
+        (N) <OR FIX OFFSET>)
+```
+fetches the Nth element of a structure
+
+```
+OBLIST? (ATOM)
+ #DECL ((VALUE) <OR OBLIST '#FALSE ()>
+        (ATOM) ATOM)
+```
+returns an `ATOM`'s `OBLIST` or false if none (predicate)
+
+```
+OFF (INTERRUPT "OPTIONAL" WHICH)
+ #DECL ((VALUE) <OR HANDLER IHEADER '#FALSE ()>
+        (INTERRUPT) <OR HANDLER IHEADER STRING ATOM> (WHICH) <OR CHANNEL LOCATIVE>)
+```
+removes an interrupt `HANDLER` or destroys an interrupt
+
+```
+OFFSET (N PATTERN)
+ #DECL ((VALUE) OFFSET
+        (N) FIX (PATTERN) <OR ATOM FORM>)
+```
+creates an integer with attached type declaration
+
+```
+ON (NAME APPLICABLE PRIORITY "OPTIONAL" (PROCESS 0) WHICH)
+ #DECL ((VALUE) HANDLER
+        (NAME) <OR STRING ATOM> (APPLICABLE) APPLICABLE (PRIORITY) FIX
+        (PROCESS) <OR FIX PROCESS> (WHICH) <OR CHANNEL LOCATIVE>)
+```
+turns on an interrupt and creates an interrupt `HANDLER`
+
+```
+OPEN ("OPTIONAL" (MODE "READ") "TUPLE" FILE-NAME)
+ #DECL ((VALUE) <OR CHANNEL <FALSE STRING STRING FIX>>
+        (MODE) STRING (FILE-NAME) TUPLE)
+```
+creates and opens an I/O `CHANNEL`
+
+```
+OPEN-NR ("OPTIONAL" (MODE "READ") "TUPLE" FILE-NAME)
+ #DECL ((VALUE) <OR CHANNEL <FALSE STRING STRING FIX>>
+        (MODE) STRING (FILE-NAME) TUPLE)
+```
+creates and opens an I/O `CHANNEL` without changing file's reference date
+
+```
+OR ("ARGS" ARGS)
+ #DECL ((VALUE) <OR FALSE ANY>
+        (ARGS) LIST)
+```
+computes logical inclusive "or" of truth-values, evaluated by the Subroutine
+
+```
+OR? ("TUPLE" TUPLE)
+ #DECL ((VALUE) <OR FALSE ANY>
+        (TUPLE) TUPLE)
+```
+compares logical inclusive "or" of truth-values, evaluated at call time
+
+```
+ORB ("TUPLE" WORDS)
+ #DECL ((VALUE) WORD
+        (WORDS) <TUPLE [REST <PRIMTYPE WORD>]>)
+```
+computes bitwise inclusive "or" of machine words
+
+```
+OVERFLOW ("OPTIONAL" SWITCH)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (SWITCH) <OR ANY FALSE>)
+```
+enables or disables overflow error (arithmetic)
+
+```
+PARSE ("OPTIONAL"
+        (STRING .PARSE-STRING) (RADIX 10) (LOOK-UP .OBLIST) PARSE-TABLE LOOK-AHEAD)
+ #DECL ((VALUE) ANY
+        (STRING) STRING (RADIX) FIX (PARSE-TABLE) VECTOR (LOOK-AHEAD) CHARACTER
+        (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>)
+```
+parses a `STRING` into an object (sections 7.6.6.2, 15.7.2, 17.1.3)
+
+```
+PCODE (NAME OFFSET)
+ #DECL ((VALUE) PCODE
+        (NAME) STRING (OFFSET) FIX)
+```
+creates pointer to pure `RSUBR` code
+
+```
+PNAME (ATOM)
+ #DECL ((VALUE) STRING
+        (ATOM) ATOM)
+```
+returns the print-name of an `ATOM` as a distinct copy
+
+```
+PRIMTYPE (OBJECT)
+ #DECL ((VALUE) ATOM
+        (OBJECT) ANY)
+```
+returns the primitive data type of an object
+
+```
+PRIMTYPE-C (TYPE)
+ #DECL ((VALUE) PRIMTYPE-C
+        (TYPE) ATOM)
+```
+gets a "storage allocation code" for a data type
+
+```
+PRIN1 (OBJECT "OPTIONAL" (CHANNEL .OUTCHAN))
+ #DECL ((VALUE OBJECT) ANY
+        (CHANNEL) CHANNEL)
+```
+prints an object via an output `CHANNEL`
+
+```
+PRINC (OBJECT "OPTIONAL" (CHANNEL .OUTCHAN))
+ #DECL ((VALUE OBJECT) ANY
+        (CHANNEL) CHANNEL)
+```
+prints an object via an output `CHANNEL` without `STRING` or `CHARACTER` brackets or `ATOM` trailers
+
+```
+PRINT (OBJECT "OPTIONAL" (CHANNEL .OUTCHAN))
+ #DECL ((VALUE OBJECT) ANY
+        (CHANNEL) CHANNEL)
+```
+prints an object via an output `CHANNEL` between new-line and space
+
+```
+PRINTB (BUFFER CHANNEL)
+ #DECL ((VALUE BUFFER) <<OR UVECTOR STORAGE> [REST <PRIMTYPE WORD>]>
+        (CHANNEL) CHANNEL)
+```
+writes binary information via an output `CHANNEL`
+
+```
+PRINTSTRING (BUFFER "OPTIONAL" (CHANNEL .OUTCHAN) (COUNT <LENGTH .BUFFER>))
+ #DECL ((VALUE COUNT) FIX
+        (BUFFER) STRING (CHANNEL) CHANNEL)
+```
+writes contents of a `STRING` via an output `CHANNEL`
+
+```
+PRINTTYPE (TYPE "OPTIONAL" HOW)
+ #DECL ((VALUE) <OR ATOM APPLICABLE '#FALSE ()>
+        (TYPE) ATOM (HOW) <OR ATOM APPLICABLE>)
+```
+specifies or returns how a data type is printed
+
+```
+PROCESS (STARTUP)
+ #DECL ((VALUE) PROCESS
+        (STARTUP) APPLICABLE)
+```
+creates a new `PROCESS` with given startup function
+
+```
+PROG ("ARGS" ARGS)
+ #DECL ((VALUE) ANY
+        (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
+```
+executes sequential expressions
+
+```
+PURIFY ("TUPLE" TUPLE)
+ #DECL ((VALUE) ANY
+        (TUPLE) TUPLE)
+```
+purifies objects for sharing by different operating-system processes
+
+```
+PUT (ITEM INDICATOR "OPTIONAL" VAL)
+ #DECL ((VALUE) ANY
+        (ITEM) <OR STRUCTURED ANY> (INDICATOR) <OR FIX OFFSET ANY> (VAL) ANY)
+```
+stores into structure or does `PUTPROP`
+
+```
+PUT-DECL (IDENTIFIER PATTERN)
+ #DECL ((VALUE IDENTIFIER) <OR LOCD OFFSET>
+        (PATTERN) <OR ATOM FORM>)
+```
+changes the type declaration for an `ATOM`'s value or an `OFFSET`
+
+```
+PUTBITS (TO FIELD "OPTIONAL" (FROM 0))
+ #DECL ((VALUE) <PRIMTYPE WORD>
+        (TO FROM) <PRIMTYPE WORD> (FIELD) BITS)
+```
+sets a bit field in a machine word
+
+```
+PUTPROP (ITEM INDICATOR "OPTIONAL" VAL)
+ #DECL ((VALUE) ANY
+        (ITEM INDICATOR VAL) ANY)
+```
+(dis)associates a value with an item under an indicator
+
+```
+PUTREST (HEAD TAIL)
+ #DECL ((VALUE HEAD) <PRIMTYPE LIST>
+        (TAIL) <PRIMTYPE LIST>)
+```
+replaces the rest of a list
+
+```
+QUIT ()
+ #DECL ((VALUE) '#FALSE ())
+```
+exits from MDL gracefully
+
+```
+QUITTER (WAS-TYPED CHANNEL)
+ #DECL ((VALUE WAS-TYPED) CHARACTER
+        (CHANNEL) CHANNEL)
+```
+is the interrupt handler for ^G and ^S quit features
+
+```
+QUOTE ("ARGS" ARGS)
+ #DECL ((VALUE) ANY
+        (ARGS) LIST)
+```
+returns the first argument unevaluated
+
+```
+RANDOM ("OPTIONAL" SEED-1 SEED-2)
+ #DECL ((VALUE) FIX
+        (SEED-1 SEED-2) FIX)
+```
+generates a uniform pseudo-random integer (arithmetic)
+
+```
+READ ("OPTIONAL"
+        (CHANNEL .INCHAN) (EOF-ROUTINE '<ERROR ...>) (LOOK-UP .OBLIST) READ-TABLE)
+ #DECL ((VALUE) ANY
+        (CHANNEL) CHANNEL (EOF-ROUTINE) ANY (READ-TABLE) VECTOR
+        (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>)
+```
+reads one object via an input `CHANNEL` (sections 11.1.1.1, 11.3, 15.7.1, 17.1.3)
+
+```
+READB (BUFFER CHANNEL "OPTIONAL" (EOF-ROUTINE '<ERROR ...>))
+ #DECL ((VALUE) FIX
+        (BUFFER) <<OR UVECTOR STORAGE> [REST <PRIMTYPE WORD>]>
+        (CHANNEL) CHANNEL (EOF-ROUTINE) ANY)
+```
+reads binary information via an input `CHANNEL`
+
+```
+READCHR ("OPTIONAL" (CHANNEL .INCHAN) (EOF-ROUTINE '<ERROR ...>))
+ #DECL ((VALUE) <OR CHARACTER FIX>
+        (CHANNEL) CHANNEL (EOF-ROUTINE) ANY)
+```
+reads one character via an input `CHANNEL`
+
+```
+READSTRING (BUFFER "OPTIONAL" (CHANNEL .INCHAN) (STOP <LENGTH .BUFFER>)
+                              (EOF-ROUTINE '<ERROR ...>))
+ #DECL ((VALUE) FIX
+        (BUFFER) STRING (CHANNEL) CHANNEL (STOP) <OR FIX STRING> (EOF-ROUTINE) ANY)
+```
+reads into a `STRING` via an input `CHANNEL`
+
+```
+REALTIMER ("OPTIONAL" INTERVAL)
+ #DECL ((VALUE) <OR FIX FLOAT '#FALSE ()>
+        (INTERVAL) <OR FIX FLOAT>)
+```
+sets or fetches interval for real-time interrupts (ITS version only)
+
+```
+REMOVE (PNAME "OPTIONAL" OBLIST)
+ #DECL ((VALUE) <OR ATOM '#FALSE ()>
+        (PNAME) <OR ATOM STRING> (OBLIST) OBLIST)
+```
+removes an `ATOM` from an `OBLIST`
+
+```
+RENAME ("TUPLE" FILE-NAME/S)
+ #DECL ((VALUE) <OR 'T <FALSE STRING FIX>>
+        (FILE-NAME/S) <TUPLE <OR STRING CHANNEL>>)
+```
+renames or deletes a disk file
+
+```
+REP ()
+ #DECL ((VALUE) ANY)
+```
+is the built-in function for `READ-EVAL-PRINT` loop
+
+```
+REPEAT ("ARGS" ARGS)
+ #DECL ((VALUE) ANY
+        (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
+```
+executes sequential expressions repeatedly
+
+```
+RESET (CHANNEL)
+ #DECL ((VALUE) <OR CHANNEL <FALSE STRING STRING FIX>>
+        (CHANNEL) CHANNEL)
+```
+reopens an I/O `CHANNEL` at its beginning
+
+```
+REST (STRUCTURED "OPTIONAL" (N 1))
+ #DECL ((VALUE) STRUCTURED
+        (N) FIX)
+```
+removes the first `N` elements from a structure and changes to primitive data type
+
+```
+RESTORE ("OPTIONAL" NAME-1 NAME-2 NAME-3 NAME-4)
+ #DECL ((VALUE) '"RESTORED"
+        (NAME-1 NAME-2 NAME-3 NAME-4) STRING)
+```
+restores MDL's state from a file
+
+```
+RESUME (VAL "OPTIONAL" (PROCESS <RESUMER>))
+ #DECL ((VALUE) ANY
+        (VAL) ANY (PROCESS) PROCESS)
+```
+transfers execution to another `PROCESS`
+
+```
+RESUMER ("OPTIONAL" (PROCESS <ME>))
+ #DECL ((VALUE) <OR PROCESS '#FALSE ()>
+        (PROCESS) PROCESS)
+```
+returns the `PROCESS` that last resumed the given `PROCESS`
+
+```
+RETRY ("OPTIONAL" FRAME)
+ #DECL (
+        (FRAME) FRAME)
+```
+retries a previous Subroutine call, usually from the error level
+
+```
+RETURN ("OPTIONAL" (VAL T) (ACTIVATION .LPROG\ !-INTERRUPTS))
+ #DECL ((VALUE) ANY
+        (VAL) ANY (ACTIVATION) ACTIVATION)
+```
+leaves a `PROG`/`REPEAT` with a value
+
+```
+RGLOC (ATOM "OPTIONAL" (MAKE-SLOT <>))
+ #DECL ((VALUE) LOCR
+        (ATOM) ATOM (MAKE-SLOT) <OR FALSE ANY>)
+```
+returns a locative to the global-value cell of an `ATOM` for pure-program use
+
+```
+ROOT ()
+ #DECL ((VALUE) OBLIST)
+```
+returns the `OBLIST` containing names of primitives
+
+```
+ROT (WORD AMOUNT)
+ #DECL ((VALUE) WORD
+        (WORD) <PRIMTYPE WORD> (AMOUNT) FIX)
+```
+rotates bits in a machine word
+
+```
+RSUBR (CANDIDATE)
+ #DECL ((VALUE) RSUBR
+        (CANDIDATE) <VECTOR <OR CODE PCODE> ATOM DECL [REST ANY]>)
+```
+creates an `RSUBR`
+
+```
+RSUBR-ENTRY (CANDIDATE OFFSET)
+ #DECL ((VALUE) RSUBR-ENTRY
+        (CANDIDATE) <VECTOR <OR ATOM RSUBR> ATOM DECL> (OFFSET) FIX)
+```
+adds an entry point to an `RSUBR`
+
+```
+RSUBR-LINK ("OPTIONAL" SWITCH)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (SWITCH) <OR FALSE ANY>)
+```
+enables or disables the automatic `RSUBR` linking feature
+
+```
+RUNINT ("TUPLE" TUPLE)
+ #DECL ((VALUE) ANY
+        (TUPLE) TUPLE)
+```
+applies interrupt handler (for internal use only)
+
+```
+RUNTIMER ("OPTIONAL" INTERVAL)
+ #DECL ((VALUE) <OR FIX FLOAT '#FALSE ()>
+        (INTERVAL) <OR FIX FLOAT>)
+```
+sets or fetches interval for run-time interrupt (ITS version only)
+
+```
+SAVE ("TUPLE" FILE-NAME-AND-GC?)
+ #DECL ((VALUE) '"SAVED"
+        (FILE-NAME-AND-GC?) <TUPLE [OPT STRING] [OPT STRING]
+                                   [OPT STRING] [OPT STRING] [OPT <OR FALSE ANY>]>)
+```
+writes the entire state of MDL to a file
+
+```
+SEND (OTHER-NAME-1 OTHER-NAME-2 BODY
+      "OPTIONAL" (TYPE 0) (MY-NAME-1 <UNAME>) (MY-NAME-2 <JNAME>))
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (OTHER-NAME-1 OTHER-NAME-2 MY-NAME-1 MY-NAME-2) STRING (TYPE) FIX
+        (BODY) <OR STRING STORAGE <UVECTOR [REST <PRIMTYPE WORD>]>>)
+```
+sends an IPC message (ITS version only)
+
+```
+SEND-WAIT (OTHER-NAME-1 OTHER-NAME-2 BODY
+           "OPTIONAL" (TYPE 0) (MY-NAME-1 <UNAME>) (MY-NAME-2 <JNAME>))
+ #DECL ((VALUE) 'T
+        (OTHER-NAME-1 OTHER-NAME-2 MY-NAME-1 MY-NAME-2) STRING (TYPE) FIX
+        (BODY) <OR STRING STORAGE <UVECTOR [REST <PRIMTYPE WORD>]>>)
+```
+sends an IPC message and waits for it to be received (ITS version only)
+
+```
+SET (ATOM LVAL "OPTIONAL" ENV)
+ #DECL ((VALUE LVAL) ANY
+        (ATOM) ATOM (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+changes the local value of an `ATOM`
+
+```
+SETG (ATOM GVAL)
+ #DECL ((VALUE GVAL) ANY
+        (ATOM) ATOM)
+```
+changes (the global value of an `ATOM`
+
+```
+SETLOC (POINTER OBJECT)
+ #DECL ((VALUE OBJECT) ANY
+        (POINTER) LOCATIVE)
+```
+changes the contents pointed to by a locative
+
+```
+SIN (NUMBER)
+ #DECL ((VALUE) FLOAT
+        (NUMBER) <OR FIX FLOAT>)
+```
+returns sine of a number (arithmetic)
+
+```
+SLEEP (<OR FIX FLOAT> "OPTIONAL" (UNHANG <>))
+ #DECL ((VALUE) ANY
+        (UNHANG) ANY)
+```
+does nothing, interruptibly, the given number of seconds
+
+```
+SNAME ("OPTIONAL" DIRECTORY)
+ #DECL ((VALUE DIRECTORY) STRING)
+```
+sets or returns the directory name used by default for new I/O `CHANNEL`s
+
+```
+SORT (PRED KEY-STRUC "OPTIONAL" (RECORD-LENGTH 1) (KEY-OFFSET 0)
+                     "TUPLE" OTHER-STRUCS-AND-RECORD-LENGTHS)
+ #DECL ((VALUE KEY-STRUC) <OR <PRIMTYPE VECTOR> <PRIMTYPE TUPLE> <PRIMTYPE UVECTOR>>
+        (PRED) <OR FALSE APPLICABLE> (RECORD-LENGTH KEY-OFFSET) FIX
+        (OTHER-STRUCS-AND-RECORD-LENGTHS)
+        <TUPLE [REST <OR <PRIMTYPE VECTOR> <PRIMTYPE TUPLE> <PRIMTYPE UVECTOR>> FIX]>)
+```
+sorts elements of a structure and rearranges other structures
+
+```
+SPECIAL-CHECK ("OPTIONAL" SWITCH)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (SWITCH) <OR ANY FALSE>)
+```
+turns interpreter special-checking on or off
+
+```
+SPECIAL-MODE ("OPTIONAL" SWITCH)
+ #DECL ((VALUE) <OR 'SPECIAL 'UNSPECIAL>
+        (SWITCH) <OR 'SPECIAL 'UNSPECIAL>)
+```
+sets specialty declaration used by default
+
+```
+SPNAME (ATOM)
+ #DECL ((VALUE) STRING
+        (ATOM) ATOM)
+```
+returns the print-name of an `ATOM` by sharing it
+
+```
+SQRT (NUMBER)
+ #DECL ((VALUE) FLOAT
+        (NUMBER) <OR FIX FLOAT>)
+```
+returns square root of a number (arithmetic)
+
+```
+SQUOTA (SYMBOL)
+ #DECL ((VALUE) <OR FIX '#FALSE ()>
+        (SYMBOL) <PRIMTYPE WORD>)
+```
+gets the address of an internal interpreter symbol (for internal use only)
+
+```
+STACKFORM ("ARGS" ARGS)
+ #DECL ((VALUE) ANY
+        (ARGS) LIST)
+```
+applies a function to stacked arguments (archaic)
+
+```
+STATE (PROCESS)
+ #DECL ((VALUE) ATOM
+        (PROCESS) PROCESS)
+```
+returns a `PROCESS`'s current state
+
+```
+STRCOMP (STRING-1 STRING-2)
+ #DECL ((VALUE) <OR '1 '0 '-1>
+        (STRING-1 STRING-2) <OR ATOM STRING>)
+```
+compares two character-strings or two print-names
+
+```
+STRING ("TUPLE" ELEMENTS)
+ #DECL ((VALUE) STRING
+        (ELEMENTS) <TUPLE [REST <OR STRING CHARACTER>]>)
+```
+creates a character-string from explicit arguments
+
+```
+STRUCTURED? (OBJECT)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
+        (OBJECT) ANY)
+```
+tells whether an object is structured (predicate)
+
+```
+SUBSTITUTE (NEW OLD)
+ #DECL ((VALUE OLD) ANY
+        (NEW) ANY)
+```
+substitutes one object for another in the entire address space
+
+```
+SUBSTRUC (FROM "OPTIONAL" (REST 0) (AMOUNT <- <LENGTH .OBJECT> .REST>) TO)
+ #DECL ((VALUE TO) <OR LIST VECTOR UVECTOR STRING BYTES>
+        (FROM) <OR <PRIMTYPE LIST> <PRIMTYPE VECTOR> <PRIMTYPE TUPLE>
+                   <PRIMTYPE UVECTOR> <PRIMTYPE STRING> <PRIMTYPE BYTES>>
+        (REST AMOUNT) FIX)
+```
+copies (part of) a structure into another
+
+```
+SUICIDE (VAL "OPTIONAL" (PROCESS <RESUMER>))
+ #DECL ((VALUE) ANY
+        (VAL) ANY (PROCESS) PROCESS)
+```
+causes the current `PROCESS` to die and resumes another
+
+```
+TAG (LABEL)
+ #DECL ((VALUE) TAG
+        (LABEL) ATOM)
+```
+creates a `TAG` for use by `GO`
+
+```
+TERPRI ("OPTIONAL" (CHANNEL .OUTCHAN))
+ #DECL ((VALUE) '#FALSE ()
+        (CHANNEL) CHANNEL)
+```
+prints a carriage-return and line-feed via an output `CHANNEL`
+
+```
+TIME ("TUPLE" IGNORED)
+ #DECL ((VALUE) FLOAT
+        (IGNORED) TUPLE)
+```
+returns the elapsed execution time in seconds
+
+```
+TOP (STRUCTURE)
+ #DECL ((VALUE) <OR VECTOR TUPLE UVECTOR STORAGE STRING BYTES TEMPLATE>
+        (STRUCTURE) <OR <PRIMTYPE VECTOR> <PRIMTYPE TUPLE>
+                        <PRIMTYPE UVECTOR> <PRIMTYPE STORAGE>
+                        <PRIMTYPE STRING> <PRIMTYPE BYTES> <PRIMTYPE TEMPLATE>>)
+```
+replaces all elements removed from a non-list structure by `REST`ing and changes to primitive data type
+
+```
+TTYECHO (CHANNEL SWITCH)
+ #DECL ((VALUE CHANNEL) CHANNEL
+        (SWITCH) <OR FALSE ANY>)
+```
+turns echoing (of characters typed on a terminal) on or off
+
+```
+TUPLE ("TUPLE" ELEMENTS)
+ #DECL ((VALUE) TUPLE
+        (ELEMENTS) TUPLE)
+```
+creates a `TUPLE` from explicit arguments
+
+```
+TYI ("OPTIONAL" CHANNEL)
+ #DECL ((VALUE) CHARACTER
+        (CHANNEL) CHANNEL)
+```
+inputs a `CHARACTER` from a terminal immediately
+
+```
+TYPE (OBJECT)
+ #DECL ((VALUE) ATOM
+        (OBJECT) ANY)
+```
+returns the data type of an object
+
+```
+TYPE-C (TYPE "OPTIONAL" PRIMTYPE)
+ #DECL ((VALUE) TYPE-C
+        (TYPE PRIMTYPE) ATOM)
+```
+makes a data type code for pure-program use
+
+```
+TYPE-W (TYPE "OPTIONAL" PRIMTYPE RIGHT-HALF)
+ #DECL ((VALUE) TYPE-W
+        (TYPE PRIMTYPE) ATOM (RIGHT-HALF) <PRIMTYPE WORD>)
+```
+makes a data-type machine word for pure-program use
+
+```
+TYPE? (OBJECT "TUPLE" TYPES)
+ #DECL ((VALUE) <OR ATOM '#FALSE ()>
+        (OBJECT) ANY (TYPES) <TUPLE ATOM [REST ATOM]>)
+```
+tells whether an object's data type is one of the given types (predicate)
+
+```
+TYPEPRIM (TYPE)
+ #DECL ((VALUE) ATOM
+        (TYPE) ATOM)
+```
+returns a data type's primitive type
+
+```
+UNAME ()
+ #DECL ((VALUE) STRING)
+```
+returns the "user name" of MDL's process
+
+```
+UNASSIGN (ATOM "OPTIONAL" ENV)
+ #DECL ((VALUE ATOM) ATOM
+        (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+causes an `ATOM` to have no local value
+
+```
+UNMANIFEST ("TUPLE" ATOMS)
+ #DECL ((VALUE) 'T
+        (ATOMS) <TUPLE [REST ATOM]>)
+```
+declares the global values of `ATOM`s not to be constants
+
+```
+UNPARSE (OBJECT "OPTIONAL" RADIX)
+ #DECL ((VALUE) STRING
+        (OBJECT) ANY (RADIX) FIX)
+```
+creates a `STRING` representation of an object
+
+```
+UNWIND ('NORMAL 'CLEAN-UP)
+ #DECL ((VALUE) ANY
+        (NORMAL CLEAN-UP) ANY)
+```
+specifies cleaning-up during non-local return
+
+```
+UTYPE (UVECTOR)
+ #DECL ((VALUE) ATOM
+        (UVECTOR) <PRIMTYPE UVECTOR>)
+```
+returns the data type of all elements of a uniform vector
+
+```
+UVECTOR ("TUPLE" ELEMENTS)
+ #DECL ((VALUE) UVECTOR
+        (ELEMENTS) TUPLE)
+```
+creates a `UVECTOR` from explicit arguments
+
+```
+VALID-TYPE? (TYPE)
+ #DECL ((VALUE) <OR TYPE-C '#FALSE ()>
+        (TYPE) ATOM)
+```
+tells whether an `ATOM` is the name of a type (predicate)
+
+```
+VALRET (MESSAGE)
+ #DECL ((VALUE) '#FALSE ()
+        (MESSAGE) <OR STRING FIX>)
+```
+passes a message to the superior operating-system process
+
+```
+VALUE (ATOM "OPTIONAL" ENV)
+ #DECL ((VALUE) ANY
+        (ATOM) ATOM (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+```
+returns the local or else the global value of an `ATOM`
+
+```
+VECTOR ("TUPLE" ELEMENTS)
+ #DECL ((VALUE) VECTOR
+        (ELEMENTS) TUPLE)
+```
+creates a `VECTOR` from explicit arguments
+
+```
+XJNAME ()
+ #DECL ((VALUE) STRING)
+```
+returns the "intended job name" of MDL's process
+
+```
+XORB ("TUPLE" WORDS)
+ #DECL ((VALUE) WORD
+        (WORDS) <TUPLE [REST <PRIMTYPE WORD>]>)
+```
+computes bitwise exclusive "or" of machine word:
+
+```
+XUNAME ()
+ #DECL ((VALUE) STRING)
+```
+returns the "intended user name" of MDL's process
