@@ -36,31 +36,31 @@ ARG) ...)` implies `<==? .VALUE .ARG>`.
 
 ```
 * ("TUPLE" FACTORS)
- #DECL ((VALUE <OR FIX FLOAT>
-           (FACTORS) <TUPLE [REST <OR FIX FLOAT>]>)
+ #DECL ((VALUE) <OR FIX FLOAT>
+        (FACTORS) <TUPLE [REST <OR FIX FLOAT>]>)
 ```
 multiplies all arguments together (arithmetic)
 
 ```
 + ("TUPLE" TERMS)
  #DECL ((VALUE) <OR FIX FLOAT>
-        (TERMS <TUPLE [REST <OR FIX FLOAT>]>)
+        (TERMS) <TUPLE [REST <OR FIX FLOAT>]>)
 ```
 adds all arguments together (arithmetic)
 
 ```
-- ("OPTIONAL" MINUEEND "TUPLE" SUBTRAHENDS)
- #DECL ((VALUE <OR FIX FLOAT>
-       (MINUEND ) <OR FIX FLOAT>
-       (SUBTRAHENDS) <TUPLE [REST <OR FIX FLOAT>]>)
+- ("OPTIONAL" MINUEND "TUPLE" SUBTRAHENDS)
+ #DECL ((VALUE) <OR FIX FLOAT>
+        (MINUEND) <OR FIX FLOAT>
+        (SUBTRAHENDS) <TUPLE [REST <OR FIX FLOAT>]>)
 ```
-subtracts other arguments from the first (arithmetic)
+subtracts other arguments from first argument (arithmetic)
 
 ```
 / ("OPTIONAL" DIVIDEND "TUPLE" DIVISORS)
  #DECL ((VALUE) <OR FIX FLOAT>
-       (DIVIDEND) <OR FIX FLOAT>
-       (DIVISORS) <TUPLE [REST <OR FIX FLOAT>]>)
+        (DIVIDEND) <OR FIX FLOAT>
+        (DIVISORS) <TUPLE [REST <OR FIX FLOAT>]>)
 ```
 divides first argument by other arguments (arithmetic)
 
@@ -74,7 +74,7 @@ tells whether a number is zero (predicate)
 ```
 1? (NUMBER)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
-        (NUMBER <OR FIX FLOAT>)
+        (NUMBER) <OR FIX FLOAT>)
 ```
 tells whether a number is one (predicate)
 
@@ -86,7 +86,7 @@ causes a `PROCESS` to enter single-step mode
 
 ```
 ==? (OBJECT-1 OBJECT-2)
- #DECL ((VALUE <OR 'T '#FALSE ()>
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
         (OBJECT-1 OBJECT-2) ANY)
 ```
 tells whether two objects are "exactly" equal (predicate)
@@ -100,8 +100,8 @@ tells whether two objects are "structurally" equal (predicate)
 
 ```
 ABS (NUMBER)
- #DECL ((VALUE <OR FIX FLOAT>
-        (NUMBER <OR FIX FLOAT>)
+ #DECL ((VALUE) <OR FIX FLOAT>
+        (NUMBER) <OR FIX FLOAT>)
 ```
 returns absolute value of a number (arithmetic)
 
@@ -110,18 +110,18 @@ ACCESS (CHANNEL ACCESS-POINTER)
  #DECL ((VALUE CHANNEL) CHANNEL
         (ACCESS-POINTER) FIX)
 ```
-sets access pointer for the next I/O transfer via a `CHANNEL`
+sets access pointer for next I/O transfer via a `CHANNEL`
 
 ```
 ACTIVATE-CHARS ("OPTIONAL" STRING)
  #DECL ((VALUE STRING) STRING)
 ```
-sets or returns interrupt characters for terminal Typing (Tenex and 
+sets or returns interrupt characters for terminal typing (Tenex and
 Tops-20 versions only)
 
 ```
 AGAIN ("OPTIONAL" (ACTIVATION .LPROG\ !-INTERRUPTS))
- #DECL ((VALUE ANY
+ #DECL ((VALUE) ANY
         (ACTIVATION) ACTIVATION)
 ```
 resumes execution at the given `ACTIVATION`
@@ -141,7 +141,7 @@ computes logical "and" of truth-values, evaluated by the Subroutine
 
 ```
 AND? ("TUPLE" TUPLE)
- #DECL ((VALUE <OR FALSE ANY>
+ #DECL ((VALUE) <OR FALSE ANY>
         (TUPLE) TUPLE)
 ```
 computes logical "and" of truth-values, evaluated at call time
@@ -149,27 +149,27 @@ computes logical "and" of truth-values, evaluated at call time
 ```
 ANDB ("TUPLE" WORDS)
  #DECL ((VALUE) WORD
-        (WORDS <TUPLE [REST <PRIMTYPE WORD>]>)
+        (WORDS) <TUPLE [REST <PRIMTYPE WORD>]>)
 ```
-computers bitwise "and" of machine words
+computes bitwise "and" of machine words
 
 ```
 APPLICABLE? (OBJECT)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
-        (OBJECT ANY)
+        (OBJECT) ANY)
 ```
 tells whether argument is applicable (predicate)
 
 ```
-APPLY (APPLICABLE "TUPLE") ARGUMENTS
- $DECL ((VALUE) ANY
+APPLY (APPLICABLE "TUPLE" ARGUMENTS)
+ #DECL ((VALUE) ANY
         (APPLICABLE) APPLICABLE (ARGUMENTS) TUPLE)
 ```
 applies first argument to the other arguments
 
 ```
 APPLYTYPE (TYPE "OPTIONAL" HOW)
- #DECL ((VALUE <OR ATOM APPLICABLE '#FALSE ()>
+ #DECL ((VALUE) <OR ATOM APPLICABLE '#FALSE ()>
         (TYPE) ATOM (HOW) <OR ATOM APPLICABLE>)
 ```
 specifies or returns how a data type is applied
@@ -193,7 +193,7 @@ ASSIGNED? (ATOM "OPTIONAL" ENV)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
         (ATOM) ATOM (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
 ```
-tells whether an ATOM has a local value (predicate)
+tells whether an `ATOM` has a local value (predicate)
 
 ```
 ASSOCIATIONS ()
@@ -211,7 +211,7 @@ returns a locative to the Nth element of a structure
 ```
 ATAN (NUMBER)
  #DECL ((VALUE) FLOAT
-        (#NUMBER) <OR FIX FLOAT>
+        (NUMBER) <OR FIX FLOAT>)
 ```
 returns arc tangent of a number (arithmetic)
 
@@ -225,7 +225,7 @@ creates an `ATOM` with a given name
 ```
 AVALUE (ASSOCIATION)
  #DECL ((VALUE) ANY
-        (ASSOCIATION) ASSOC)
+        (ASSOCIATION) ASOC)
 ```
 returns the "value" field of an association
 
@@ -256,11 +256,11 @@ creates a bit mask for `PUTBITS` and `GETBITS`
 
 ```
 BLOAT ("OPTIONAL"
-       (FREE 0) (STACK 0) (LOCALS 0) (GLOBALS 0) (TYPES 0) (STORAGE 0) (P-STACK 0)0
+       (FREE 0) (STACK 0) (LOCALS 0) (GLOBALS 0) (TYPES 0) (STORAGE 0) (P-STACK 0)
        MIN GROW-LOCAL GROW-GLOBAL GROW-TYPE GROW-STORAGE PURE P-STACK-SIZE STACK-SIZE)
  #DECL ((VALUE) FIX
         (FREE STACK LOCALS GLOBALS TYPES STORAGE P-STACK MIN GROW-LOCAL GROW-GLOBAL
-         GROW-TYPE GROW-STORAGE PURE P-STACK SIZE STACK-SIZE) FIX)
+         GROW-TYPE GROW-STORAGE PURE P-STACK-SIZE STACK-SIZE) FIX)
 ```
 allocates extra storage temporarily
 
@@ -268,7 +268,6 @@ allocates extra storage temporarily
 BLOAT-STAT ("OPTIONAL" STATS)
  #DECL ((VALUE) <UVECTOR [27 FIX]>
         (STATS) <UVECTOR [27 ANY]>)
-
 ```
 gives garbage-collector and storage statistics
 
@@ -290,20 +289,20 @@ BREAK-SEQ (OBJECT PROCESS)
  #DECL ((VALUE PROCESS) PROCESS
         (OBJECT) ANY)
 ```
-modifies execution of sequence of another `PROCESS`
+modifies execution sequence of another `PROCESS`
 
 ```
 BUFOUT ("OPTIONAL" (CHANNEL .OUTCHAN))
  #DECL ((VALUE CHANNEL) CHANNEL)
 ```
-writes out all internal Muddle buffers for an output `CHANNEL`
+writes out all internal MDL buffers for an output `CHANNEL`
 
 ```
 BYTE-SIZE (BYTES)
  #DECL ((VALUE) FIX
         (BYTES) BYTES)
 ```
-returns size of bytes in a byte string
+returns size of bytes in a byte-string
 
 ```
 BYTES (SIZE "TUPLE" ELEMENTS)
@@ -320,8 +319,8 @@ returns a `LIST` of currently open I/O `CHANNEL`s
 
 ```
 CHANNEL ("OPTIONAL" (MODE "READ") "TUPLE" FILE-NAME)
- #DECL (VALUE) CHANNEL
-       (MODE) STRING (FILE-NAME) TUPLE)
+ #DECL ((VALUE) CHANNEL
+        (MODE) STRING (FILE-NAME) TUPLE)
 ```
 creates an unopened I/O `CHANNEL`
 
@@ -337,7 +336,7 @@ CHUTYPE (UVECTOR TYPE)
  #DECL ((VALUE UVECTOR) <PRIMTYPE UVECTOR>
         (TYPE) ATOM)
 ```
-changes the data type of the elements to a uniform vector
+changes the data type of the elements of a uniform vector
 
 ```
 CLOSE (CHANNEL)
@@ -362,23 +361,23 @@ evaluates conditions and selected expression
 ```
 CONS (NEW-ELEMENT LIST)
  #DECL ((VALUE) LIST
-        (NEW-ELEMENT) ANY (LIST) (LIST)
+        (NEW-ELEMENT) ANY (LIST) LIST)
 ```
-add an element to the front of a `LIST`
+adds an element to the front of a `LIST`
 
 ```
 COS (NUMBER)
  #DECL ((VALUE) FLOAT
         (NUMBER) <OR FIX FLOAT>)
 ```
-prints a cosine of a number (arithmetic)
+returns cosine of a number (arithmetic)
 
 ```
 CRLF ("OPTIONAL" (CHANNEL .OUTCHAN))
  #DECL ((VALUE) 'T
         (CHANNEL) CHANNEL)
 ```
-prints a carriage-return and line-feed via an open `CHANNEL`
+prints a carriage-return and line-feed via an output `CHANNEL`
 
 ```
 DECL-CHECK ("OPTIONAL" SWITCH)
@@ -392,19 +391,19 @@ DECL? (OBJECT PATTERN)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
         (OBJECT) ANY (PATTERN) <OR ATOM FORM>)
 ```
-tells whether any object matches a type declaration (predicate)
+tells whether an object matches a type declaration (predicate)
 
 ```
 DEFINE ('NAME "ARGS" ARGS)
- #DECL ((VALUE ATOM
-        (NAME ) ANY (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
+ #DECL ((VALUE) ATOM
+        (NAME) ANY (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
 ```
 sets the global value of an `ATOM` to a `FUNCTION`
 
 ```
 DEFMAC ('NAME "ARGS" ARGS)
  #DECL ((VALUE) ATOM
-        (NAME) ANY (ARGS) <LIST [OPT AROM] LIST [OPT DECL] ANY>)
+        (NAME) ANY (ARGS) <LIST [OPT ATOM] LIST [OPT DECL] ANY>)
 ```
 sets the global value of an `ATOM` to a `MACRO`
 
@@ -417,23 +416,23 @@ signals an ITS daemon
 
 ```
 DISABLE (INTERRUPT)
- #DECL ((VALUE INTERRUPT) HEADER)
+ #DECL ((VALUE INTERRUPT) IHEADER)
 ```
 disables an interrupt
 
 ```
 DISMISS (VAL "OPTIONAL" ACTIVATION INT-LEVEL)
  #DECL ((VALUE VAL) ANY
-        (ACTIVATION) ACTIVATION INT-LEVEL) FIX)
+        (ACTIVATION) ACTIVATION (INT-LEVEL) FIX)
 ```
-dismisses an interrupt sequence
+dismisses an interrupt occurrence
 
 ```
 ECHOPAIR (IN OUT)
  #DECL ((VALUE IN) CHANNEL
         (OUT) CHANNEL)
 ```
-coordinate I/O `CHANNEL`s for echoing characters on rubout
+coordinates I/O `CHANNEL`s for echoing characters on rubout
 
 ```
 EMPTY? (OBJECT)
@@ -452,35 +451,35 @@ enables an interrupt
 ENDBLOCK ()
  #DECL ((VALUE) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>)
 ```
-restores the .OBLIST that existed before the corresponding call to `BLOCK`
+restores the .OBLIST that existed before corresponding call to `BLOCK`
 
 ```
 ENTRY-LOC (ENTRY)
  #DECL ((VALUE) FIX
         (ENTRY) RSUBR-ENTRY)
 ```
-returns the offset in the code vector of an RSUBR-ENTRY
+returns the offset in the code vector of an `RSUBR-ENTRY`
 
 ```
 EQVB ("TUPLE" WORDS)
  #DECL ((VALUE) WORD
-        (WORDS) <TYPLE [REST <PRIMTYPE WORD>]>)
+        (WORDS) <TUPLE [REST <PRIMTYPE WORD>]>)
 ```
 computes bitwise "equivalence" of machine words
 
 ```
 ERRET ("OPTIONAL" VAL (FRAME .LERR\ !-INTERRUPTS))
  #DECL ((VALUE) ANY
-        (VALUE ANY (FRAME) FRAME)
+        (VAL) ANY (FRAME) FRAME)
 ```
 continues evaluation from the last `ERROR` or `LISTEN` or from a given `FRAME`
 
 ```
 ERROR ("TUPLE" INFO)
  #DECL ((VALUE) ANY
-        (INFO) TUPLE
+        (INFO) TUPLE)
 ```
-stops and informs users of an error
+stops and informs user of an error
 
 ```
 ERRORS ()
@@ -491,21 +490,21 @@ returns the `OBLIST` where error messages are located
 ```
 EVAL (ANY "OPTIONAL" ENV)
  #DECL ((VALUE) ANY
-        (ENV <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
+        (ENV) <OR FRAME ENVIRONMENT ACTIVATION PROCESS>)
 ```
 evaluates an expression in a given environment
 
 ```
 EVALTYPE (TYPE "OPTIONAL" HOW)
  #DECL ((VALUE) <OR ATOM APPLICABLE '#FALSE ()>
-        (TYPE ATOM (HOW) <OR ATOM APPLICABLE>)
+        (TYPE) ATOM (HOW) <OR ATOM APPLICABLE>)
 ```
 specifies or returns how a data type is evaluated
 
 ```
 EVENT (NAME "OPTIONAL" PRIORITY WHICH)
  #DECL ((VALUE) IHEADER
-        (NAME) <OR STRING ATOM IHEADER> (PRIORITY) FIX (WHICH) <OR CHANNEL LOCATIVE>
+        (NAME) <OR STRING ATOM IHEADER> (PRIORITY) FIX (WHICH) <OR CHANNEL LOCATIVE>)
 ```
 sets up an interrupt
 
@@ -547,7 +546,7 @@ copies characters from one `CHANNEL` to another until end-of-file on the input `
 ```
 FIX (NUMBER)
  #DECL ((VALUE) FIX
-        (NUMBER) <OR FLOAT FIX>
+        (NUMBER) <OR FLOAT FIX>)
 ```
 returns integer part of a number (arithmetic)
 
@@ -556,14 +555,14 @@ FLATSIZE (ANY MAX "OPTIONAL" (RADIX 10))
  #DECL ((VALUE) <OR FIX '#FALSE ()>
         (ANY) ANY (MAX RADIX) FIX)
 ```
-returns number of characters needed to PRIN1 an object, if not greate than given maximum.
+returns number of characters needed to `PRIN1` an object, if not greater than given maximum
 
 ```
 FLOAD ("TUPLE" FILE-NAME-AND-LOOK-UP)
  #DECL ((VALUE) '"DONE"
         (FILE-NAME-AND-LOOK-UP) TUPLE)
 ```
-reads and evaluates all object in a file
+reads and evaluates all objects in a file
 
 ```
 FLOAT (NUMBER)
@@ -575,7 +574,7 @@ returns floating-point value of a number (arithmetic)
 ```
 FORM ("TUPLE" ELEMENTS)
  #DECL ((VALUE) FORM
-        (ELEMENTS) TUPLE
+        (ELEMENTS) TUPLE)
 ```
 creates a `FORM` from explicit arguments
 
@@ -595,11 +594,11 @@ causes a `PROCESS` to leave single-step mode
 
 ```
 FREEZE (STRUCTURE)
- #DECLINE ((VALUE) <OR VECTOR UVECTOR STRING BYTES>
-           (STRUCTURE) <OR <PRIMTYPE VECTOR> <PRIMTYPE TUPLE> <PRIMTYPE UVECTOR>
-                           <PRIMTYPE STRING> <PRIMTYPE BYTES>>)
+ #DECL ((VALUE) <OR VECTOR UVECTOR STRING BYTES>
+        (STRUCTURE) <OR <PRIMTYPE VECTOR> <PRIMTYPE TUPLE> <PRIMTYPE UVECTOR>
+                        <PRIMTYPE STRING> <PRIMTYPE BYTES>>)
 ```
-makes a copy of an arugment in non-moving garbage-collected space
+makes copy of argument in non-moving garbage-collected space
 
 ```
 FUNCT (FRAME)
@@ -620,14 +619,14 @@ G=? (NUMBER-1 NUMBER-2)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
         (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
 ```
-tells whether first argument is greater than or equal to the second (predicate)
+tells whether first argument is greater than or equal to second (predicate)
 
 ```
 G? (NUMBER-1 NUMBER-2)
- #DECL ((VALUE) <OR 'T' '#FALSE ()>
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
         (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
 ```
-tells whether first argument is greater than the second (predicate)
+tells whether first argument is greater than second (predicate)
 
 ```
 GASSIGNED? (ATOM)
@@ -637,11 +636,11 @@ GASSIGNED? (ATOM)
 tells whether an `ATOM` has a global value (predicate)
 
 ```
-GBOUND? (ATOM
+GBOUND? (ATOM)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
         (ATOM) ATOM)
 ```
-tells whether an `ATOM` has a global value (predicate)
+tells whether an `ATOM` ever had a global value (predicate)
 
 ```
 GC ("OPTIONAL" MIN (EXHAUSTIVE? <>) MS-FREQ)
@@ -674,14 +673,14 @@ inputs an object that was previously `GC-DUMP`ed
 ```
 GDECL ("ARGS" ARGS)
  #DECL ((VALUE) ANY
-        (ARGS <LIST [REST <LIST [REST ATOM]> <OR ATOM FORM>]>)
+        (ARGS) <LIST [REST <LIST [REST ATOM]> <OR ATOM FORM>]>)
 ```
-declates the type/structure of the global value of `ATOM`s
+declares the type/structure of the global value of `ATOM`s
 
 ```
 GET (ITEM INDICATOR "OPTIONAL" (IF-NONE <>))
  #DECL ((VALUE) ANY
-        (ITEM <OR STRUCTURED ANY> (INDICATOR) <OR FIX OFFSET ANY> (IF-NONE) ANY)
+        (ITEM) <OR STRUCTURED ANY> (INDICATOR) <OR FIX OFFSET ANY> (IF-NONE) ANY)
 ```
 does `NTH` or `GETPROP`
 
@@ -695,13 +694,13 @@ gets the type declaration for an `ATOM`'s value or an `OFFSET`
 ```
 GETBITS (FROM FIELD)
  #DECL ((VALUE) WORD
-        (FROM ) <OR <PRIMTYPE WORD> <PRIMTYPE STORAGE>> (FIELD) BITS)
+        (FROM) <OR <PRIMTYPE WORD> <PRIMTYPE STORAGE>> (FIELD) BITS)
 ```
 returns a bit field of a machine word or `STORAGE` address
 
 ```
 GETL (ITEM INDICATOR "OPTIONAL" (IF-NONE <>))
- #DECL ((VALUE <OR LOCATIVE LOCAS ANY>
+ #DECL ((VALUE) <OR LOCATIVE LOCAS ANY>
         (ITEM) <OR STRUCTURED ANY> (INDICATOR) <OR FIX OFFSET ANY> (IF-NONE) ANY)
 ```
 does `AT` or `GETPL`
@@ -722,10 +721,10 @@ returns the value associated with an item under an indicator
 
 ```
 GLOC (ATOM "OPTIONAL" (MAKE-SLOT <>))
- #DECL ((VALUE) LOCD)
+ #DECL ((VALUE) LOCD
         (ATOM) ATOM (MAKE-SLOT) <OR FALSE ANY>)
 ```
-returns a locative to thje global-value cell of an `ATOM`
+returns a locative to the global-value cell of an `ATOM`
 
 ```
 GO (LABEL)
@@ -736,7 +735,7 @@ goes to a label and continues evaluation from there
 
 ```
 GROW (U/VECTOR END BEG)
- #DECL ((VALUE)    <OR <PRIMTYPE VECTOR> <PRIMTYPE UVECTOR>
+ #DECL ((VALUE)    <OR <PRIMTYPE VECTOR> <PRIMTYPE UVECTOR>>
         (U/VECTOR) <OR <PRIMTYPE VECTOR> <PRIMTYPE UVECTOR>> (END BEG) FIX)
 ```
 increases the size of a vector or uniform vector
@@ -745,7 +744,7 @@ increases the size of a vector or uniform vector
 GUNASSIGN (ATOM)
  #DECL ((VALUE ATOM) ATOM)
 ```
-causes an ATOM to have no global value
+causes an `ATOM` to have no global value
 
 ```
 GVAL (ATOM)
@@ -759,33 +758,33 @@ HANDLER (IHEADER HANDLER "OPTIONAL" (PROCESS #PROCESS 0))
  #DECL ((VALUE) HANDLER
         (IHEADER) IHEADER (HANDLER) <OR HANDLER APPLICABLE> (PROCESS) PROCESS)
 ```
-creates an interrupter `HANDLER`
+creates an interrupt `HANDLER`
 
 ```
 HANG ("OPTIONAL" (UNHANG <>))
  #DECL ((VALUE) ANY
         (UNHANG) ANY)
 ```
-Does nothing, interruptibly, potentially forever
+does nothing, interruptibly, potentially forever
 
 ```
 IBYTES (SIZE LENGTH "OPTIONAL" (ELEMENT 0))
  #DECL ((VALUE) BYTES
         (SIZE LENGTH) FIX (ELEMENT) ANY)
 ```
-creates a byte-sized string from implicit arguments
+creates a byte-string from implicit arguments
 
 ```
 IFORM (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
- #DECL ((VALUE FORM
-        (LENGTH FIX ELEMENT) ANY)
+ #DECL ((VALUE) FORM
+        (LENGTH) FIX (ELEMENT) ANY)
 ```
 creates a `FORM` from implicit arguments
 
 ```
 ILIST (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
  #DECL ((VALUE) LIST
-        (LENGTH) DIX (ELEMENT) ANY)
+        (LENGTH) FIX (ELEMENT) ANY)
 ```
 creates a `LIST` from implicit arguments
 
@@ -794,7 +793,7 @@ IMAGE (CODE "OPTIONAL" (CHANNEL .OUTCHAN))
  #DECL ((VALUE CODE) FIX
         (CHANNEL) CHANNEL)
 ```
-sends an image-mode characters via an output `CHANNEL`
+sends an image-mode character via an output `CHANNEL`
 
 ```
 IN (POINTER)
@@ -813,14 +812,14 @@ fetches the integral part of an `OFFSET`
 ```
 INDICATOR (ASSOCIATION)
  #DECL ((VALUE) ANY
-        (ASSOCIATION) ASSOC)
+        (ASSOCIATION) ASOC)
 ```
 returns the "indicator" field of an association
 
 ```
 INSERT (PNAME OBLIST)
  #DECL ((VALUE) ATOM
-        (PNAME <OR ATOM STRING> (OBLIST) OBLIST)
+        (PNAME) <OR ATOM STRING> (OBLIST) OBLIST)
 ```
 adds an `ATOM` to an `OBLIST`
 
@@ -829,12 +828,12 @@ INT-LEVEL ("OPTIONAL" NEW-INT-LEVEL)
  #DECL ((VALUE) FIX
         (NEW-INT-LEVEL) FIX)
 ```
-returns or sets current interrupt level
+returns and/or sets current interrupt level
 
 ```
 INTERRUPT (NAME "TUPLE" HANDLER-ARGS)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
-        (NAME <OR STRING ATOM IHEADER> (HANDLER-ARGS) TUPLE)
+        (NAME) <OR STRING ATOM IHEADER> (HANDLER-ARGS) TUPLE)
 ```
 causes an interrupt to occur
 
@@ -842,14 +841,14 @@ causes an interrupt to occur
 INTERRUPTS ()
  #DECL ((VALUE) OBLIST)
 ```
-returns an `OBLIST` on which interrupt names are kept
+returns the `OBLIST` on which interrupt names are kept
 
 ```
 IPC-HANDLER (BODY TYPE OTHER-NAME-1 OTHER-NAME-2
              "OPTIONAL" (MY-NAME-1 <UNAME>) (MY-NAME-2 <JNAME>))
  #DECL ((VALUE) 'T
-        (BODY) <OR STRING VECTOR> (TYPE) FIX
-        (OTHER-NAME-1 OTHER-NAME-2 MY-NAME-2) STRING)
+        (BODY) <OR STRING UVECTOR> (TYPE) FIX
+        (OTHER-NAME-1 OTHER-NAME-2 MY-NAME-1 MY-NAME-2) STRING)
 ```
 is the built-in handler for "IPC" (ITS version only)
 
@@ -857,12 +856,12 @@ is the built-in handler for "IPC" (ITS version only)
 IPC-OFF ()
  #DECL ((VALUE) 'T)
 ```
-stops listening on the IPC device (ITS version only)
+stops all listening on the IPC device (ITS version only)
 
 ```
 IPC-ON ("OPTIONAL" (MY-NAME-1 <UNAME>) (MY-NAME-2 <JNAME>))
  #DECL ((VALUE) 'T
-        (MY-NAME -1 MY-NAME-2) STRING)
+        (MY-NAME-1 MY-NAME-2) STRING)
 ```
 listens on the IPC device (ITS version only)
 
@@ -871,7 +870,7 @@ ISTORAGE (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
  #DECL ((VALUE) STORAGE
         (LENGTH) FIX (ELEMENT) ANY)
 ```
-creates a non-garbage-collected `STORAGE` from implicit arguments
+creates a non-garbage-collected `STORAGE` from implicit arguments (archaic)
 
 ```
 ISTRING (LENGTH "OPTIONAL" (ELEMENT !\^@))
@@ -883,7 +882,7 @@ creates a character-string from implicit arguments
 ```
 ITEM (ASSOCIATION)
  #DECL ((VALUE) ANY
-        (ASSOCIATION) ASSOC)
+        (ASSOCIATION) ASOC)
 ```
 returns the "item" field of an association
 
@@ -899,7 +898,7 @@ IUVECTOR (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
  #DECL ((VALUE) UVECTOR
         (LENGTH) FIX (ELEMENT) ANY)
 ```
-creates a UVECTOR from implicit arguments
+creates a `UVECTOR` from implicit arguments
 
 ```
 IVECTOR (LENGTH "OPTIONAL" (ELEMENT #LOSE 0))
@@ -919,7 +918,7 @@ L=? (NUMBER-1 NUMBER-2)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
         (NUMBER-1 NUMBER-2) <OR FIX FLOAT>)
 ```
-tells whether the first argument is less than or equal to second (predicate)
+tells whether first argument is less than or equal to second (predicate)
 
 ```
 L? (NUMBER-1 NUMBER-2)
@@ -929,8 +928,8 @@ L? (NUMBER-1 NUMBER-2)
 tells whether first argument is less than second (predicate)
 
 ```
-LEAL? (STACK-OBJECT)
- #DECL ((VALUE <OR 'T '#FALSE ()>
+LEGAL? (STACK-OBJECT)
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
         (STACK-OBJECT) ANY)
 ```
 tells whether argument (which might live on the control stack) is still legal (predicate)
@@ -944,17 +943,17 @@ returns the number of elements in a structure
 
 ```
 LENGTH? (OBJECT MAX)
- #DECL ((VALUE <OR FIX '#FALSE ()>
+ #DECL ((VALUE) <OR FIX '#FALSE ()>
         (OBJECT) STRUCTURED (MAX) FIX)
 ```
-tells whether length of structure is less than or equal to an interger (predicate)
+tells whether length of structure is less than or equal to an integer (predicate)
 
 ```
-LINK (EXPR PNAME "OPTIONAL" (OBLIST <` .OBLIST>))
+LINK (EXPR PNAME "OPTIONAL" (OBLIST <1 .OBLIST>))
  #DECL ((VALUE EXPR) ANY
         (PNAME) STRING (OBLIST) OBLIST)
 ```
-creates a symbolic `LINK` in any expression for `READ`ing
+creates a symbolic `LINK` to any expression for `READ`ing
 
 ```
 LIST ("TUPLE" ELEMENTS)
@@ -978,15 +977,15 @@ LLOC (ATOM "OPTIONAL" ENV)
 returns a locative to the local-value cell of an `ATOM`
 
 ```
-LOAD (CHANNEL "OPTIONAL" (LOOK-PU .OBLIST))
- #DECL ((VALUE '"DONE"
+LOAD (CHANNEL "OPTIONAL" (LOOK-UP .OBLIST))
+ #DECL ((VALUE) '"DONE"
         (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>)
 ```
 reads and evaluates all objects via an input `CHANNEL`
 
 ```
 LOCATIVE? (OBJECT)
- #DECL ((VALUE <OR 'T '#FALSE ()>
+ #DECL ((VALUE) <OR 'T '#FALSE ()>
         (OBJECT) ANY)
 ```
 tells whether an object is a locative (predicate)
@@ -1016,9 +1015,9 @@ LPARSE ("OPTIONAL"
         (STRING .PARSE-STRING) (RADIX 10) (LOOK-UP .OBLIST) PARSE-TABLE LOOK-AHEAD)
  #DECL ((VALUE) LIST
         (STRING) STRING (RADIX) FIX (PARSE-TABLE) VECTOR (LOOK-AHEAD) CHARACTER
-        (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>_
+        (LOOK-UP) <OR OBLIST <LIST [REST <OR OBLIST 'DEFAULT>]>>)
 ```
-returns a `LIST` of the object parsed from a `STRING` (sections 7.6.6.3, 15.7.2, 17.1.3)
+returns a `LIST` of the objects parsed from a `STRING` (sections 7.6.6.3, 15.7.2, 17.1.3)
 
 ```
 LSH (WORD AMOUNT)
@@ -1042,7 +1041,7 @@ returns `#PROCESS 1` (the main `PROCESS`)
 
 ```
 MANIFEST ("TUPLE" ATOMS)
- #DECL ((VALUE 'T
+ #DECL ((VALUE) 'T
         (ATOMS) <TUPLE [REST ATOM]>)
 ```
 declares the global values of `ATOM`s to be constant
@@ -1052,10 +1051,10 @@ MANIFEST? (ATOM)
  #DECL ((VALUE) <OR 'T '#FALSE ()>
         (ATOM) ATOM)
 ```
-tells whether the global value of an `ATOM` is a constant (predicate)
+tells whether the global value of an `ATOM` is constant (predicate)
 
 ```
-MAPF (FINAL-FN LOOP-FCN "TUPLE" STRUCTURE)
+MAPF (FINAL-FCN LOOP-FCN "TUPLE" STRUCTURES)
  #DECL ((VALUE) ANY
         (FINAL-FCN) <OR APPLICABLE FALSE> (LOOP-FCN) APPLICABLE
         (STRUCTURES) <TUPLE [REST STRUCTURED]>)
@@ -1109,7 +1108,7 @@ MEMBER (OBJECT STRUCTURE)
  #DECL ((VALUE) <OR STRUCTURED '#FALSE ()>
         (OBJECT) ANY (STRUCTURE) STRUCTURED)
 ```
-tells whether an object is "structurally" equal to some elements of a structure (predicate)
+tells whether an object is "structurally" equal to some element of a structure (predicate)
 
 ```
 MEMQ (OBJECT STRUCTURE)
@@ -1119,22 +1118,22 @@ MEMQ (OBJECT STRUCTURE)
 tells whether an object is "exactly" equal to some element of a structure (predicate)
 
 ```
-MIN ("TUPLE") NUMBERS)
+MIN ("TUPLE" NUMBERS)
  #DECL ((VALUE) <OR FIX FLOAT>
         (NUMBERS) <TUPLE [REST <OR FIX FLOAT>]>)
 ```
 returns the least of its arguments (arithmetic)
 
 ```
-MOBLIST "NAME "OPTIONAL" (LENGTH 13))
+MOBLIST (NAME "OPTIONAL" (LENGTH 13))
  #DECL ((VALUE) OBLIST
         (NAME) ATOM (LENGTH) FIX)
 ```
-creates a gets an `OBLIST`
+creates or gets an `OBLIST`
 
 ```
 MOD (NUMBER MODULUS)
- #DECL ((VALUE FIX
+ #DECL ((VALUE) FIX
         (NUMBER MODULUS) FIX)
 ```
 returns number-theoretic remainder (fixed-point residue) (arithmetic)
