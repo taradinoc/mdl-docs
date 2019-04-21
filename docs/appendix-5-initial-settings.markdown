@@ -20,5 +20,5 @@ The various switches and useful variables in MDL are initially set up with the f
     <SPECIAL-CHECK <>>
     <SPECIAL-MODE UNSPECIAL>
     <SET THIS-PROCESS <SETG THIS-PROCESS <MAIN>>>
-    <ON "CHAR" .QUITTER 8 0 ,INCHAN>
+    <ON "CHAR" ,QUITTER 8 0 ,INCHAN>
     <ON "IPC" ,IPC-HANDLER 1>               ;"ITS version only"
