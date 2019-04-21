@@ -43,7 +43,7 @@ error is usual), that instead it is built by the interpreter or `CHTYPE`d to by 
 | `LOCA`        |                 |     |     |     | `B`   | locative to `TUPLE`                                         |
 | `LOCAS`       |                 |     |     |     | `B`   | locative to `ASOC`                                          |
 | `LOCB`        |                 |     |     |     | `B`   | locative to `BYTES`                                         |
-| `LOCD`        |                 |     |     |     | `%`   | locative to `G/LVAL`                                        |
+| `LOCD`        |                 |     |     |     | `%`   | locative to G/LVAL                                          |
 | `LOCL`        |                 |     |     |     | `B`   | locative to `LIST`                                          |
 | `LOCR`        |                 |     |     |     | `%`   | locative to `GVAL` in pure program                          |
 | `LOCS`        |                 |     |     |     | `B`   | locative to `STRING`                                        |
