@@ -100,7 +100,7 @@ followed by the `PNAME `of the Subroutine applied.
 
     <FUNCT frame>
 
-("function"} returns the `ATOM` whose `G/LVAL` is being applied in 
+("function"} returns the `ATOM` whose G/LVAL is being applied in 
 *frame*.
 
 16.3.3. FRAME (the SUBR)
