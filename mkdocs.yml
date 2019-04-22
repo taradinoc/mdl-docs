@@ -6,7 +6,7 @@ theme: readthedocs
 markdown_extensions:
   - admonition
 
-pages:
+nav:
   - Home: "index.markdown"
   - "Front matter": "00-front-matter.markdown"
   - "Chapter 1: Basic Introduction": "01-basic-introduction.markdown"
