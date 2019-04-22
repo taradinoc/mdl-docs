@@ -73,7 +73,7 @@ will take further action that depends on the value returned. This
 nonstandard action is specified in the error message (first `ERROR`
 argument).
 
-16.3. FRAME (the TYPE)
+## 16.3. FRAME (the TYPE)
 
 A `FRAME` is the object placed on a `PROCESS`'s control stack (chapter
 20) whenever a `SUBR`, `FSUBR`, `RSUBR`, or `RSUBR-ENTRY` (chapter 19)
@@ -90,20 +90,20 @@ Subroutine.
 2. It does not type out in any standard format, but rather as `#FRAME`
 followed by the `PNAME `of the Subroutine applied.
 
-16.3.1. ARGS
+### 16.3.1. ARGS
 
     <ARGS frame>
 
 ("arguments") returns the argument `TUPLE` of *frame*.
 
-16.3.2. FUNCT
+### 16.3.2. FUNCT
 
     <FUNCT frame>
 
 ("function"} returns the `ATOM` whose G/LVAL is being applied in 
 *frame*.
 
-16.3.3. FRAME (the SUBR)
+### 16.3.3. FRAME (the SUBR)
 
     <FRAME frame>
 
@@ -114,7 +114,7 @@ arguments, `FRAME` returns the topmost `FRAME` used in an application
 of `ERROR` or `LISTEN`, which was bound by the interpreter to the
 `ATOM` `LERR\ I-INTERRUPTS` ("last error").
 
-16.3.4. Examples
+### 16.3.4. Examples
 
 Say you have gotten an error. You can now type at `ERROR`'s `LISTEN`
 loop and get things `EVAL`ed. For example,
@@ -128,7 +128,7 @@ the-name-of-the-Subroutine-which-called-ERROR:atom
 the-arguments-to-the-Subroutine-which-called-ERROR:tuple
 ```
 
-16.4. ERRET
+## 16.4. ERRET
 
     <ERRET any frame>
 
@@ -183,7 +183,7 @@ LISTENING-AT-LEVEL 2 PROCESS 1
 ("a string" (5))
 ```
 
-16.5. RETRY
+## 16.5. RETRY
 
     <RETRY frame>
 
@@ -197,7 +197,7 @@ any old *frame* (any Subroutine call), whereas `AGAIN` requires an
 the `EVAL` of a `FORM` that makes an `ACTIVATION`, it will cause 
 rebinding in the argument `LIST`, thus duplicating side effects.
 
-16.6. UNWIND
+## 16.6. UNWIND
 
 `UNWIND` is an `FSUBR` that takes two arguments, usually `FORM`s. It 
 `EVAL`s the first one, and, if the `EVAL` returns normally, the value 
@@ -220,7 +220,7 @@ the `FLOAD`. Example:
 			<CLOSE .C>>)>>
 ```
 
-16.7. Control-G (^G)
+## 16.7. Control-G (^G)
 
 Typing control-G (<kbd>^G</kbd>, `<ASCII 7>`) at MDL causes it to act 
 just as if an error had occurred in whatever was currently being done. 
@@ -229,14 +229,14 @@ applying `ERRET` to one argument (which is ignored), `RETRY` a `FRAME`
 lower on the control stack, or flush everything by applying `ERRET` to 
 no arguments.
 
-16.8. Control-S (^S)
+## 16.8. Control-S (^S)
 
 Typing control-S (<kbd>^S</kbd>, `<ASCII 19>`) at MDL causes it to stop
 what is happening and return to the `FRAME` `.LERR\ !-INTERRUPTS`, 
 returning the `ATOM` `T`. (In the Tenex and Tops-20 versions, 
 <kbd>^O</kbd> also has the same effect.)
 
-16.9. OVERFLOW
+## 16.9. OVERFLOW
 
     <OVERFLOW false-or-any>
 
