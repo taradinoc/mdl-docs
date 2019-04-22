@@ -5,6 +5,12 @@ Programming Language* by S. W. Galley and Greg Pfister, originally
 written with support from the Advanced Research Projects Agency of the 
 Department of Defense (DARPA).
 
+## How to read this documentation
+
+You can browse the `.md` files directly using GitHub's Markdown
+preview, or find a more pleasant HTML rendering at
+[Read The Docs](https://mdl-language.readthedocs.io/en/latest/).
+
 ## Development disclaimer
 
 This repository was forked from [Mark Trapp's transcription 
