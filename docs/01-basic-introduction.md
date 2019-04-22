@@ -3,8 +3,8 @@
 The purpose of this chapter is to provide you with that minimal amount 
 of information needed to experiment with MDL while reading this 
 document. It is strongly recommended that you do experiment, 
-especially upon reaching [chapter 5 (Simple 
-Functions)](5-simple-functions.markdown).
+especially upon reaching
+[chapter 5 (Simple Functions)](05-simple-functions.markdown).
 
 ## 1.1. Loading MDL [1]
 
