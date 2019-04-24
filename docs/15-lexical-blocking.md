@@ -148,7 +148,7 @@ a different element of the `LIST` of `OBLIST`s for new insertions. If
 the `ATOM` `DEFAULT` is in that `LIST`, the `OBLIST` following that
 `ATOM` will be used.)
 
-## 15.4. PRIN1 and OBLISTs
+## 15.4. PRINT and OBLISTs
 
 When `PRINT` is given an `ATOM` to output, it outputs as little of the
 trailer as is necessary to specify the `ATOM` uniquely to `READ`. That
