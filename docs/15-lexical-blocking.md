@@ -280,7 +280,7 @@ ATOM. If there is no such `ATOM`, `REMOVE` returns `#FALSE ()`. Also,
 removes *atom* from its `OBLIST`, if it is on one. It returns *atom*
 if it was on an `OBLIST`; otherwise it returns `#FALSE ()`.
 
-### 15.7.6 INSERT
+### 15.7.6. INSERT
 
     <INSERT string-or-atom oblist>
 

@@ -134,7 +134,7 @@ This `SUBR` is especially useful in conjunction with (section 11.2.8)
 those elements of a `CHANNEL` which specify the number of characters
 per output line and the current position on an input line.
 
-## CHANNEL (the TYPE)
+## 11.2. CHANNEL (the TYPE)
 
 I/O channels are dynamically assigned in MDL, and are represented by
 an object of `TYPE` `CHANNEL`, which is of `PRIMTYPE` `VECTOR`. The
@@ -298,6 +298,10 @@ following:
 
 *element-number: type interpretation*
 
+#### 11.2.8.1 Output CHANNELs
+
+The contents of a CHANNEL used for output are as follows:
+
 | element-number | type     | interpretation                    |
 |----------------|----------|-----------------------------------|
 |   -1           | `LIST`   | transcript channel(s) (see below) |
@@ -439,7 +443,7 @@ such. *channel* is optional, `.OUTCHAN` by default, and its slots for
 current character position (number 14) and current line number (16)
 are not updated. `IMAGE` returns *fix*.
 
-## 11.5 Dumped I/O
+## 11.5. Dumped I/O
 
 ### 11.5.1. Output: GC-DUMP
 
@@ -725,7 +729,7 @@ the `CHANNEL` given to `READSTRING` is open in `"READ"` mode to a
 pseudo-terminal, reading also stops if and when no more characters
 are available, that is, when `READCHR` would return `-1`.
 
-## 11.8.1. ECHOPAIR
+### 11.8.1. ECHOPAIR
 
     <ECHOPAIR terminal-in:channel terminal-out:channel>
 

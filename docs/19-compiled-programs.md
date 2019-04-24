@@ -104,7 +104,7 @@ is written, so that the code is not duplicated on disk. A purified
 `RSUBR` must use `RGLOC` ("relative GLOC") instead of `GLOC`. `RGLOC`
 produces objects of `TYPE` `LOCR` instead of `LOCD`.
 
-# 19.5. TYPE-C and TYPE-W
+## 19.5. TYPE-C and TYPE-W
 
 In order to handle user `NEWTYPE`s reasonably, the internal `TYPE`
 codes for them have to be able to be different from one MDL run to

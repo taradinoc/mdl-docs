@@ -161,7 +161,7 @@ However, the desired effect could be achieved by
 
     <DEFINE OK (A B "AUX" (D <TUPLE !.A>) (C <REST .D>)) ...>
 
-## 9.3 "AUX" [1]
+## 9.3. "AUX" [1]
 
 `"AUX"` (or `"EXTRA"` -- they're totally equivalent) are `STRING`s 
 which, placed in an argument `LIST`, serve to dynamically allocate 
