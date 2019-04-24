@@ -733,7 +733,7 @@ occurs.
 3. What actually gets inserted into the structure being built are the 
 elements of the structure returned by the `FORM`-like evaluation.
 
-### 7.7.3 Examples [1]
+### 7.7.3. Examples [1]
 
     <SET ZOP '![2 3 4]>$
     ![2 3 4!]

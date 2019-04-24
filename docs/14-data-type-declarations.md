@@ -380,7 +380,7 @@ to date several instances of the full `DECL`.
 
 ## 14.5. Global DECLs
 
-### 15.4.1. GDECL and MANIFEST
+### 14.5.1. GDECL and MANIFEST
 
 There are two ways to declare `GVAL`s for the `DECL`-checking
 mechanism. These are through the `FSUBR` `GDECL` ("global

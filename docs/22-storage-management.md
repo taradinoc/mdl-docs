@@ -187,7 +187,7 @@ re-use. The "copying" algorithm maps the inferior process's address
 space into MDL's own, replacing old garbagey with the new compact
 storage, and the inferior process is destroyed.
 
-## 22.5 GC
+## 22.5. GC
 
     <GC min:fix exh?:false-or-any ms-freq:fix>
 
@@ -361,7 +361,7 @@ useful for unlinking `RSUBR`s. `SUBSTITUTE` returns *old* as a favor:
 unless you hang onto *old* at that point, it will be
 garbage-collected.
 
-## 22.9.2 PURIFY
+### 22.9.2. PURIFY
 
     <PURIFY any-1 ... any-N>
 

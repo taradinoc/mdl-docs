@@ -174,7 +174,7 @@ last value returned by *loopf*. If any of the *si* structures is
 empty, to that *loopf* is never invoked, *finalf* is applied to **no** 
 arguments; if *finalf* is a `FALSE`, `MAPF` returns `#FALSE ()`.
 
-### 10.2.2 MAPR [1]
+### 10.2.2. MAPR [1]
 
     <MAPR finalf loopf s1 s2 ... sN>
 
