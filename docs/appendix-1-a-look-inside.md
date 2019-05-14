@@ -213,7 +213,7 @@ other locatives.
 An `OFFSET` is stored with the `INDEX` in the right half of the value
 word and the Pattern in the left half. Since the Pattern can be
 either an `ATOM` or a `FORM`, the left half actually points to a
-pair, which points to the actual Pattern. The Patttern `ANY` is
+pair, which points to the actual Pattern. The Pattern `ANY` is
 recognized as a special case: the left-half pointer is zero, and no
 pair is used. Thus, if you're making the production version of your
 program and want to save some storage, can do something like `<SETG
