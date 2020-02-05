@@ -2,7 +2,7 @@
 
 The various switches and useful variables in MDL are initially set up with the following values:
 
-    <ACTIVAIE-CHARS <STRING <ASCII 7> <ASCII 19> <ASCII 15>>>
+    <ACTIVATE-CHARS <STRING <ASCII 7> <ASCII 19> <ASCII 15>>>
                           ;"Tenex and Tops-20 versions only"
     <DECL-CHECK T>
     <UNASSIGN <GUNASSIGN DEV>>
