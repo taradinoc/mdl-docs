@@ -5,8 +5,8 @@ S. W. Galley and Greg Pfister
 ## Transcriber's notes
 
 This document has been transcribed by [Mark
-Trapp](https://marktrapp.com) and [Jesse
-McGrew](https://bitbucket.org/jmcgrew) from a [PDF maintained by the
+Trapp](https://marktrapp.com) and [Tara
+McGrew](https://github.com/taradinoc) from a [PDF maintained by the
 Defense Technical Information
 Center](http://www.dtic.mil/docs/citations/ADA070930).  It attempts
 to be as faithful to the original as possible deviating only to adopt
