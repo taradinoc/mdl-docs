@@ -300,7 +300,7 @@ chapter 5. A "correct" `INC` can be defined as follows:
     <DEFINE INC ("BIND" OUTER ATM)
             <SET .ATM <+ 1 <LVAL .ATM .OUTER>> .OUTER>>
 
-## 9.8. ACTIVATION, "NAME", "ACT", "AGAIN", and RETURN [1]
+## 9.8. ACTIVATION, "NAME", "ACT", AGAIN, and RETURN [1]
 
 `EVAL`uation of a `FUNCTION`, after the argument `LIST` has been taken 
 care of, normally consists of `EVAL`uating each of the objects in the 
