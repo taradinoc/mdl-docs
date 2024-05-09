@@ -8,7 +8,7 @@ This document has been transcribed by [Mark
 Trapp](https://marktrapp.com) and [Tara
 McGrew](https://github.com/taradinoc) from a [PDF maintained by the
 Defense Technical Information
-Center](http://www.dtic.mil/docs/citations/ADA070930).  It attempts
+Center](https://apps.dtic.mil/sti/citations/ADA070930).  It attempts
 to be as faithful to the original as possible deviating only to adopt
 modern formatting techniques, account for limitations of Markdown and
 the web, and add links where appropriate.
@@ -106,7 +106,7 @@ before downloading or redistributing.
 However: Even if it should be found that this document is somehow
 under copyright, the U.S. Government's copy has the [distribution
 statement
-"A"](http://www.dtic.mil/dtic/submit/distribution_limitations_and_statements.html),
+"A"](https://www.dodcui.mil/Distribution-Statements/),
 meaning that it is approved for public release and distribution is
 unlimited.  This classification and the information above is the
 basis under which a good-faith effort to preserve an otherwise-public
